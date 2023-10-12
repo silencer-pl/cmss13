@@ -120,7 +120,13 @@
 					return TRUE
 				if(!client.prefs?.preview_dummy)
 					client.prefs.update_preview_icon()
-				var/mob/dead/observer/observer = new /mob/dead/observer(get_turf(pick(GLOB.latejoin)), client.prefs.preview_dummy)
+				var/spawn_turf
+				#ifdef OPENDREAM
+				spawn_turf = locate(1, 1, 1)
+				#else
+				spawn_turf = get_turf(pick(GLOB.latejoin))
+				#endif
+				var/mob/dead/observer/observer = new /mob/dead/observer(spawn_turf, client.prefs.preview_dummy)
 				observer.set_lighting_alpha_from_pref(client)
 				spawning = TRUE
 				observer.started_as_observer = TRUE

@@ -12,6 +12,7 @@ var/list/reboot_sfx = file2list("config/reboot_sfx.txt")
 	view = "15x15"
 	cache_lifespan = 0 //stops player uploaded stuff from being kept in the rsc past the current session
 	hub = "Exadv1.spacestation13"
+	maxx = 330
 
 /world/New()
 	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
