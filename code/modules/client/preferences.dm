@@ -163,6 +163,16 @@ var/const/MAX_SAVE_SLOTS = 10
 	var/faction = "None" //Antag faction/general associated faction.
 	var/religion = RELIGION_AGNOSTICISM  //Religious association.
 
+		// Chargen
+	var/chargen_done = FALSE
+	var/chargen_origin = "None"
+	var/chargen_birthright = "None"
+	var/chargen_foundation = "None"
+	var/chargen_wound = "None"
+	var/chargen_duty = "None"
+	var/chargen_service = "None"
+	var/chargen_destiny = "None"
+
 		//Mob preview
 	var/icon/preview_icon = null
 	var/icon/preview_icon_front = null
@@ -285,8 +295,8 @@ var/const/MAX_SAVE_SLOTS = 10
 
 	var/dat = "<style>"
 	dat += "#column1 {width: 30%; float: left;}"
-	dat += "#column2 {width: 30%; float: left;}"
-	dat += "#column3 {width: 40%; float: left;}"
+	dat += "#column2 {width: 40%; float: left;}"
+	dat += "#column3 {width: 30%; float: left;}"
 	dat += ".square {width: 15px; height: 15px; display: inline-block;}"
 	dat += "</style>"
 	dat += "<body onselectstart='return false;'>"
@@ -305,17 +315,17 @@ var/const/MAX_SAVE_SLOTS = 10
 
 	dat += "<center>"
 	dat += "<a[current_menu == MENU_MARINE ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MARINE]\"><b>Human</b></a> - "
-	dat += "<a[current_menu == MENU_XENOMORPH ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_XENOMORPH]\"><b>Xenomorph</b></a> - "
-	if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_COMMANDER)
-		dat += "<a[current_menu == MENU_CO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_CO]\"><b>Commanding Officer</b></a> - "
-	if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_SYNTHETIC)
-		dat += "<a[current_menu == MENU_SYNTHETIC ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SYNTHETIC]\"><b>Synthetic</b></a> - "
-	if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_PREDATOR)
-		dat += "<a[current_menu == MENU_YAUTJA ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_YAUTJA]\"><b>Yautja</b></a> - "
-	if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_MENTOR)
-		dat += "<a[current_menu == MENU_MENTOR ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MENTOR]\"><b>Mentor</b></a> - "
-	dat += "<a[current_menu == MENU_SETTINGS ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SETTINGS]\"><b>Settings</b></a> - "
-	dat += "<a[current_menu == MENU_SPECIAL ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SPECIAL]\"><b>Special Roles</b></a>"
+	//dat += "<a[current_menu == MENU_XENOMORPH ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_XENOMORPH]\"><b>Xenomorph</b></a> - "
+	//if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_COMMANDER)
+	//	dat += "<a[current_menu == MENU_CO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_CO]\"><b>Commanding Officer</b></a> - "
+	//if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_SYNTHETIC)
+	//	dat += "<a[current_menu == MENU_SYNTHETIC ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SYNTHETIC]\"><b>Synthetic</b></a> - "
+	//if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_PREDATOR)
+	//	dat += "<a[current_menu == MENU_YAUTJA ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_YAUTJA]\"><b>Yautja</b></a> - "
+	//if(RoleAuthority.roles_whitelist[user.ckey] & WHITELIST_MENTOR)
+	//	dat += "<a[current_menu == MENU_MENTOR ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MENTOR]\"><b>Mentor</b></a> - "
+	dat += "<a[current_menu == MENU_SETTINGS ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SETTINGS]\"><b>Settings</b></a>"
+	//dat += "<a[current_menu == MENU_SPECIAL ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SPECIAL]\"><b>Special Roles</b></a>"
 	dat += "</center>"
 
 	dat += "<hr>"
@@ -336,6 +346,7 @@ var/const/MAX_SAVE_SLOTS = 10
 			dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity;task=input'><b>[ethnicity]</b></a><br>"
 			dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type;task=input'><b>[body_type]</b></a><br>"
 			dat += "<b>Traits:</b> <a href='byond://?src=\ref[user];preference=traits;task=open'><b>Character Traits</b></a>"
+			dat += "<b>Character Description:</b> <a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>[TextPreview(flavor_texts["general"], 15)]</b></a><br>"
 			dat += "<br>"
 
 			dat += "<h2><b><u>Occupation Choices:</u></b></h2>"
@@ -343,9 +354,9 @@ var/const/MAX_SAVE_SLOTS = 10
 			dat += "\t<a href='?_src_=prefs;preference=job;task=menu'><b>Set Role Preferences</b></a>"
 			dat += "<br>"
 			dat += "\t<a href='?_src_=prefs;preference=job_slot;task=menu'><b>Assign Character Slots to Roles</b></a>"
-			dat += "</div>"
 
-			dat += "<div id='column2'>"
+
+
 			dat += "<h2><b><u>Hair and Eyes:</u></b></h2>"
 			dat += "<b>Hair:</b> "
 			dat += "<a href='?_src_=prefs;preference=h_style;task=input'><b>[h_style]</b></a>"
@@ -377,7 +388,30 @@ var/const/MAX_SAVE_SLOTS = 10
 			dat += "<b>Color</b> <span class='square' style='background-color: #[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)];'></span>"
 			dat += "</a>"
 			dat += "<br><br>"
+			dat += "</div>"
 
+			dat += "<div id='column2'; align='center'>"
+			dat += "<br><b>SECTOR PATROL CHARGEN</b><br><br>"
+			if (chargen_done == TRUE)
+				dat +="<p><b>ORIGIN</b><br><a href='?_src_=prefs;preference=chargen_origin;task=input'><b>[chargen_origin]</b></a></p>"
+				dat +="<p><b>BIRTHRIGHT</b><br> <a href='?_src_=prefs;preference=chargen_birthright;task=input'><b>[chargen_birthright]</b></a></p>"
+				dat +="<p><b>FOUNDATION</b><br> <a href='?_src_=prefs;preference=chargen_foundation;task=input'><b>[chargen_foundation]</b></a></p>"
+				dat +="<p><b>WOUND</b><br> <a href='?_src_=prefs;preference=chargen_wound;task=input'><b>[chargen_wound]</b></a></p>"
+				dat +="<p><b>DUTY</b><br> <a href='?_src_=prefs;preference=chargen_duty;task=input'><b>[chargen_duty]</b></a></p>"
+				dat +="<p><b>SERVICE</b><br> <a href='?_src_=prefs;preference=chargen_service;task=input'><b>[chargen_service]</b></a></p>"
+				dat +="<p><b>DESTINY</b><br> <a href='?_src_=prefs;preference=chargen_destiny;task=input'><b>[chargen_destiny]</b></a></p>"
+			else
+				if (chargen_origin == "None")
+					dat += "<p><b>This slot does not have a CharGen record!</b></p><br>"
+					dat += "<p><a href='?_src_=prefs;preference=chargen_start;task=input'><b><u>Start CharGen!</u></b></a></p><br>"
+				else
+					dat += "<p><b>In-Progress CharGen Detected!</b></p><br>"
+					dat += "<p><a href='?_src_=prefs;preference=chargen_resume;task=input'><b><u>Resume CharGen!</u></b></a></p><br>"
+
+			dat += "<br><br><br><br><a href='?_src_=prefs;preference=chargen_restart;task=input'><b>Reset CharGen</b></a></p><br/>"
+			dat += "</div>"
+
+			dat += "<div id='column3'>"
 			dat += "<h2><b><u>Marine Gear:</u></b></h2>"
 			dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear;task=input'><b>[underwear]</b></a><br>"
 			dat += "<b>Undershirt:</b> <a href='?_src_=prefs;preference=undershirt;task=input'><b>[undershirt]</b></a><br>"
@@ -412,23 +446,13 @@ var/const/MAX_SAVE_SLOTS = 10
 				if(gear && gear.len)
 					dat += " <a href='byond://?src=\ref[user];preference=loadout;task=clear'><b>Clear</b></a>"
 
-			dat += "</div>"
 
-			dat += "<div id='column3'>"
-			dat += "<h2><b><u>Background Information:</u></b></h2>"
-			dat += "<b>Origin:</b> <a href='?_src_=prefs;preference=origin;task=input'><b>[origin]</b></a><br/>"
-			dat += "<b>Religion:</b> <a href='?_src_=prefs;preference=religion;task=input'><b>[religion]</b></a><br/>"
-
-			dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
-			dat += "<b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
-
-			dat += "<h2><b><u>Fluff Information:</u></b></h2>"
+			dat += "<h2><b><u>Additional IC Information:</u></b></h2>"
 			if(jobban_isbanned(user, "Records"))
 				dat += "<b>You are banned from using character records.</b><br>"
 			else
-				dat += "<b>Records:</b> <a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br>"
-
-			dat += "<b>Flavor Text:</b> <a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>[TextPreview(flavor_texts["general"], 15)]</b></a><br>"
+//				dat += "<b>Records:</b> <a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br>"
+				dat += "<b>Disabled during Alpha</b>"
 			dat += "</div>"
 
 		if(MENU_XENOMORPH)
@@ -1695,15 +1719,7 @@ var/const/MAX_SAVE_SLOTS = 10
 					var/skin_style_name = tgui_input_list(user, "Select a new skin style", "Skin style", list("default1", "default2", "default3"))
 					if(!skin_style_name) return
 
-				if("origin")
-					var/choice = tgui_input_list(user, "Please choose your character's origin.", "Origin Selection", GLOB.player_origins)
-					var/datum/origin/picked_choice = GLOB.origins[choice]
-					if(!picked_choice)
-						return
-					if(tgui_alert(user, "You've selected [picked_choice.name]. [picked_choice.desc]", "Selected Origin", list("Confirm", "Cancel")) == "Cancel")
-						return
-					if(choice)
-						origin = choice
+
 
 				if("religion")
 					var/choice = tgui_input_list(user, "Please choose a religion.", "Religion choice", religion_choices + "Other")
@@ -1732,6 +1748,198 @@ var/const/MAX_SAVE_SLOTS = 10
 
 					SetChoices(user)
 					return
+
+// SECTOR PATROL CHARGEN
+//Debug functions
+
+				if ("chargen_restart")
+					chargen_done = FALSE
+					chargen_origin = "None"
+					chargen_birthright = "None"
+					chargen_foundation = "None"
+					chargen_wound = "None"
+					chargen_duty = "None"
+					chargen_service = "None"
+					chargen_destiny = "None"
+					process_link (user, list("_src_" = "\ref[user]", "preference" = "save"))
+
+// end debug functions
+
+//				if("origin")
+//					var/choice = tgui_input_list(user, "Please choose your character's origin.", "Origin Selection", GLOB.player_origins)
+//					var/datum/origin/picked_choice = GLOB.origins[choice]
+//					to_chat(user, SPAN_NOTICE("[picked_choice.desc]"))
+//					if(!picked_choice)
+//						return
+//					if(tgui_alert(user, "You've selected [picked_choice.name]. Please consult the main chat window for a detailed description of your choice. If this is the option you want, Confirm it below.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+//						return
+//					if(choice)
+//						origin = choice
+
+				if("chargen_start")
+					to_chat(user, ("<div class='chargen_header';><p>Welcome to the Sector Patrol Chargen!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>Sector Patrol uses a heavily modified Aliens RPG universe as its setting. While some things may seem familir with the Aliens RPG books, <u>SIGNIFICANT</u> changes have been made to canon lore.</p><p>The Chargen Process takes you though 7 aspects of your character which introduces you to the Sector Patrol setting and your place in it. All in all, the process should not take longer than 5 minutes if you have a character concept in mind.</p><p>If none of the options matches your concept in a way that is satisfactory, please pick the closest possible option and let your GM know.</p></div>"))
+					if(tgui_alert(user, "Currently, Chargen uses the chat input window as its main output. Please make sure text is visible before continuing.", "Text Visibility Confirmation", list("Text is Visible","Cancel")) == "Cancel")
+						return
+					to_chat(user, ("<div class='chargen_header';><p><b>The year is 2185...</b></p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>After a terrorist attack known as the Blackfire Incident last year, the United States Colonial Marines Corps was dissolved in shame. This happened in large part thanks to Task Force 14 a Special Task Group that recruited from USCMC personnel that discovered and publicized compromising information that tied USCMC leadership to Blackfire.</p><p>You were a commissioned or enlisted officer in the USCMC that was unceremoniously kicked out of active military duty when the whole formation collapsed and was disbanded in the aftermath of Blackfire. After a year of either constant interrogations and trials or, even worse, apparent blacklisting from any military service you are offered a chance to join the newly forming UACM as a commissioned officer.</p><p>The UACM is aimed to be an all-encompassing, single fighting force of the UA, as opposed to the superpower relying on highly specialized units belonging to individual member states. As the UA itself coalesces from a military alliance to a real political and military union of its member states, so does its armed force start to resemble a unified, single weapon aimed at the UA enemies.</p><p>Two other superpowers seek dominance among the stars. The Isolationist Three World Empire, a result of a union between British and Japanese monarchies and governments, while technically an ally of the UA, has designs of its own and rules the stars with a unbreakable technological supremacy. The totalitarian Union of Progressive Peoples, also the union of two nations - in this case Russia and China is a totalitarian hegemony where a heavily entrenched ruling class brutally exploits its citizens in the name of 'Social Justice'.</p><p>You have been assigned as a member of the Test Crews that are part of the Second Fleet of the Outer Veil Logistics and Supply division, under RDML Thomas Boulette, and are stationed on the Outer Veil Primary Supply Terminal. You will be testing and flying experimental ships belonging to the UACM logistics fleet, particularly focusing on the UAS Almayer and its unorthodox AI system.</p></div>"))
+					if (tgui_alert(user, "Before you report for duty, tell us about yourself, Marine.", "Ready Confirmation", list("Begin Chargen!","Cancel")) == "Cancel")
+						return
+					process_link(user, list("_src_" = "prefs", "preference" = "chargen_origin", "task" = "input"))
+
+				if("chargen_origin")
+					to_chat(user, ("<div class='chargen_header';><p>ORIGIN</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>Your characters Origin determines which of the three major cultures they were born into, and presumably which cultural background was predominant in their upbringing. Note that the list does not exhaust possible Origins in the galaxy but is rather limited to Origins that are acceptable starting points for future UACM Ensigns.</p></div>"))
+					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Origin Selection", GLOB.player_chargen_origin)
+					var/datum/origin/picked_choice = GLOB.chargen_origin[choice]
+					if(!picked_choice)
+						return
+					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
+					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+
+					if(tgui_alert(user, "You've selected [picked_choice.name]. See the chat output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+						return
+					if(choice)
+						chargen_origin = choice
+						save_chargen()
+						if(chargen_birthright == "None" && chargen_done == FALSE)
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_birthright", "task" = "input"))
+
+				if("chargen_birthright")
+					to_chat(user, ("<div class='chargen_header';><p>BIRTHRIGHT</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>Your Characters Birthright determines where in the known galaxy where you born, typically within legally owned territory of your Origin superpower. Life in the Colonies is diametrically different than life on Earth and your Birthright is used to express where did your character grow up.</p></div>"))
+					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Birthright Selection", GLOB.player_chargen_birthright)
+					var/datum/origin/picked_choice = GLOB.chargen_birthright[choice]
+					if(!picked_choice)
+						return
+					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
+					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+						return
+					if(choice)
+						chargen_birthright = choice
+						save_chargen()
+						if(chargen_foundation == "None" && chargen_done == FALSE)
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_foundation", "task" = "input"))
+
+
+				if("chargen_foundation")
+					to_chat(user, ("<div class='chargen_header';><p>FOUNDATION</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>As the name implies, the Foundation is the basis on which your character’s personality is built. The Foundation determines their childhood and young adulthood, particularly looking at the bonds they formed with their family, cultural and friend group and society at large.</p></div>"))
+					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_foundation)
+					var/datum/origin/picked_choice = GLOB.chargen_foundation[choice]
+					if(!picked_choice)
+						return
+					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
+					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+						return
+					if(choice)
+						chargen_foundation = choice
+						save_chargen()
+						if(chargen_wound == "None" && chargen_done == FALSE)
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_wound", "task" = "input"))
+
+				if("chargen_wound")
+					to_chat(user, ("<div class='chargen_header';><p>WOUND</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>Your characters Wound is as the name implies some form of damage of trauma that is significant enough to affect your characters life and outlook. This is not a minor incident, but rather something your character will be likely to deal with and carry through the rest of their life. While the effects of a Wound on your character do not have to be negative (many turn their failures into future successes after all), the Wound itself supposed to be a devastating outcome for your character.</p></div>"))
+					to_chat(user, SPAN_WARNING("<p>Please note that Wound descriptions may contain some minor triggers related to trauma, physical or mental. If you do not wish to engage with this section, the Clear choice offers a trauma-free life and does not force you to interact with any content that may make you uncomfortable.</p>"))
+					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_wound)
+					var/datum/origin/picked_choice = GLOB.chargen_wound[choice]
+					if(!picked_choice)
+						return
+					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
+					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+						return
+					if(choice)
+						chargen_wound = choice
+						save_chargen()
+						if(chargen_duty == "None" && chargen_done == FALSE)
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_duty", "task" = "input"))
+
+				if("chargen_duty")
+					to_chat(user, ("<div class='chargen_header';><p>DUTY</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>Why you joined the USCMC</p></div>"))
+					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_duty)
+					var/datum/origin/picked_choice = GLOB.chargen_duty[choice]
+					if(!picked_choice)
+						return
+					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
+					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+						return
+					if(choice)
+						chargen_duty = choice
+						save_chargen()
+						if(chargen_service == "None" && chargen_done == FALSE)
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_service", "task" = "input"))
+
+				if("chargen_service")
+					to_chat(user, ("<div class='chargen_header';><p>SERVICE</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>Your service in the USCMC</p></div>"))
+					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Service Selection", GLOB.player_chargen_service)
+					var/datum/origin/picked_choice = GLOB.chargen_service[choice]
+					if(!picked_choice)
+						return
+					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
+					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+						return
+					if(choice)
+						chargen_service = choice
+						save_chargen()
+						if(chargen_destiny == "None" && chargen_done == FALSE)
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_destiny", "task" = "input"))
+
+				if("chargen_destiny")
+					to_chat(user, ("<div class='chargen_header';><p>DESTINY</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>The future in your characters eyes</p></div>"))
+					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_destiny)
+					var/datum/origin/picked_choice = GLOB.chargen_destiny[choice]
+					if(!picked_choice)
+						return
+					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
+					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+						return
+					if(choice)
+						chargen_destiny = choice
+						save_chargen()
+						if(chargen_done == FALSE)
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_validate", "task" = "input"))
+
+				if("chargen_validate")
+					if(chargen_origin != "None" && chargen_birthright != "None" && chargen_foundation != "None" && chargen_wound != "None" && chargen_duty != "None" && chargen_service != "None" && chargen_destiny != "None")
+						chargen_done = TRUE
+						process_link (user, list("_src_" = "\ref[user]", "preference" = "save"))
+						to_chat(user, ("<div class='chargen_header';><p><b>CharGen Complete!</b></p><p>Character Saved!</p><p>You may now join the round or queue. Welcome to Sector Patrol!</p></div>"))
+					else
+						to_chat(user, ("<div class='chargen_body';><p><b>EXCEPTION<b></p>"))
+						to_chat(user, ("<div class='chargen_body';><p>Values: O:[chargen_origin]<br>B:[chargen_birthright]<br>F:[chargen_foundation]<br>W:[chargen_wound]<br>D:[chargen_duty]<br>S:[chargen_service]<br>DE:[chargen_destiny]</p>"))
+						to_chat(user, ("<div class='chargen_body';><p>Please report this issue, reset your chargen and try again."))
+// Spiritual successor of the enldess if nesting tree that was. You were a real one.
+				if("chargen_resume")
+					if (chargen_origin == "None")
+						process_link(user, list("_src_" = "prefs", "preference" = "chargen_origin", "task" = "input"))
+					else
+						if (chargen_birthright == "None")
+							process_link(user, list("_src_" = "prefs", "preference" = "chargen_birthright", "task" = "input"))
+						else
+							if (chargen_foundation == "None")
+								process_link(user, list("_src_" = "prefs", "preference" = "chargen_foundation", "task" = "input"))
+							else
+								if (chargen_wound == "None")
+									process_link(user, list("_src_" = "prefs", "preference" = "chargen_wound", "task" = "input"))
+								else
+									if (chargen_duty == "None")
+										process_link(user, list("_src_" = "prefs", "preference" = "chargen_duty", "task" = "input"))
+									else
+										if (chargen_service == "None")
+											process_link(user, list("_src_" = "prefs", "preference" = "chargen_service", "task" = "input"))
+										else
+											if (chargen_destiny == "None")
+												process_link(user, list("_src_" = "prefs", "preference" = "chargen_destiny", "task" = "input"))
 		else
 			switch(href_list["preference"])
 				if("publicity")
@@ -1926,11 +2134,6 @@ var/const/MAX_SAVE_SLOTS = 10
 				if("save")
 					if(save_cooldown > world.time)
 						to_chat(user, SPAN_WARNING("You need to wait [round((save_cooldown-world.time)/10)] seconds before you can do that again."))
-						return
-					var/datum/origin/character_origin = GLOB.origins[origin]
-					var/name_error = character_origin.validate_name(real_name)
-					if(name_error)
-						tgui_alert(user, name_error, "Invalid Name", list("OK"))
 						return
 					save_preferences()
 					save_character()
