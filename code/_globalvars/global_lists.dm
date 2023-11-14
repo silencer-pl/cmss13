@@ -1,6 +1,3 @@
-
-var/list/unansweredAhelps = list() //This feels inefficient, but I can't think of a better way. Stores the message indexed by CID
-
 GLOBAL_LIST_EMPTY(PressFaxes)
 GLOBAL_LIST_EMPTY(WYFaxes) //Departmental faxes
 GLOBAL_LIST_EMPTY(USCMFaxes)
@@ -161,6 +158,29 @@ GLOBAL_LIST_INIT(language_keys, setup_language_keys()) //table of say codes for 
 // Origins
 GLOBAL_REFERENCE_LIST_INDEXED(origins, /datum/origin, name)
 GLOBAL_LIST_INIT(player_origins, USCM_ORIGINS)
+
+//chargen
+
+GLOBAL_REFERENCE_LIST_INDEXED(chargen_origin, /datum/chargen/origin, name)
+GLOBAL_LIST_INIT(player_chargen_origin, CHARGEN_ORIGIN)
+
+GLOBAL_REFERENCE_LIST_INDEXED(chargen_birthright, /datum/chargen/birthright, name)
+GLOBAL_LIST_INIT(player_chargen_birthright, CHARGEN_BIRTHRIGHT)
+
+GLOBAL_REFERENCE_LIST_INDEXED(chargen_foundation, /datum/chargen/foundation, name)
+GLOBAL_LIST_INIT (player_chargen_foundation, CHARGEN_FOUNDATION)
+
+GLOBAL_REFERENCE_LIST_INDEXED(chargen_wound, /datum/chargen/wound, name)
+GLOBAL_LIST_INIT (player_chargen_wound, CHARGEN_WOUND)
+
+GLOBAL_REFERENCE_LIST_INDEXED(chargen_duty, /datum/chargen/duty, name)
+GLOBAL_LIST_INIT (player_chargen_duty, CHARGEN_DUTY)
+
+GLOBAL_REFERENCE_LIST_INDEXED(chargen_service, /datum/chargen/service, name)
+GLOBAL_LIST_INIT (player_chargen_service, CHARGEN_SERVICE)
+
+GLOBAL_REFERENCE_LIST_INDEXED(chargen_destiny, /datum/chargen/destiny, name)
+GLOBAL_LIST_INIT (player_chargen_destiny, CHARGEN_DESTINY)
 
 //Xeno mutators
 GLOBAL_REFERENCE_LIST_INDEXED_SORTED(xeno_mutator_list, /datum/xeno_mutator, name)
