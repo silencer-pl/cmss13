@@ -476,6 +476,7 @@
 	//S["skin_style"] >> skin_style
 
 	//chargen
+	S["chargen_firsttime"] >> chargen_firsttime
 	S["chargen_done"] >> chargen_done
 	S["chargen_origin"] >> chargen_origin
 	S["chargen_birthright"] >> chargen_birthright
@@ -557,6 +558,7 @@
 	if(!preferred_squad) preferred_squad = "None"
 
 // Chargen
+	if(!chargen_firsttime) chargen_firsttime = TRUE
 	if(!chargen_done) chargen_done = FALSE
 	if(!chargen_origin) chargen_origin = "None"
 	if(!chargen_birthright) chargen_birthright = "None"
@@ -642,17 +644,10 @@
 
 	S["uplinklocation"] << uplinklocation
 	S["exploit_record"] << exploit_record
-	save_chargen()
 
-	return 1
+	//CharGen
 
-	//Chargen
-/datum/preferences/proc/save_chargen()
-	if(!path) return 0
-	var/savefile/S = new /savefile(path)
-	if(!S) return 0
-	S.cd = "/character[default_slot]"
-
+	S["chargen_firsttime"] << chargen_firsttime
 	S["chargen_done"] << chargen_done
 	S["chargen_origin"] << chargen_origin
 	S["chargen_birthright"] << chargen_birthright

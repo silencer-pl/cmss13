@@ -164,6 +164,7 @@ var/const/MAX_SAVE_SLOTS = 10
 	var/religion = RELIGION_AGNOSTICISM  //Religious association.
 
 		// Chargen
+	var/chargen_firsttime = TRUE
 	var/chargen_done = FALSE
 	var/chargen_origin = "None"
 	var/chargen_birthright = "None"
@@ -1777,31 +1778,36 @@ var/const/MAX_SAVE_SLOTS = 10
 //						origin = choice
 
 				if("chargen_start")
-					to_chat(user, ("<div class='chargen_header';><p>Welcome to the Sector Patrol Chargen!</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>Sector Patrol uses a heavily modified Aliens RPG universe as its setting. While some things may seem familir with the Aliens RPG books, <u>SIGNIFICANT</u> changes have been made to canon lore.</p><p>The Chargen Process takes you though 7 aspects of your character which introduces you to the Sector Patrol setting and your place in it. All in all, the process should not take longer than 5 minutes if you have a character concept in mind.</p><p>If none of the options matches your concept in a way that is satisfactory, please pick the closest possible option and let your GM know.</p></div>"))
-					if(tgui_alert(user, "Currently, Chargen uses the chat input window as its main output. Please make sure text is visible before continuing.", "Text Visibility Confirmation", list("Text is Visible","Cancel")) == "Cancel")
+					to_chat(user, ("<div class='chargen_header';><p>Welcome to the Sector Patrol CharGen!</p></div>"))
+					if(chargen_firsttime == TRUE)
+						to_chat(user, ("<div class='chargen_body';><p>Sector Patrol is a <b> Non-PvP Roleplay </b> gamemode loosely based on the Aliens franchise, as presented in the Aliens RPG books. <b> Sector Patrol uses its own lore that detracts from established Aliens canon; however, the basic outline of the universe remains the same.</b></p><p>Before you can join a round of Sector Patrol, you must complete CharGen, a seven step process that will introduce you to all the key information about the universe and help you work out a working character concept that fits into said universe.</p><p>While Sector Patrol offers a lot of supplementary material, at the end of CharGen you should have all the information you need to play and enjoy Sector Patrol without consulting external sources. Good luck and have fun! </p></div>"))
+						chargen_firsttime = FALSE
+						save_character()
+					else
+						to_chat(user, ("<div class='chargen_body';><p>CharGen record not found. Beginning CharGen...</p></div>"))
+					if(tgui_alert(user, "Please verify that you can see CharGen text in your chat window.", "Text Visibility Confirmation", list("Text is Visible","Cancel")) == "Cancel")
 						return
 					to_chat(user, ("<div class='chargen_header';><p><b>The year is 2185...</b></p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>After a terrorist attack known as the Blackfire Incident last year, the United States Colonial Marines Corps was dissolved in shame. This happened in large part thanks to Task Force 14 a Special Task Group that recruited from USCMC personnel that discovered and publicized compromising information that tied USCMC leadership to Blackfire.</p><p>You were a commissioned or enlisted officer in the USCMC that was unceremoniously kicked out of active military duty when the whole formation collapsed and was disbanded in the aftermath of Blackfire. After a year of either constant interrogations and trials or, even worse, apparent blacklisting from any military service you are offered a chance to join the newly forming UACM as a commissioned officer.</p><p>The UACM is aimed to be an all-encompassing, single fighting force of the UA, as opposed to the superpower relying on highly specialized units belonging to individual member states. As the UA itself coalesces from a military alliance to a real political and military union of its member states, so does its armed force start to resemble a unified, single weapon aimed at the UA enemies.</p><p>Two other superpowers seek dominance among the stars. The Isolationist Three World Empire, a result of a union between British and Japanese monarchies and governments, while technically an ally of the UA, has designs of its own and rules the stars with a unbreakable technological supremacy. The totalitarian Union of Progressive Peoples, also the union of two nations - in this case Russia and China is a totalitarian hegemony where a heavily entrenched ruling class brutally exploits its citizens in the name of 'Social Justice'.</p><p>You have been assigned as a member of the Test Crews that are part of the Second Fleet of the Outer Veil Logistics and Supply division, under RDML Thomas Boulette, and are stationed on the Outer Veil Primary Supply Terminal. You will be testing and flying experimental ships belonging to the UACM logistics fleet, particularly focusing on the UAS Almayer and its unorthodox AI system.</p></div>"))
-					if (tgui_alert(user, "Before you report for duty, tell us about yourself, Marine.", "Ready Confirmation", list("Begin Chargen!","Cancel")) == "Cancel")
+					to_chat(user, ("<div class='chargen_body';><p>Widespread ecological collapse that essentially made the Earth unlivable anywhere but huge sealed off megacities was threatening to push humanity to the edge of extinction by the late 2060s. As resources and living space dwindled, Russia and China would band together and overwhelm Europe and Asia, creating the totalitarian UPP. As a response, Great Britian and Japan would over time merge their monarchies and cultures into one, eventually becoming the Three World Empie. North and South American countries, Canada and the US included, would respond to this by forming a military pact called the United Americas, however this pact soon became the grounds for an increasingly stronger union between its members states.</p><p>YA brutal war seemed inevitable between these three factions when a scientific expedition founded by the Weyland-Yutani company discovered alien technology in ruins found underneath the rapidly melting polar ice caps. Among this technology the key to unlocking faster than light travel with a process simple enough that all three of Earths superpowers could almost instantly adopt it, resulting in mass production of craft and rapid colonization of nearby viable solar systems. This in turn stabilized and gave some much needed reprieve to an overpopulated, dying Earth. Old conflicts and grievances followed humanity to the stars. An interplanetary nuclear war between the UA and UPP brought back old divisions front and center. For a while, a nuclear exchange back on Earth seemed inevitable as well. Ultimately, a ceasefire was reached, and a new order established where the UPP is in a state of a constant cold war with the TWE and UA who form an uneasy alliance. The colonization of space resumed...</p><p>The United States Marine Corps, or the USCMC, was founded during this time of restarted space exploration to act as a quick response force in the Inner and Outer Veil, a high intensity cluster of stars located between the Inner and Outer Rim of the known galaxy. The Marines claim to fame was 'The Sweep' - a massive, coordinated operation that secured safety and security in the Veil for the next twenty-five years, during which the region saw massive expansion. The USCMC suffers from massive decline and decay due to widespread corruption and chronic lack of funding stemming from disagreements within the UA over the legacy of The Sweep. <b>You joined the Marines during this decline</b>, just as the Veil started to see a massive push from the UPP into the region. By 2180 the Veil was littered with numerous colonies and installations belonging to all three Superpowers as a new cold war was ramping up back on Earth, fears of another nuclear conflict became very real.</p><p>In 2184 during what becomes known as <b>the Blackfire Incident</b> a volatile bioweapon colloquially known as <b>Black Goo</b> is released into the atmosphere of a prominent Veil colony. A broadcast is maintained by an unknown third party as all life on the planet perishes in an agonizing twenty hours. By the next day, the recording is spread all over public and military networks. Two days after Blackfire, <b>Task Force 14</b>, a Special Task Group recruiting mostly USCMC officers broadcasts <b>the Blackfire Files</b> across all civilized space. These files reveal an incredibly through, but completely illegal investigation into a terrorist group known as <b>Deep Void</b> who they pin as responsible for Blackfire. Deep Void is then exposed to compromise mostly of USCMC High Command, high ranking officers who believed that a war with the UPP was the key to another Sweep.</p><p><b>The USCMC does not survive this revelation.</b> Within weeks public outcry and general contempt for the organization is so high that UA Allied Command terminates the contracts of the whole formation outright. <b>You are unceremoniously fired, stripped of your honors and dumped in a society that universally hates you for actions you had nothing to do with.</b> You quickly find that your past with the USCMC has made you an almost universal pariah. Since it becomes almost impossible not to have served on a ship or base that had something to do with Deep Void activities, you are also submit to a very rough and uncaring investigation by the <b>UAAC-TIS</b>, the intelligence agency who was revealed to be the driving force behind Task Force 14's actions.</p><p><b>It has been an extremely rough year for anyone who served in the USCMC.</b> In many ways it seems that society at large is willing to just leave you behind as a mistake. As the UA consolidates itself into a single political state, it creates the <b>United Americas Colonial Marines</b>, or the <b>UACM</b>. You are offered a part in this new formation in an attempt by UA brass to at least somehow reconcile the hell you went through during the last year. After extensive training in a UACM army base outside of the New York Urban Sprawl, you are hired as a commissioned officer and given the rank of Ensign. You are then immediately assigned to be part of the fledgling <b>Second Fleet</b> of the <b>Outer Veil Logistics and Supply unit</b>, under <b>RDML Thomas Boulette</b>. You will be based out of the <b>Outer Veil Primary Supply Terminal</b> a mostly automated, gigantic space station where you will operate as <b>Test Crews</b> testing and implementing new UACM spaceship technology.</p></div>"))
+					if (tgui_alert(user, "You reflect on your own past, thinking about how you got here...", "Ready Confirmation", list("Begin CharGen","Not today")) == "Not today")
 						return
 					process_link(user, list("_src_" = "prefs", "preference" = "chargen_origin", "task" = "input"))
 
 				if("chargen_origin")
-					to_chat(user, ("<div class='chargen_header';><p>ORIGIN</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>Your characters Origin determines which of the three major cultures they were born into, and presumably which cultural background was predominant in their upbringing. Note that the list does not exhaust possible Origins in the galaxy but is rather limited to Origins that are acceptable starting points for future UACM Ensigns.</p></div>"))
-					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Origin Selection", GLOB.player_chargen_origin)
+					to_chat(user, ("<div class='chargen_body';><p>You were born into a family that lived in territory claimed by one of the three superpowers that make up most of modern humanity. <b>While service in the UACM typically means that you are a UA citizen</b>, that does not mean that is how you started your journey.</p></div>"))
+					to_chat(user, ("<div class='chargen_header';><p>What is your <b>Origin?</b></p></div>"))
+					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Origin", GLOB.player_chargen_origin)
 					var/datum/origin/picked_choice = GLOB.chargen_origin[choice]
 					if(!picked_choice)
 						return
-					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
-					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
+					to_chat(user, ("<div class='chargen_header';><p>Your <b>Origin</b> is [picked_choice.name]!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
 
 					if(tgui_alert(user, "You've selected [picked_choice.name]. See the chat output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
 						return
 					if(choice)
 						chargen_origin = choice
-						save_chargen()
+						save_character()
 						if(chargen_birthright == "None" && chargen_done == FALSE)
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_birthright", "task" = "input"))
 
@@ -1818,7 +1824,7 @@ var/const/MAX_SAVE_SLOTS = 10
 						return
 					if(choice)
 						chargen_birthright = choice
-						save_chargen()
+						save_character()
 						if(chargen_foundation == "None" && chargen_done == FALSE)
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_foundation", "task" = "input"))
 
@@ -1836,7 +1842,7 @@ var/const/MAX_SAVE_SLOTS = 10
 						return
 					if(choice)
 						chargen_foundation = choice
-						save_chargen()
+						save_character()
 						if(chargen_wound == "None" && chargen_done == FALSE)
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_wound", "task" = "input"))
 
@@ -1854,7 +1860,7 @@ var/const/MAX_SAVE_SLOTS = 10
 						return
 					if(choice)
 						chargen_wound = choice
-						save_chargen()
+						save_character()
 						if(chargen_duty == "None" && chargen_done == FALSE)
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_duty", "task" = "input"))
 
@@ -1871,7 +1877,7 @@ var/const/MAX_SAVE_SLOTS = 10
 						return
 					if(choice)
 						chargen_duty = choice
-						save_chargen()
+						save_character()
 						if(chargen_service == "None" && chargen_done == FALSE)
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_service", "task" = "input"))
 
@@ -1888,7 +1894,7 @@ var/const/MAX_SAVE_SLOTS = 10
 						return
 					if(choice)
 						chargen_service = choice
-						save_chargen()
+						save_character()
 						if(chargen_destiny == "None" && chargen_done == FALSE)
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_destiny", "task" = "input"))
 
@@ -1905,7 +1911,7 @@ var/const/MAX_SAVE_SLOTS = 10
 						return
 					if(choice)
 						chargen_destiny = choice
-						save_chargen()
+						save_character()
 						if(chargen_done == FALSE)
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_validate", "task" = "input"))
 
