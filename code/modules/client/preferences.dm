@@ -1794,7 +1794,7 @@ var/const/MAX_SAVE_SLOTS = 10
 					process_link(user, list("_src_" = "prefs", "preference" = "chargen_origin", "task" = "input"))
 
 				if("chargen_origin")
-					to_chat(user, ("<div class='chargen_body';><p>You were born into a family that lived in territory claimed by one of the three superpowers that make up most of modern humanity. <b>While service in the UACM typically means that you are a UA citizen</b>, that does not mean that is how you started your journey.</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>You were born into a family that lived in territory claimed by <b>one of the three superpowers that make up most of modern humanity</b>. <b>While service in the UACM typically means that you are a UA citizen</b>, that does not mean that is how you started your journey.</p></div>"))
 					to_chat(user, ("<div class='chargen_header';><p>What is your <b>Origin?</b></p></div>"))
 					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Origin", GLOB.player_chargen_origin)
 					var/datum/origin/picked_choice = GLOB.chargen_origin[choice]
@@ -1802,8 +1802,7 @@ var/const/MAX_SAVE_SLOTS = 10
 						return
 					to_chat(user, ("<div class='chargen_header';><p>Your <b>Origin</b> is [picked_choice.name]!</p></div>"))
 					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
-
-					if(tgui_alert(user, "You've selected [picked_choice.name]. See the chat output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+					if(tgui_alert(user, "Please click proceed if you are happy with [picked_choice.name].", "Confirm [picked_choice.name]?", list("Confirm", "Go back")) == "Go back")
 						return
 					if(choice)
 						chargen_origin = choice
@@ -1812,15 +1811,16 @@ var/const/MAX_SAVE_SLOTS = 10
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_birthright", "task" = "input"))
 
 				if("chargen_birthright")
-					to_chat(user, ("<div class='chargen_header';><p>BIRTHRIGHT</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>Your Characters Birthright determines where in the known galaxy where you born, typically within legally owned territory of your Origin superpower. Life in the Colonies is diametrically different than life on Earth and your Birthright is used to express where did your character grow up.</p></div>"))
-					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Birthright Selection", GLOB.player_chargen_birthright)
+
+					to_chat(user, ("<div class='chargen_body';><p>Humanity has spread across the stars rapidly, chaotically and nonstop since they developed the technology to do so, currently occupying <b>over a thousand of settlements, stations and other stationary installations</b> of all shapes and sizes across a huge part of the known galaxy. <b>Someone born in the Outer Rim is likely to have a completely different experience growing up from someone living on Earth</b>, even within their own cultural background.</p></div>"))
+					to_chat(user, ("<div class='chargen_header';><p>Where in the known galaxy were you born? What is your <b>Birthright</b>?</p> </div>"))
+					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Birthright", GLOB.player_chargen_birthright)
 					var/datum/origin/picked_choice = GLOB.chargen_birthright[choice]
 					if(!picked_choice)
 						return
-					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
-					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
-					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+					to_chat(user, ("<div class='chargen_header';><p>Your <b>Birthright</b> is [picked_choice.name]!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
+					if(tgui_alert(user, "Please click proceed if you are happy with [picked_choice.name].", "Confirm [picked_choice.name]?", list("Confirm", "Go back")) == "Go back")
 						return
 					if(choice)
 						chargen_birthright = choice
@@ -1830,15 +1830,15 @@ var/const/MAX_SAVE_SLOTS = 10
 
 
 				if("chargen_foundation")
-					to_chat(user, ("<div class='chargen_header';><p>FOUNDATION</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>As the name implies, the Foundation is the basis on which your character’s personality is built. The Foundation determines their childhood and young adulthood, particularly looking at the bonds they formed with their family, cultural and friend group and society at large.</p></div>"))
-					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_foundation)
+					to_chat(user, ("<div class='chargen_body';><p>Most spend their entire lives living near the place they were born, even in modern times. <b>Space travel as a profession is seem as an inherently risky and isolated profession, something akin to working on an oil rig.</b> Ship malfunctions can easily cascade out of control and force crews do escape pods, which sometimes can take years if not more to recover. Joining the USCMC may not have always been your goal, but <b?for better or worse the prospect of space travel was alluring enough to you that you turned to it as a profession.</b> That predisposition would have very likely affected your formative years and early childhood in terms of both who you were and why exactly did you turn to the Marines, as you are very likely to have been <b>a risktaker<b>, someone <b>used to the relative solitude of long term space travel</b> or someone who otherwise had <b>strong motivations to want to reach for the stars.</b></p></div>"))
+					to_chat(user, ("<div class='chargen_header';><p>Keeping that in mind, what made you reach for the stars? What is your <b>Foundation</b>?</p></div>"))
+					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Foundation", GLOB.player_chargen_foundation)
 					var/datum/origin/picked_choice = GLOB.chargen_foundation[choice]
 					if(!picked_choice)
 						return
-					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
-					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
-					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+					to_chat(user, ("<div class='chargen_header';><p>Your <b>Foundation</b> is [picked_choice.name]!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
+					if(tgui_alert(user, "Please click proceed if you are happy with [picked_choice.name].", "Confirm [picked_choice.name]?", list("Confirm", "Go back")) == "Go back")
 						return
 					if(choice)
 						chargen_foundation = choice
@@ -1847,16 +1847,15 @@ var/const/MAX_SAVE_SLOTS = 10
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_wound", "task" = "input"))
 
 				if("chargen_wound")
-					to_chat(user, ("<div class='chargen_header';><p>WOUND</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>Your characters Wound is as the name implies some form of damage of trauma that is significant enough to affect your characters life and outlook. This is not a minor incident, but rather something your character will be likely to deal with and carry through the rest of their life. While the effects of a Wound on your character do not have to be negative (many turn their failures into future successes after all), the Wound itself supposed to be a devastating outcome for your character.</p></div>"))
-					to_chat(user, SPAN_WARNING("<p>Please note that Wound descriptions may contain some minor triggers related to trauma, physical or mental. If you do not wish to engage with this section, the Clear choice offers a trauma-free life and does not force you to interact with any content that may make you uncomfortable.</p>"))
-					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_wound)
+					to_chat(user, ("<div class='chargen_body';><p>Despite best efforts, not every choice you make, professional or personal, is destined to be a success. Setbacks and personal failures are as common in the modern world as they have been in recent history, and few manage to avoid such an experience. For some, these memories serve as <b>important lessons for the future</b>. Others focus on <b>getting even with the perceived cause of their grievance of failure</b> and let that drive their motivations. Yet others see them as <b>a stain on their honor</b> or a similar concept and orient their lives around trying to erase or make up for it.</p></div>"))
+					to_chat(user, ("<div class='chargen_header';></p>Do you have a past failure or injustice that drives you? Do you have a <b>Wound</b>?</p></div>"))
+					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Wound", GLOB.player_chargen_wound)
 					var/datum/origin/picked_choice = GLOB.chargen_wound[choice]
 					if(!picked_choice)
 						return
-					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
-					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
-					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+					to_chat(user, ("<div class='chargen_header';><p>Your <b>Wound</b> is [picked_choice.name]!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
+					if(tgui_alert(user, "Please click proceed if you are happy with [picked_choice.name].", "Confirm [picked_choice.name]?", list("Confirm", "Go back")) == "Go back")
 						return
 					if(choice)
 						chargen_wound = choice
@@ -1865,15 +1864,15 @@ var/const/MAX_SAVE_SLOTS = 10
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_duty", "task" = "input"))
 
 				if("chargen_duty")
-					to_chat(user, ("<div class='chargen_header';><p>DUTY</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>Why you joined the USCMC</p></div>"))
-					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_duty)
+					to_chat(user, ("<div class='chargen_body';><p>The United States Marine Corps, or the USCMC has long lived in the shadow of <b>The Sweep</b> - a massive operation conducted in <b>2142</b> that over the course of several months eliminated all known sources of pirate or otherwise illegal activity. The methods and reach of The Sweep are wildly criticized, <b>commonly considered overzealous</b> and many times claiming the lives of innocents that lived along with the actual targets of the operation. It is however unarguable that <b>for the next twenty-five years, the Inner and Outer veil has been extremely stable</b>, allowing for rapid colonization. Ironically it is this stability that leads the USCMC into turmoil, as the formation stagnates and falls into corruption. <b>By the time you join the Marines, the situation in the Veil has deteriorated</b> and <b>the poorly supplied, unequipped and completely outmatched in terms of technology</b> USCMC struggles to face threats from both private and UPP interests. Additionally, <b>many officers in Marine High Command feel like Allied Command is ignoring them and vocally call for another Sweep</b></p></div>"))
+					to_chat(user, ("<div class='chargen_header';><p>What compels you to join the USCMC? What is your <b>Duty</b>?</p></div>"))
+					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Duty", GLOB.player_chargen_duty)
 					var/datum/origin/picked_choice = GLOB.chargen_duty[choice]
 					if(!picked_choice)
 						return
-					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
-					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
-					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+					to_chat(user, ("<div class='chargen_header';><p>Your <b>Duty</b> is [picked_choice.name]!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
+					if(tgui_alert(user, "Please click proceed if you are happy with [picked_choice.name].", "Confirm [picked_choice.name]?", list("Confirm", "Go back")) == "Go back")
 						return
 					if(choice)
 						chargen_duty = choice
@@ -1882,15 +1881,15 @@ var/const/MAX_SAVE_SLOTS = 10
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_service", "task" = "input"))
 
 				if("chargen_service")
-					to_chat(user, ("<div class='chargen_header';><p>SERVICE</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>Your service in the USCMC</p></div>"))
-					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Service Selection", GLOB.player_chargen_service)
+					to_chat(user, ("<div class='chargen_body';><p>Service in the Marines in their final years is an often <b>chaotic, exhausting and commonly life-threatening experience</b>, especially in the Outer Veil. Due to the rapid drain of talented personnel who transfer or join the private sector, recruitment standards are virtually non-existent and <b>even some basic commissioned officer posts are filled by people wholly unqualified for their future duties.</b> The <b>enlisted personnel form an extremely insular, tightly wound group</b> that often show only the barest signs of respect to their superiors. To keep them in check, <b>a haphazardly expanded and unequipped/understaffed MP division</b> has been for years drifting into becoming a type of service within itself, often at odds with other Marines. Finally, <b>the commissioned officers and High Command are both split into multiple factions</b> - the <b>Doves</b>, seeking <b>peaceful and tactical resolutions</b> to the USCMCs problems, the <b>Eagles</b> who want to <b>turn the USCMC into a law keeping force</b> and the <b>Hawks who are essentially <b>suggesting another Sweep</b> is necessary, along with a massive funding increase.</p><p>By the time the Marines are disbanded, <b>you are either a high ranking enlisted officer</b>, presumably serving somewhere on a ship or base and away from the battlefield, <b>or a commissioned officer in similar circumstances.</b></p></div>"))
+					to_chat(user, ("<div class='chargen_header';><p>What is a defining aspect of your time in the Marines? What is your <b>Service</b>?</p></div>"))
+					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Service", GLOB.player_chargen_service)
 					var/datum/origin/picked_choice = GLOB.chargen_service[choice]
 					if(!picked_choice)
 						return
-					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
-					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
-					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+					to_chat(user, ("<div class='chargen_header';><p>Your <b>Service</b> is [picked_choice.name]!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
+					if(tgui_alert(user, "Please click proceed if you are happy with [picked_choice.name].", "Confirm [picked_choice.name]?", list("Confirm", "Go back")) == "Go back")
 						return
 					if(choice)
 						chargen_service = choice
@@ -1899,15 +1898,15 @@ var/const/MAX_SAVE_SLOTS = 10
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_destiny", "task" = "input"))
 
 				if("chargen_destiny")
-					to_chat(user, ("<div class='chargen_header';><p>DESTINY</p></div>"))
-					to_chat(user, ("<div class='chargen_body';><p>The future in your characters eyes</p></div>"))
-					var/choice = tgui_input_list(user, "See the chat output for a description of this step, then pick one of the following:", "Foundation Selection", GLOB.player_chargen_destiny)
+					to_chat(user, ("<div class='chargen_body';><p>With all that happened in the last year, no one could blame you if you chose to get as far away from active military service as possible. And yet here you are, on your way to your new assignment as part of what effectively is the successor of the same formation that brought you so low. You may have felt that you had no choice and considering the rough treatment of all USCMC veterans in a post-Blackfire reality, it would be hard to dispute that fact. But something else seems to drive you towards the stars. Something that makes you feel like this is where you belong, for better or worse. In a moment of peace, you let your mind wander and think about your future.</p></div>"))
+					to_chat(user, ("<div class='chargen_header';><p>What future do you see for yourself among the stars? What is your <b>Destiny</b>?</p></div>"))
+					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Destiny", GLOB.player_chargen_destiny)
 					var/datum/origin/picked_choice = GLOB.chargen_destiny[choice]
 					if(!picked_choice)
 						return
-					to_chat(user, ("<div class='chargen_header';><p>[picked_choice]</p></div>"))
-					to_chat(user, ("<div class='chargen_body';>[picked_choice.desc]</div>"))
-					if(tgui_alert(user, "You've selected [picked_choice.name]. See the text output window for more information.", "Confirm [picked_choice.name]?", list("Yes", "No")) == "No")
+					to_chat(user, ("<div class='chargen_header';><p>Your <b>Destiny</b> is [picked_choice.name]!</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>[picked_choice.desc]</p></div>"))
+					if(tgui_alert(user, "Please click proceed if you are happy with [picked_choice.name].", "Confirm [picked_choice.name]?", list("Confirm", "Go back")) == "Go back")
 						return
 					if(choice)
 						chargen_destiny = choice
