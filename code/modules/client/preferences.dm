@@ -1847,8 +1847,8 @@ var/const/MAX_SAVE_SLOTS = 10
 							process_link(user, list("_src_" = "prefs", "preference" = "chargen_wound", "task" = "input"))
 
 				if("chargen_wound")
-					to_chat(user, ("<div class='chargen_body';><p>Despite best efforts, not every choice you make, professional or personal, is destined to be a success. Setbacks and personal failures are as common in the modern world as they have been in recent history, and few manage to avoid such an experience. For some, these memories serve as <b>important lessons for the future</b>. Others focus on <b>getting even with the perceived cause of their grievance of failure</b> and let that drive their motivations. Yet others see them as <b>a stain on their honor</b> or a similar concept and orient their lives around trying to erase or make up for it.</p></div>"))
-					to_chat(user, ("<div class='chargen_header';></p>Do you have a past failure or injustice that drives you? Do you have a <b>Wound</b>?</p></div>"))
+					to_chat(user, ("<div class='chargen_body';><p>Not everything that you carried out with you from your childhood was a positive experience. Everyone encounters <b>hardships in their lives</b>, but some end up being more <b>formative and may linger with you forever, defining your future</b>. This <b>does not have to be a negative in the end</b>, many have after all forged an injury or failure into future success, but we may not always have the option to do so. Sometimes all there is to do is to patch up the damage as best as you can and move on.</p></div>"))
+					to_chat(user, ("<div class='chargen_header';><p>Do you have a past failure or tragedy that defines part of you? Do you have a <b>Wound</b>?</p></div>"))
 					var/choice = tgui_input_list(user, "Pick an option to see its description. You will be asked to confirm your choice.", "Wound", GLOB.player_chargen_wound)
 					var/datum/origin/picked_choice = GLOB.chargen_wound[choice]
 					if(!picked_choice)
