@@ -94,7 +94,8 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	// If the server's configured for local testing, get everything set up ASAP.
 	// Shamelessly stolen from the test manager's host_tests() proc
 	if(testing_locally)
-		GLOB.master_mode = "Extended"
+  
+		GLOB.master_mode = "Sector Patrol - Intermission"
 
 		// Wait for the game ticker to initialize
 		while(!SSticker.initialized)
