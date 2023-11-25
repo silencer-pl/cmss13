@@ -12,7 +12,9 @@
 	to_world("<B>Sector Patrol Intermission ALPHA</B>")
 
 /datum/game_mode/extended/get_roles_list()
-	return ROLES_SP_INTERMISSION
+
+	return GLOB.ROLES_SP_INTERMISSION
+
 
 /datum/game_mode/extended/post_setup()
 	initialize_post_marine_gear_list()
@@ -24,7 +26,7 @@
 /datum/game_mode/extended/process()
 	. = ..()
 	if(next_research_allocation < world.time)
-		chemical_data.update_credits(chemical_data.research_allocation_amount)
+		GLOB.chemical_data.update_credits(GLOB.chemical_data.research_allocation_amount)
 		next_research_allocation = world.time + research_allocation_interval
 
 /datum/game_mode/extended/check_finished()
@@ -39,11 +41,11 @@
 	var/musical_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
 	world << musical_track
 
-	if(round_statistics)
-		round_statistics.game_mode = name
-		round_statistics.round_length = world.time
-		round_statistics.end_round_player_population = GLOB.clients.len
-		round_statistics.log_round_statistics()
+	if(GLOB.round_statistics)
+		GLOB.round_statistics.game_mode = name
+		GLOB.round_statistics.round_length = world.time
+		GLOB.round_statistics.end_round_player_population = GLOB.clients.len
+		GLOB.round_statistics.log_round_statistics()
 
 	calculate_end_statistics()
 	declare_completion_announce_predators()

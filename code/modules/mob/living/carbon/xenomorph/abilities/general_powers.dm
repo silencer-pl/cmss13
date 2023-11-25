@@ -411,7 +411,7 @@
 	if (windup)
 		X.set_face_dir(get_cardinal_dir(X, A))
 		if (!windup_interruptable)
-			X.frozen = TRUE
+			ADD_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 			X.anchored = TRUE
 			X.update_canmove()
 		pre_windup_effects()
@@ -419,14 +419,14 @@
 		if (!do_after(X, windup_duration, INTERRUPT_NO_NEEDHAND, BUSY_ICON_HOSTILE))
 			to_chat(X, SPAN_XENODANGER("You cancel your [ability_name]!"))
 			if (!windup_interruptable)
-				X.frozen = FALSE
+				REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 				X.anchored = FALSE
 				X.update_canmove()
 			post_windup_effects(interrupted = TRUE)
 			return
 
 		if (!windup_interruptable)
-			X.frozen = FALSE
+			REMOVE_TRAIT(X, TRAIT_IMMOBILIZED, TRAIT_SOURCE_ABILITY("Pounce"))
 			X.anchored = FALSE
 			X.update_canmove()
 		post_windup_effects()
@@ -849,7 +849,7 @@
 	for(var/mob/living/L in T)
 		to_chat(L, SPAN_XENOHIGHDANGER("You see a massive ball of acid flying towards you!"))
 
-	for(var/dirn in alldirs)
+	for(var/dirn in GLOB.alldirs)
 		recursive_spread(get_step(T, dirn), dist_left - 1, orig_depth)
 
 
