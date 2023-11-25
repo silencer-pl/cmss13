@@ -139,7 +139,7 @@ GLOBAL_LIST_INIT(ROLES_UNASSIGNED, list(JOB_SQUAD_MARINE))
 
 // Sector Patrol
 
-GLOBAL_LIST_INIT(ROLES_SP_INTERMISSION = list(JOB_UACM_BASEPC))
+GLOBAL_LIST_INIT(ROLES_SP_INTERMISSION, list(JOB_UACM_BASEPC))
 
 //Role lists used for switch() checks in show_blurb_uscm(). Cosmetic, determines ex. "Engineering, USS Almayer", "2nd Bat. 'Falling Falcons'" etc.
 #define BLURB_USCM_COMBAT JOB_CO, JOB_XO, JOB_SO, JOB_WO_CO, JOB_WO_XO, JOB_WO_CHIEF_POLICE, JOB_WO_SO, JOB_WO_CREWMAN, JOB_WO_POLICE, JOB_SEA,\
