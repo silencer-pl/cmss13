@@ -34,7 +34,6 @@
 		return
 
 	var/round_start = !SSticker || !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME
-
 	var/chargen_check = (client.prefs.chargen_done) ? client.prefs.chargen_done : FALSE
 
 	var/output = "<div align='center'>Welcome to Sector Patrol."
@@ -83,7 +82,11 @@
 			client.prefs.ShowChoices(src)
 			return 1
 		if("chargen_blurb")
-			to_chat(src, ("<div class='chargen_header';><p><b>Welcome to Sector Patrol</b>. Your currently selected character has not completed CharGen, which both introduces you to the setting of Sector Patrol and helps you draw a broad outline of who your character may be.</p><p>CharGen is mandatory for all new characters and/or players. The process may be initiated from your Character Sheet, which will be open for you.</p></div>"))
+			var/chargen_firstcheck = (client.prefs.chargen_firsttime) ? client.prefs.chargen_firsttime : TRUE
+			if(chargen_firstcheck == TRUE)
+				to_chat(src, ("<div class='chargen_header';>Your currently selected character has not completed CharGen, which both introduces you to the setting of Sector Patrol and helps you draw a broad outline of who your character may be.</p><p>CharGen is mandatory for all new characters and/or players. The process may be initiated from your Character Sheet, which will be open for you.</p></div>"))
+			else
+				to_chat(src, ("<div class='chargen_header';>CharGen not complete on current character. Opening preferences.</p></div>"))
 			Topic(src, list("_src_" = "\ref[src]", "lobby_choice" = "show_preferences"))
 
 		if("show_playtimes")
