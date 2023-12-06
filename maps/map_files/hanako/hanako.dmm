@@ -1,0 +1,45 @@
+"a" = (/turf/open/glass{icon_state = "glass-255"},/area/almayer/command/lifeboat)
+"d" = (/turf/open/glass{icon_state = "glass-55"},/area/almayer/command/lifeboat)
+"i" = (/turf/open/underlay,/area/almayer/command/lifeboat)
+"m" = (/turf/open/glass{icon_state = "glass-21"},/area/almayer/command/lifeboat)
+"q" = (/turf/open/glass{icon_state = "glass-74"},/area/almayer/command/lifeboat)
+"x" = (/turf/open/glass{icon_state = "glass-110"},/area/almayer/command/lifeboat)
+"I" = (/turf/open/glass{icon_state = "glass-555"},/area/almayer/command/lifeboat)
+"O" = (/turf/open/glass{icon_state = "glass-157"},/area/almayer/command/lifeboat)
+"S" = (/turf/open/glass{icon_state = "glass-38"},/area/almayer/command/lifeboat)
+"V" = (/turf/open/glass{icon_state = "glass-203"},/area/almayer/command/lifeboat)
+"Z" = (/turf/open/glass{icon_state = "glass-137"},/area/almayer/command/lifeboat)
+
+(1,1,1) = {"
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ISxxxxxxxxxxxxxxxxxxxxxxxxxxxqI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+ImOOOOOOOOOOOOOOOOOOOOOOOOOOOZI
+iIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+"}
