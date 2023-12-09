@@ -1291,8 +1291,8 @@ INITIALIZE_IMMEDIATE(/turf/closed/wall/indestructible/splashscreen)
 	name = "reinforced glass wall"
 	desc = "A reinforced, tempred sheet of glass separating you from the void outside. If you see this break, run like hell."
 	desc_lore = "While not used at all on spaceships and other 'moving' parts of space travel, reinforced glass has seen some use on larger space stations and other static structures, where aesthetics are valued over practicality and where spare resources to fulfil such notions are plentiful. The results are probably some of the prettiest vistas humanity gets to see during their time out in the stars."
-	icon = 'icons/turf/walls/almayer.dmi'
-	icon_state = "testwall"
+	icon = 'icons/turf/floors/glass.dmi'
+	icon_state = "glass-o0"
 	walltype = WALL_HULL
 	hull = 1
 	opacity = TRUE
