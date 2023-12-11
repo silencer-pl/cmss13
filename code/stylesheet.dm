@@ -158,4 +158,7 @@ h1.alert, h2.alert {color: #000000;}
 .chargen_header {color: #9b59b6; font-size: large; font-weight: bold; padding: 1em}
 .chargen_body {color: #cc3399; padding: 1em}
 
+.narrate_head {font-size: 3; text-align: center; color: #ffccff;padding: 0em 1em;}
+.narrate_body {font-size: 2; text-align: justify; color: #ff99ff;padding: 0em 1em;}
+
 </style>"}
