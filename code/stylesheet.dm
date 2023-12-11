@@ -155,4 +155,7 @@ h1.alert, h2.alert {color: #000000;}
 .retro_translator {font-weight: bold;}
 .yautja_translator {color: #aa0000; font-weight: bold;}
 
+.chargen_header {color: #9b59b6; font-size: large; font-weight: bold; padding: 1em}
+.chargen_body {color: #cc3399; padding: 1em}
+
 </style>"}

@@ -17,6 +17,7 @@
 	armor_rad = CLOTHING_ARMOR_NONE
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	drop_sound = "armorequip"
 	///Makes it so that we can see the right name in the vendor.
 	var/specialty = "USCM"
 	///List of map variants that use sleeve rolling on something else, like snow uniforms rolling the collar, and therefore shouldn't hide patches etc when rolled.
@@ -946,6 +947,7 @@
 	icon_state = "rmc_uniform_lt"
 	worn_state = "rmc_uniform_lt"
 
+
 /obj/item/clothing/under/marine/cbrn //CBRN MOPP suit
 	name = "\improper M3 MOPP suit"
 	desc = "M3 MOPP suits are specially designed and engineered to protect the wearer from unshielded exposure to any Chemical, Biological, Radiological, or Nuclear (CBRN) threats in the field. Despite somewhat resembling commonplace synthetic rubber HAZMAT suits, the Venlar composition provides a significantly more dense and durable baseline material, allowing for modifications without the loss of its air-tight nature. The wearer’s comfort has been significantly taken into consideration, with the suit providing sufficient freedom of movement for even delicate maneuvers and movements once it is donned. As the sealed environment retains many issues from the past, measures have been taken to significantly reduce the suit's passive heat absorption and increase internal absorbance through linings, as well as the capability to fully integrate with external cooling, air cycling, and other life support systems. Strips of M11 detector paper are included with each suit, designed to be slotted into the dominant arm of the wearer’s protective suit, the non-dominant wrist, and then back to the knee, providing at-a-glance warning signs across alternating sides of the body while working. The arm and knee markers are intended to be on the user's dominant The papers change color upon contact with harmful chemical agents, displaying a clear white initially and turning red when activated. The suit has a recommended lifespan of twenty-four hours once contact with a toxic environment is made, but depending on the severity this can be shortened to eight hours or less. Beyond that point, the accuracy of the detector papers deteriorates significantly, as does the protection of the suit itself."
@@ -1102,3 +1104,28 @@
 	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS
 	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
 	hood_type = /obj/item/clothing/head/helmet/marine/cbrn_hood/advanced
+
+//UACM/Sector Patrol
+
+/obj/item/clothing/under/marine/uacm/uniform_standard
+	name = "\improper UACM comissioned officer uniform"
+	desc = "A standard 'formal' uniform, typically worn by commissioned officers of the UACM that work in offices away from combat or by Marines on leave away from their ship. An instantly recognizable classic, bound to turn heads for better or worse."
+	desc_lore = "While the UACM is stepping up efforts to encourage all ship crews to adapt the color-coded jumpsuit style uniforms, many UACM personnel prefer these more formal feeling wear that matches their previous uniforms closer. Some go as far as to claim that they both feel and perform better in these, but it’s hard to imagine why. If anything, it’s the jumpsuits that are designed to improve their users long term fatigue levels."
+	icon_state = "formal_jumpsuit"
+	worn_state = "formal_jumpsuit"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+
+/obj/item/clothing/under/marine/uacm/cmisrs_inspector
+	name = "\improper CMISRS office uniform"
+	desc = "The 'office' variant of the CMISRS uniform, used by officers who work out of CMISRS capital ships and installations. Smoother and shinier than its field counterpart."
+	desc_lore = "These black uniforms were originally used by the upper echelons of the USCMC Provost’s Office, an agency infamous for both its zeal and overreach. Even though at least on paper the CMISRS is the inheritor of the Provost’s duties, a lot of talented officers were recruited into the UAAC-TIS instead and it is that agency that currently is known more for its zeal and unforgiveness. As such this uniform is decisively accruing the opposite meaning that it had during its use in the USCMC."
+	icon_state = "tis"
+	worn_state = "tis"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	suit_restricted = list(
+		/obj/item/clothing/suit/storage/marine/MP,
+		/obj/item/clothing/suit/armor/riot/marine,
+		/obj/item/clothing/suit/storage/jacket/marine/provost,
+	)
+

@@ -91,8 +91,8 @@
 //=================================================
 
 
-//Number of marine players against which the Marine's gear scales
-#define MARINE_GEAR_SCALING_NORMAL 30
+/// Number of weighted marine players for 1 gear_scale. gear_scale is clamped to 1 minimum
+#define MARINE_GEAR_SCALING_NORMAL 50
 
 #define RESOURCE_NODE_SCALE 95 //How many players minimum per extra set of resource nodes
 #define RESOURCE_NODE_QUANTITY_PER_POP 11 //How many resources total per pop
@@ -135,8 +135,12 @@ GLOBAL_LIST_INIT(ROLES_GROUND, GLOB.ROLES_XENO + ROLES_SPECIAL + ROLES_WHITELIST
 GLOBAL_LIST_INIT(ROLES_DISTRESS_SIGNAL, GLOB.ROLES_USCM + GLOB.ROLES_GROUND)
 GLOBAL_LIST_INIT(ROLES_FACTION_CLASH, ROLES_USCM + JOB_PREDATOR)
 
-
 GLOBAL_LIST_INIT(ROLES_UNASSIGNED, list(JOB_SQUAD_MARINE))
+
+// Sector Patrol
+
+GLOBAL_LIST_INIT(ROLES_SP_INTERMISSION, list(JOB_UACM_BASEPC))
+
 //Role lists used for switch() checks in show_blurb_uscm(). Cosmetic, determines ex. "Engineering, USS Almayer", "2nd Bat. 'Falling Falcons'" etc.
 #define BLURB_USCM_COMBAT JOB_CO, JOB_XO, JOB_SO, JOB_WO_CO, JOB_WO_XO, JOB_WO_CHIEF_POLICE, JOB_WO_SO, JOB_WO_CREWMAN, JOB_WO_POLICE, JOB_SEA,\
 						JOB_SQUAD_LEADER, JOB_SQUAD_TEAM_LEADER, JOB_SQUAD_SPECIALIST, JOB_SQUAD_SMARTGUN, JOB_SQUAD_MEDIC, JOB_SQUAD_ENGI, JOB_SQUAD_MARINE

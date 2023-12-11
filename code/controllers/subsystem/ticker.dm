@@ -99,7 +99,7 @@ SUBSYSTEM_DEF(ticker)
 				current_state = GAME_STATE_FINISHED
 				GLOB.ooc_allowed = TRUE
 				mode.declare_completion(force_ending)
-				REDIS_PUBLISH("byond.round", "type" = "round-complete")
+				REDIS_PUBLISH("byond.round", "type" = "round-complete", "round_name" = GLOB.round_statistics.round_name)
 				flash_clients()
 				addtimer(CALLBACK(
 					SSvote,
@@ -251,10 +251,9 @@ SUBSYSTEM_DEF(ticker)
 	// Switch back to default automatically
 	save_mode(CONFIG_GET(string/gamemode_default))
 
-	if(GLOB.round_statistics)
-		to_chat(world, html = role_header("Welcome to [GLOB.round_statistics.round_name]"))
 
-	GLOB.supply_controller.process() //Start the supply shuttle regenerating points -- TLE
+	GLOB.supply_controller.start_processing()
+
 
 	for(var/i in GLOB.closet_list) //Set up special equipment for lockers and vendors, depending on gamemode
 		var/obj/structure/closet/C = i
@@ -333,7 +332,7 @@ SUBSYSTEM_DEF(ticker)
 	if(mode)
 		GLOB.master_mode = SSmapping.configs[GROUND_MAP].force_mode ? SSmapping.configs[GROUND_MAP].force_mode : mode
 	else
-		GLOB.master_mode = "Extended"
+		GLOB.master_mode = "Sector Patrol - Intermission"
 	log_game("Saved mode is '[GLOB.master_mode]'")
 
 
