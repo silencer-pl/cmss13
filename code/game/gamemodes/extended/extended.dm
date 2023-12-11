@@ -1,6 +1,6 @@
 /datum/game_mode/extended
-	name = "Extended"
-	config_tag = "Extended"
+	name = "Sector Patrol - Intermission"
+	config_tag = "Sector Patrol - Intermission"
 	required_players = 0
 	latejoin_larva_drop = 0
 	votable = FALSE
@@ -9,10 +9,12 @@
 	taskbar_icon = 'icons/taskbar/gml_colonyrp.png'
 
 /datum/game_mode/announce()
-	to_world("<B>The current game mode is - Extended!</B>")
+	to_world("<B>Sector Patrol Intermission ALPHA</B>")
 
 /datum/game_mode/extended/get_roles_list()
-	return GLOB.ROLES_USCM
+
+	return GLOB.ROLES_SP_INTERMISSION
+
 
 /datum/game_mode/extended/post_setup()
 	initialize_post_marine_gear_list()

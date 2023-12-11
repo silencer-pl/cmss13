@@ -106,3 +106,8 @@
 #define SPAN_MAROON(X) "<font color=Maroon>[X]</font>"
 
 #define SPAN_STAFF_IC(X) "<span class='staff_ic'>[X]</span>"
+
+// Chargen
+
+#define SPAN_CHARGEN_HEADER(X) "<span class='chargen_header'>[X]</span>"
+#define SPAN_CHARGEN_BODY(X) "<span class='chargen_body'>[X]</span>"
