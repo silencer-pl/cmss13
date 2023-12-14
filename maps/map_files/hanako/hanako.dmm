@@ -1,0 +1,59 @@
+"a" = (/turf/open/glass{icon_state = "glass-255"},/area/almayer/command/lifeboat)
+"b" = (/obj/structure/window/framed/almayer/hull/hanako{icon_state = "glass-o203"},/turf/open/glass{icon_state = "glass-o203"},/area/almayer/command/lifeboat)
+"d" = (/turf/open/glass{icon_state = "glass-55"},/area/almayer/command/lifeboat)
+"g" = (/obj/structure/window/framed/almayer/hull/hanako{icon_state = "glass-o239"},/turf/open/glass{icon_state = "glass-o239"},/area/almayer/command/lifeboat)
+"i" = (/turf/open/underlay{icon_state = "binarystar"},/area/almayer/command/lifeboat)
+"j" = (/obj/structure/machinery/light{dir = 8},/turf/open/floor/almayer,/area/almayer/command/lifeboat)
+"l" = (/obj/structure/machinery/light{dir = 4},/turf/open/floor/almayer,/area/almayer/command/lifeboat)
+"o" = (/obj/structure/stairs{dir = 8; icon_state = "ramptop"},/turf/open/floor/almayer,/area/almayer/command/lifeboat)
+"q" = (/turf/open/glass{icon_state = "glass-74"},/area/almayer/command/lifeboat)
+"w" = (/turf/closed/wall/almayer/outer,/area/almayer/command/lifeboat)
+"x" = (/turf/open/glass{icon_state = "glass-110"},/area/almayer/command/lifeboat)
+"D" = (/obj/structure/platform{dir = 4; layer = 2.7},/turf/open/glass{icon_state = "glass-255"},/area/almayer/command/lifeboat)
+"F" = (/obj/structure/stairs{icon_state = "ramptop"},/turf/open/floor/almayer,/area/almayer/command/lifeboat)
+"G" = (/turf/open/floor/almayer,/area/almayer/command/lifeboat)
+"I" = (/turf/open/glass{icon_state = "glass-555"},/area/almayer/command/lifeboat)
+"L" = (/obj/structure/platform{dir = 1},/obj/structure/platform{dir = 4},/turf/open/glass{icon_state = "glass-255"},/area/almayer/command/lifeboat)
+"O" = (/turf/open/glass{icon_state = "glass-157"},/area/almayer/command/lifeboat)
+"P" = (/obj/structure/platform{dir = 1},/turf/open/glass{icon_state = "glass-255"},/area/almayer/command/lifeboat)
+"Q" = (/obj/structure/window/framed/almayer/hull/hanako{icon_state = "glass-o74"},/turf/open/glass{icon_state = "glass-o74"},/area/almayer/command/lifeboat)
+"R" = (/obj/structure/machinery/light,/turf/open/floor/almayer,/area/almayer/command/lifeboat)
+"S" = (/turf/open/glass{icon_state = "glass-38"},/area/almayer/command/lifeboat)
+"T" = (/obj/structure/machinery/light{dir = 1},/turf/open/floor/almayer,/area/almayer/command/lifeboat)
+"V" = (/turf/open/glass{icon_state = "glass-203"},/area/almayer/command/lifeboat)
+"W" = (/obj/structure/window/framed/almayer/hull/hanako{icon_state = "glass-o110"},/turf/open/glass{icon_state = "glass-o110"},/area/almayer/command/lifeboat)
+"Z" = (/turf/open/glass{icon_state = "glass-137"},/area/almayer/command/lifeboat)
+
+(1,1,1) = {"
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ISxxxxxxxxxxxxxxxxxxxxxxxxxxxqI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaaaaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaawaaaaaaaaaaaaaaaaaaaaaaaVI
+IdaaawwwwwwwwwwwwwaaaaaaaaaaaVI
+IdaaawGGTGGTGGTGGwaaaaaaaaaaaVI
+IwGGGwjGGGGFGGGGlwGaaaaaaaaaaVI
+IwGGGwPPPPPaLGGGGwaaaaaaaaaaaVI
+IIIIIgWWWWWQDGGGlwaaaaaaaaaaaVI
+IIIIIIIIIIIbaoGGGwaaaaaaaaaaaVI
+IIIIIIIIIIIbDGGGGwaaaaaaaaaaaVI
+IIIIIIIIIIIbDGGGlwaaaaaaaaaaaVI
+IIIIIIIIIIIbDGGGGwaaaaaaaaaaaVI
+IIIIIIIIIIIbDRGGGwaaaaaaaaaaaVI
+IIIIIIIIIIIgwwwwwwaaaaaaaaaaaVI
+IIIIIIIIIIIIIGGGGaaaaaaaaaaaaVI
+IIIIIIIIIIIIIGGGGGaaaaaaaaaaaVI
+IIIIIIIIIIIIIGGGGGaaaaaaaaaaaVI
+IIIIIIIIIIIIIwwGGGOOOOOOOOOOOZI
+iIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+"}
