@@ -847,6 +847,28 @@
 	icon_state = "berettan"
 	item_state = "berettan"
 
+/obj/item/clothing/head/beret/uacm/mp
+	name = "\improper UACM MP beret"
+	desc = "A crimson beret with a silver UACM insignia emblazoned on it. Standard issue among UACM MPs, seemingly follows TWE rather than UA military fashion sensibilities. "
+	desc_lore = "<p>While the UACM, like the USCMC before it, tends to favor the cap as the 'informal' attire of choice, however the beret endures as a significant niche choice. Branches of the service that use berets regularly tend to make their servicepeople go through complex hazing rituals in order to 'earn' them which may explain the attachment most officers feel to that particular choice of headgear.</p><p>The MPs in particular are rumored to work very hard to gain the right to wear the crimson berets they were known for back in the USCMC. Many MP officers in the now defunct formation were TWE immigrants or nationals, which contributed greatly to this and many other aspects of Marine MP culture, something that has been transplanted almost verbatim into the UACM.</p>"
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "beret_mp"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	item_icons = list(
+		WEAR_HEAD = 'icons/mob/humans/onmob/mpblack.dmi'
+	)
+
+/obj/item/clothing/head/beret/uacm/peaked/red
+	name = "\improper UACM MP peaked cap"
+	desc = "A peaked cap in UACM MP-crimson. Depending on the age of its wearer, it can either make them seem purposefully out of place or 50 years older than they are. "
+	desc_lore = "Peaked caps are one of the few pieces of USCMC headwear that survived virtually unchanged from the creation of the formation to its very end. This is likely because they were virtually unused, even among the MPs. The UACM considered removing them from their headgear consignments, but ultimately settled on keeping them in as a way of acknowledging their own past. It's not like they don't have spares. Hundreds of them. Thousands, even."
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "peaked_red"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	item_icons = list(
+		WEAR_HEAD = 'icons/mob/humans/onmob/mpblack.dmi'
+	)
+
 /obj/item/clothing/head/cmcap/uacm/
 	name = "\improper olive UACM patrol cap"
 	desc = "The classic olive patrol cap. A UACM favorite, or so claim the High Command quartermasters. A sturdy, tried design that has been taken off heads of officers in disbelief for over a millennium."
@@ -912,3 +934,4 @@
 		icon_state = "beanietan"
 		item_state = "beanietan"
 		flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+

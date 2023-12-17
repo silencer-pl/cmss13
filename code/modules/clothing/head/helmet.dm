@@ -1460,3 +1460,19 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_internaldamage = CLOTHING_ARMOR_LOW
 
 #undef HELMET_GARB_RELAY_ICON_STATE
+
+//Sector Patrol/UACM
+
+/obj/item/clothing/head/helmet/marine/uacm/mp
+	name = "\improper M10 pattern MP helmet"
+	desc = "A black version of the M10 helmet, with a distinct crimson stripe and a silver UACM insignia attached to the front. Clearly made to be easily discernable in a crowd of Marines. "
+	desc_lore = "These helmets are almost completely reserved for on-ship or dress uniform and honor guard use. Any MP deploying to a combat zone for whatever reason is more than likely to grab a standard M10 not to tease potential snipers. From either side. "
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "helmet_mp"
+	item_state = "helmet_mp"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	armor_energy = CLOTHING_ARMOR_MEDIUMLOW
+	built_in_visors = list(new /obj/item/device/helmet_visor/security)
+	item_icons = list(
+		WEAR_HEAD = 'icons/mob/humans/onmob/mpblack.dmi'
+	)

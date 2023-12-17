@@ -1117,7 +1117,7 @@
 	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
 
 /obj/item/clothing/under/marine/uacm/cmisrs_inspector
-	name = "\improper CMISRS office uniform"
+	name = "\improper CMISRS officer uniform"
 	desc = "The 'office' variant of the CMISRS uniform, used by officers who work out of CMISRS capital ships and installations. Smoother and shinier than its field counterpart."
 	desc_lore = "These black uniforms were originally used by the upper echelons of the USCMC Provost’s Office, an agency infamous for both its zeal and overreach. Even though at least on paper the CMISRS is the inheritor of the Provost’s duties, a lot of talented officers were recruited into the UAAC-TIS instead and it is that agency that currently is known more for its zeal and unforgiveness. As such this uniform is decisively accruing the opposite meaning that it had during its use in the USCMC."
 	icon_state = "tis"
@@ -1129,3 +1129,41 @@
 		/obj/item/clothing/suit/storage/jacket/marine/provost,
 	)
 
+/obj/item/clothing/under/marine/uacm/jumpsuit/mp
+	name = "\improper UACM military police jumpsuit style uniform"
+	desc = "A UACM jumpsuit style uniform in the signature military police crimson and black colors. This variant is meant for use by regular MPs. Fairly snug but guaranteed to keep its wearer warm in the cold interiors of human spaceships."
+	desc_lore = "UACM MPs undergo specialized training in conflict resolution and hand to hand combat, meant to prepare them for their duties on board UACM ships and in UACM bases. While USCMC MPs were a generally despised, ostracized group, changes to both how MP departments function as well as written regulations have been made to minimize this issue in the UACM. "
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "uniform_mp"
+	worn_state = "uniform_mp"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/mpblack.dmi'
+	)
+
+/obj/item/clothing/under/marine/uacm/jumpsuit/io
+	name = "\improper UACM CMISRS intelligence officer jumpsuit style uniform"
+	desc = "A UACM jumpsuit style uniform in the signature military police crimson and black colors. This variant is meant for use by intelligence officers working for the CMISRS. Fairly snug but guaranteed to keep its wearer warm in the cold interiors of human spaceships."
+	desc_lore = "UACM MPs undergo specialized training in conflict resolution and hand to hand combat, meant to prepare them for their duties on board UACM ships and in UACM bases. While USCMC MPs were a generally despised, ostracized group, changes to both how MP departments function as well as written regulations have been made to minimize this issue in the UACM. "
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "uniform_mp"
+	worn_state = "uniform_mp"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/mpblack.dmi'
+	)
+
+/obj/item/clothing/under/marine/uacm/jumpsuit/cmp
+	name = "\improper UACM chief military police jumpsuit style uniform"
+	desc = "A UACM jumpsuit style uniform in the signature military police crimson and black colors. This variant is meant for use by chief MPs. Fairly snug but guaranteed to keep its wearer warm in the cold interiors of human spaceships."
+	desc_lore = "UACM MPs undergo specialized training in conflict resolution and hand to hand combat, meant to prepare them for their duties on board UACM ships and in UACM bases. While USCMC MPs were a generally despised, ostracized group, changes to both how MP departments function as well as written regulations have been made to minimize this issue in the UACM. "
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "uniform_mp"
+	worn_state = "uniform_mp"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	flags_jumpsuit = UNIFORM_SLEEVE_ROLLABLE
+	item_icons = list(
+		WEAR_BODY = 'icons/mob/humans/onmob/mpblack.dmi'
+	)

@@ -1849,3 +1849,69 @@
 	armor_bio = CLOTHING_ARMOR_GIGAHIGHPLUS
 	armor_rad = CLOTHING_ARMOR_GIGAHIGHPLUS
 	armor_internaldamage = CLOTHING_ARMOR_HIGHPLUS
+
+// Sector Patrol/UACM
+
+/obj/item/clothing/suit/storage/marine/uacm/mp
+	name = "\improper M2 pattern MP armor"
+	desc = "A heavily customized suit of UACM M2 Marine Armor. This armor comes with extra padding that softens melee blows and has been painted in the signature black and crimson color scheme of UACM MPs."
+	desc_lore = "Initially UACM MPs used standardized tan armor with red armbands, but these were quickly abandoned and replaced with these models, drawing back from the USCMC days. In this way, the design of the armor carries on the traditions, customizations and improvements of the MPs present since the formation of the Marines."
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "armor_mp"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	armor_melee = CLOTHING_ARMOR_MEDIUMHIGH
+	armor_bullet = CLOTHING_ARMOR_LOW
+	armor_laser = CLOTHING_ARMOR_LOW
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_MEDIUM
+	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUMLOW
+	storage_slots = 2
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/device/flashlight,
+		/obj/item/ammo_magazine/,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/handcuffs,
+		/obj/item/explosive/grenade,
+		/obj/item/device/binoculars,
+		/obj/item/attachable/bayonet,
+		/obj/item/storage/backpack/general_belt,
+		/obj/item/device/hailer,
+		/obj/item/storage/belt/gun,
+		/obj/item/weapon/sword/ceremonial,
+		/obj/item/device/motiondetector,
+		/obj/item/device/walkman,
+	)
+	uniform_restricted = list(/obj/item/clothing/under/marine/uacm/jumpsuit/mp)
+	item_icons = list(
+		WEAR_JACKET = 'icons/mob/humans/onmob/mpblack.dmi'
+	)
+
+/obj/item/clothing/suit/storage/marine/uacm/mp/io
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "armor_io"
+	name = "\improper M3 pattern intelligence officer armor"
+	desc = "A heavily customized suit of UACM M3 Marine Armor. This armor comes with extra padding that softens melee blows and has been painted in the signature black and crimson color scheme of CMISRS Intel Officers working on UACM ships. heavily customized suit of UACM M3 Marine Armor. This armor comes with extra padding that softens melee blows and has been painted in the signature black and crimson color scheme of CMISRS Intel Officers working on UACM ships."
+	desc_lore = "Originally, these armors were issued to USCMC Wardens and initially retired like the rest of the black and crimson MP gear. While on paper Wardens were never formally recognized by the UACM, most of their competences have been rolled into the Intel Officer post and in fact many CMISRS field training officers are former USCMC Wardens."
+	armor_bio = CLOTHING_ARMOR_MEDIUMLOW
+	armor_rad = CLOTHING_ARMOR_MEDIUMLOW
+	uniform_restricted = list(/obj/item/clothing/under/marine/uacm/jumpsuit/io)
+	item_icons = list(
+		WEAR_JACKET = 'icons/mob/humans/onmob/mpblack.dmi'
+	)
+
+/obj/item/clothing/suit/storage/marine/uacm/mp/cmp
+	icon = 'icons/obj/items/clothing/mpblack.dmi'
+	icon_state = "armor_cmp"
+	name = "\improper M3 pattern chief MP armor"
+	desc = "A heavily customized suit of UACM M3 Marine Armor. This armor comes with extra padding that softens melee blows and has been painted in the signature black and crimson color scheme of UACM chief MPs."
+	desc_lore = "Comissioned officers high up the MP command chain were generally relatively safe positions in the USCMC when the formation fell and many of them transitioned into the UACM wihtout a break in their service. As such, UACM 'old school' CMPs form somewhat of a notoriously closed clique, forcing new officers following the same path to find their own way rather then relying on previous expiriences. This understandably has caused some animosity between the two groups."
+	uniform_restricted = list(/obj/item/clothing/under/marine/uacm/jumpsuit/cmp)
+	item_icons = list(
+		WEAR_JACKET = 'icons/mob/humans/onmob/mpblack.dmi'
+	)
