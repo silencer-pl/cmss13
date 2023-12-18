@@ -4,6 +4,9 @@
 	name = "maintenance terminal hatch"
 	desc = "A sliding hatch concealing a terminal used to perform local diagnostic tasks"
 	desc_lore = "Most space ships ultilize secondary terminals like these on a room-by-room basis as a failsafe meant to cover for the ship's central, AI-assisted maitenance system."
+	anchored = TRUE
+	unacidable = TRUE
+	unslashable = TRUE
 	var/puzzle = "No"
 	var/task_text
 	var/task_answer
@@ -51,3 +54,6 @@
 		puzzle = "No"
 		update_icon()
 		return
+
+/obj/structure/maintterm/black
+	icon = 'icons/obj/structures/machinery/clio_maint_dark.dmi'

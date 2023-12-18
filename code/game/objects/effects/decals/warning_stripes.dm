@@ -113,3 +113,13 @@
 /obj/effect/decal/siding/wood_siding
 	name = "wood siding"
 	icon_state = "wood_siding1"
+
+//Sector Patrol
+
+/obj/effect/decal/cargo_stripes
+	name = "cargo zone markers"
+	gender = PLURAL
+	icon = 'icons/effects/cargo_stripes.dmi'
+	icon_state = "center"
+	layer = WEED_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
