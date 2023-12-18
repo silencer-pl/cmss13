@@ -9,7 +9,7 @@
 		WEAR_R_HAND = 'icons/mob/humans/onmob/sp_cargo_rhand.dmi'
 		)
 
-/obj/item/cargo/crate/general/sealed
+/obj/structure/cargo/crate/general/sealed
 	name = "sealed generic UACM standard cargo crate"
 	desc = "A crate with the UACM insignia printed on the side. This crate is marked with green stripes and is sealed with tamper-proofing yellow tape."
 	desc_lore = "Green stripes on UACM crates means that they contain personal effects, physical mail, and other items that are not easily classified by the Unified Cargo Code System but that have been given special leave to travel through the UACM logistics system. Once accepted into the system, all cargo is wrapped in yellow tape which should only be removed at its destination."
@@ -19,7 +19,7 @@
 	anchored = FALSE
 	throwpass = 1
 
-/obj/item/cargo/crate/b/sealed
+/obj/structure/cargo/crate/b/sealed
 	name = "sealed type B UACM standard cargo crate"
 	desc = "A crate with the UACM insignia printed on the side. This crate is marked with a single yellow stripe and the letter 'B'. It is also sealed with tamper-proofing yellow tape."
 	desc_lore = "A yellow stripe and the letter 'B' indicate this is a type B crate, containing tools and/or replacement electronic and electric parts, sometimes also containing materials specific to engineering tasks. Once accepted into the system, all cargo is wrapped in yellow tape which should only be removed at its destination."
