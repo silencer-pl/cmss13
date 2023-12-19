@@ -12,6 +12,9 @@
 /area/shuttle/lifeboat)
 "ce" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "17,5"
 	},
 /area/shuttle/lifeboat)
@@ -35,6 +38,9 @@
 /area/shuttle/lifeboat)
 "em" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "6,6l"
 	},
 /area/shuttle/lifeboat)
@@ -65,6 +71,9 @@
 /area/shuttle/lifeboat)
 "ho" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "7,0"
 	},
 /area/shuttle/lifeboat)
@@ -79,6 +88,9 @@
 /area/shuttle/lifeboat)
 "jA" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "17,0"
 	},
 /area/shuttle/lifeboat)
@@ -104,6 +116,9 @@
 /area/shuttle/lifeboat)
 "kC" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "6,5"
 	},
 /area/shuttle/lifeboat)
@@ -172,11 +187,17 @@
 /area/shuttle/lifeboat)
 "re" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "3,1"
 	},
 /area/shuttle/lifeboat)
 "rM" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "24,6"
 	},
 /area/shuttle/lifeboat)
@@ -193,9 +214,6 @@
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/lifeboat)
-"sO" = (
-/turf/template_noop,
-/area/space)
 "tz" = (
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
@@ -209,16 +227,25 @@
 /area/shuttle/lifeboat)
 "tB" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,1"
 	},
 /area/shuttle/lifeboat)
 "uq" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,6ld"
 	},
 /area/shuttle/lifeboat)
 "uv" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "2,4"
 	},
 /area/shuttle/lifeboat)
@@ -257,8 +284,8 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
 	},
-/obj/item/cargo/crate/general/sealed{
-	pixel_y = 5
+/obj/structure/cargo/crate/general/sealed{
+	pixel_y = 6
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/lifeboat)
@@ -271,21 +298,33 @@
 /area/shuttle/lifeboat)
 "zz" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "2,5"
 	},
 /area/shuttle/lifeboat)
 "zK" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "6,1"
 	},
 /area/shuttle/lifeboat)
 "An" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "17,0a"
 	},
 /area/shuttle/lifeboat)
 "Ax" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "2,2"
 	},
 /area/shuttle/lifeboat)
@@ -309,11 +348,17 @@
 /area/shuttle/lifeboat)
 "BC" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,0a"
 	},
 /area/shuttle/lifeboat)
 "Dj" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "2,1"
 	},
 /area/shuttle/lifeboat)
@@ -349,11 +394,17 @@
 /area/shuttle/lifeboat)
 "GA" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "7,6r"
 	},
 /area/shuttle/lifeboat)
 "GD" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "3,1r"
 	},
 /area/shuttle/lifeboat)
@@ -370,6 +421,9 @@
 /area/shuttle/lifeboat)
 "IR" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,6ru"
 	},
 /area/shuttle/lifeboat)
@@ -382,6 +436,9 @@
 /area/shuttle/lifeboat)
 "Nj" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "6,1l"
 	},
 /area/shuttle/lifeboat)
@@ -389,8 +446,8 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
 	},
-/obj/item/cargo/crate/b/sealed{
-	pixel_y = 5
+/obj/structure/cargo/crate/b/sealed{
+	pixel_y = 6
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/lifeboat)
@@ -409,6 +466,9 @@
 /area/shuttle/lifeboat)
 "Od" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "3,6"
 	},
 /area/shuttle/lifeboat)
@@ -417,6 +477,9 @@
 /area/shuttle/lifeboat)
 "Qi" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "3,5r"
 	},
 /area/shuttle/lifeboat)
@@ -459,6 +522,9 @@
 /area/shuttle/lifeboat)
 "RR" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,6"
 	},
 /area/shuttle/lifeboat)
@@ -485,11 +551,17 @@
 /area/shuttle/lifeboat)
 "SW" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "18,0d"
 	},
 /area/shuttle/lifeboat)
 "Td" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,6rd"
 	},
 /area/shuttle/lifeboat)
@@ -500,6 +572,9 @@
 /area/shuttle/lifeboat)
 "TU" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "2,3"
 	},
 /area/shuttle/lifeboat)
@@ -511,16 +586,25 @@
 /area/shuttle/lifeboat)
 "UG" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,5"
 	},
 /area/shuttle/lifeboat)
 "Vj" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "25,1"
 	},
 /area/shuttle/lifeboat)
 "VJ" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "6,5l"
 	},
 /area/shuttle/lifeboat)
@@ -536,6 +620,9 @@
 /area/shuttle/lifeboat)
 "Xj" = (
 /turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,6lu"
 	},
 /area/shuttle/lifeboat)
@@ -550,8 +637,8 @@
 /obj/effect/decal/cargo_stripes{
 	icon_state = "nes"
 	},
-/obj/item/cargo/crate/general/sealed{
-	pixel_y = 5
+/obj/structure/cargo/crate/general/sealed{
+	pixel_y = 6
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/lifeboat)
@@ -848,7 +935,7 @@ Vj
 FS
 "}
 (27,1,1) = {"
-sO
+wA
 gS
 pr
 TM
