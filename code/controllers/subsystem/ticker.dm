@@ -332,7 +332,7 @@ SUBSYSTEM_DEF(ticker)
 	if(mode)
 		GLOB.master_mode = SSmapping.configs[GROUND_MAP].force_mode ? SSmapping.configs[GROUND_MAP].force_mode : mode
 	else
-		GLOB.master_mode = "Sector Patrol - Intermission"
+		GLOB.master_mode = "Sector Patrol"
 	log_game("Saved mode is '[GLOB.master_mode]'")
 
 

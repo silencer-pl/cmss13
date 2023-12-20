@@ -1,6 +1,6 @@
 /datum/game_mode/extended
-	name = "Sector Patrol - Intermission"
-	config_tag = "Sector Patrol - Intermission"
+	name = "Sector Patrol"
+	config_tag = "Sector Patrol"
 	required_players = 0
 	latejoin_larva_drop = 0
 	votable = FALSE
@@ -9,7 +9,7 @@
 	taskbar_icon = 'icons/taskbar/gml_colonyrp.png'
 
 /datum/game_mode/announce()
-	to_world("<B>Sector Patrol Intermission ALPHA</B>")
+	to_world("<B>Sector Patrol ALPHA</B>")
 
 /datum/game_mode/extended/get_roles_list()
 

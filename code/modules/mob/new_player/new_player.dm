@@ -37,7 +37,7 @@
 	var/chargen_check = (client.prefs.chargen_done) ? client.prefs.chargen_done : FALSE
 
 	var/output = "<div align='center'>Welcome to Sector Patrol."
-	output +="<br><b>ALPHA TESTING</b>"
+	output +="<br><b>ALPHA</b>"
 	output +="<br><br>Current character:"
 	output +="<br><b>[(client.prefs && client.prefs.real_name) ? client.prefs.real_name : client.key]</b>"
 	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Character Sheet</A></p>"

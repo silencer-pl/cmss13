@@ -1,7 +1,7 @@
 /datum/job/uacm/basepc
 	title = JOB_UACM_BASEPC
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 10
+	spawn_positions = 10
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uacm/basepc
 	entry_message_intro = "You are a UACM Comissioned Officer, currently assigned to the 2nd Logistics Division, under RDML Thomas Boulette."
