@@ -971,6 +971,9 @@
 	can_bloody = FALSE
 	supports_surgery = FALSE
 	layer = UNDER_TURF_LAYER
+/turf/open/underlay/clear
+	icon = 'icons/turf/floors/glass.dmi'
+	icon_state = "glass-555"
 
 // Glass Floors
 

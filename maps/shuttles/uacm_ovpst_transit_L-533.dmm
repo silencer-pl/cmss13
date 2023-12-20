@@ -158,6 +158,14 @@
 /obj/structure/surface/rack,
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
+"nn" = (
+/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
+	dir = 4;
+	pixel_x = -3
+	},
+/obj/effect/landmark/start/basepc,
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "nt" = (
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "window2l"
@@ -434,6 +442,15 @@
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
+"Lo" = (
+/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
+	dir = 4;
+	pixel_y = 15;
+	pixel_x = -3
+	},
+/obj/effect/landmark/start/basepc,
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "Nj" = (
 /turf/closed/shuttle/lifeboat{
 	name = "Shuttle L-533";
@@ -563,6 +580,13 @@
 	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
 	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,6rd"
+	},
+/area/shuttle/ert)
+"Tw" = (
+/obj/effect/landmark/late_join,
+/obj/effect/landmark/observer_start,
+/turf/open/shuttle/lifeboat{
+	icon_state = "plate-r"
 	},
 /area/shuttle/ert)
 "TM" = (
@@ -774,7 +798,7 @@ IR
 GA
 Qi
 dr
-dr
+Tw
 dr
 GD
 Td
@@ -837,13 +861,13 @@ ho
 "}
 (18,1,1) = {"
 nt
-BA
+Lo
 BA
 BA
 VZ
+nn
 Lk
-Lk
-Lk
+nn
 RW
 "}
 (19,1,1) = {"
@@ -859,11 +883,11 @@ iP
 "}
 (20,1,1) = {"
 Bf
-BA
-BA
+Lo
+Lo
 BA
 VZ
-Lk
+nn
 Lk
 Lk
 iP
@@ -881,13 +905,13 @@ iP
 "}
 (22,1,1) = {"
 IG
-BA
-BA
+Lo
+Lo
 BA
 VZ
 Lk
-Lk
-Lk
+nn
+nn
 WK
 "}
 (23,1,1) = {"
