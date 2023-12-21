@@ -215,13 +215,6 @@
 	},
 /turf/template_noop,
 /area/shuttle/ert)
-"sI" = (
-/obj/structure/maintterm/black{
-	pixel_x = -19;
-	pixel_y = 9
-	},
-/turf/open/shuttle/lifeboat,
-/area/shuttle/ert)
 "tz" = (
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
@@ -547,8 +540,11 @@
 /area/shuttle/ert)
 "RV" = (
 /obj/structure/maintterm/black{
-	pixel_x = -3;
-	pixel_y = 5
+	puzzlebox_serial_letters = "CPC";
+	puzzlebox_puzzle_type = "endpoint";
+	puzzlebox_puzzle_subtype = "01-endpoint";
+	puzzlebox_task_wrong = "The console buzzes and displays a short animation of the shuttle crashing into the station. It then flashes red and returns to its previous input.";
+	puzzlebox_task_right = "The console displays a short animation of the shuttle landing on the station safely, followed by a big green checkmark. It then beeps and the screen is filled with a steady flow of data to a green backdrop."
 	},
 /turf/open/shuttle/lifeboat{
 	dir = 1;
@@ -593,6 +589,14 @@
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "24,4u"
 	},
+/area/shuttle/ert)
+"TT" = (
+/obj/structure/maintterm/black{
+	puzzlebox_serial_letters = "CB-TRM";
+	puzzlebox_puzzle_type = "info";
+	puzzlebox_puzzle_subtype = "01-info"
+	},
+/turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "TU" = (
 /turf/closed/shuttle/lifeboat{
@@ -652,8 +656,9 @@
 /area/shuttle/ert)
 "Xv" = (
 /obj/structure/maintterm/black{
-	pixel_x = -3;
-	pixel_y = 9
+	puzzlebox_serial_letters = "PB-TRM";
+	puzzlebox_puzzle_type = "info";
+	puzzlebox_puzzle_subtype = "01-info"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -708,7 +713,7 @@ SW
 (4,1,1) = {"
 ce
 Yq
-OO
+TT
 OO
 OO
 OO
@@ -719,7 +724,7 @@ SW
 (5,1,1) = {"
 ce
 ys
-sI
+OO
 jT
 VZ
 Qp

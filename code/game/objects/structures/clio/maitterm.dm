@@ -11,18 +11,24 @@
 	plane = FLOOR_PLANE
 	unacidable = TRUE
 	unslashable = TRUE
+	var/puzzlebox_serial_letters = "ABC-000"
 	var/global/puzzlebox_puzzle_state = "0"
 	var/puzzlebox_puzzle_type
-	var/puzzlebox_err_text = "The display is garbled and the terminal seems unresponsive."
+	var/puzzlebox_puzzle_subtype // For event shenanigans. Not used in generic chains.
+	//defaults
 	var/puzzlebox_task_text = "The terminal awaits an input, but does not seem to display any other information otherwise."
 	var/puzzlebox_task_answer = "reset"
-	var/puzzlebox_task_wrong = "The console beeps and nothing happens."
 	var/puzzlebox_task_right = "The console pings and the display turns to a steady flow of code on a green backdrop."
-	var/puzzlebox_puzzle_subtype // For event shenanigans. Not used in generic chains.
+	var/puzzlebox_task_wrong = "The console beeps and nothing happens."
+	var/puzzlebox_err_text = "The display is garbled and the terminal seems unresponsive."
+	//end of defaults
 	var/puzzlebox_given_answer
 	var/puzzlebox_temp_output
 	var/puzzlebox_magic_number
-
+	//event
+	//001{
+	var/global/puzzlebox_001_task1_answer
+	///}001
 /obj/structure/maintterm/attack_hand(mob/user as mob)
 	if(puzzlebox_puzzle_state == "0")
 		to_chat(user, narrate_body("You see no reason to touch this right now."))
@@ -35,7 +41,7 @@
 			return
 		user.visible_message(narrate_body("[user] opens the maitenance hatch."), narrate_body("You open the maintenance hatch, revealing the machinery underneath."))
 		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
-		name = "open maintenance terminal hatch"
+		name = "open maintenance terminal hatch, serial number: " + puzzlebox_serial_letters
 		puzzle_icon()
 		return
 	if(icon_state == "open_ok")
@@ -52,7 +58,7 @@
 		if(icon_state == "open_err")
 			to_chat(user, narrate_body("[puzzlebox_task_text]"))
 			puzzlebox_given_answer = tgui_input_text(user, "The terminal awaits your input,", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-			puzzlebox_endpoint()
+			puzzlebox_endpoint(puzzlebox_task_answer)
 			return
 		//info
 		if(icon_state == "open_hang")
@@ -60,8 +66,12 @@
 			return
 
 //Event specifc chains to be replaced at will start here.
-
+//001{
 	if(puzzlebox_puzzle_state == "01")
+		if(!puzzlebox_001_task1_answer)
+			puzzlebox_001_task1_answer = GEN_8HEXPAIR
+			log_game("[key_name(usr)] generated the answer [puzzlebox_001_task1_answer] for the shuttle pairing puzzle.")
+			message_admins("[key_name_admin(usr)] generated the answer [puzzlebox_001_task1_answer] for the shuttle pairing puzzle.")
 		if(!puzzlebox_puzzle_subtype)
 			to_chat(user, narrate_head("Error. Event puzzle state set with no set subtype. This is most likely a mapping error. Admins have been notified, but just in case, please ahelp and laugh at silencer."))
 			message_admins("[key_name_admin(usr)] has found a terminal with no puzzlebox subtype set during an event state.")
@@ -71,46 +81,54 @@
 			to_chat(user, narrate_console("ERROR: Annomalous landing vector information data pairs detected. Data corruption. Verify viable vector address on terminals PB_TRM and CB_TRM and enter vector-pair that is matched on both terminals.<br>Estimated time until auto-calibration: 10 minutes."))
 			if(tgui_alert(user, "Do you want to type something into the terminal?", "The Terminal", list("Yes", "No")) == "No")
 				return
-			puzzlebox_endpoint()
-			to_chat(world, narrate_head("The shuttle engines begin to hum as it appears to be ready to fly again."))
-			puzzlebox_puzzle_state = "02"
-		if(puzzlebox_puzzle_subtype == "01-info1")
+			puzzlebox_given_answer = tgui_input_text(user, "The terminal awaits your input,", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+			if (!puzzlebox_given_answer)
+				return
+			puzzlebox_endpoint(puzzlebox_001_task1_answer)
+			if (puzzlebox_puzzle_type == "ok")
+				to_chat(user, narrate_body("The code dances before your eyes. For a split second, you feel like its talking to you, saying your name. The sensation passes quickly. Maybe the montony of space travel is getting to you."))
+				to_chat(world, narrate_head("The shuttle engines begin to hum as it appears to be ready to fly again."))
+				puzzlebox_puzzle_state = "02"
+				return
+		if(puzzlebox_puzzle_subtype == "01-info")
 			to_chat(user, narrate_body("Upon closer examination, the terminal seems to be displaying 8 sets of number pairs:"))
 			to_chat(user, narrate_console("NAVIGATION TRIANGULATION DATA PAIRS:"))
 			if (!puzzlebox_temp_output)
 				puzzlebox_magic_number = "[rand(1,8)]"
-				puzzlebox_hex()
+				puzzlebox_hex(puzzlebox_001_task1_answer)
 			to_chat(user, narrate_console("[puzzlebox_temp_output]"))
-
-
+// }001
 //End of event specifc chains.
 
 
-/obj/structure/maintterm/proc/puzzlebox_hex()
-	if(puzzlebox_magic_number == "1") puzzlebox_temp_output = puzzlebox_task_answer + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
-	if(puzzlebox_magic_number == "2") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + puzzlebox_task_answer + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
-	if(puzzlebox_magic_number == "3") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + puzzlebox_task_answer + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
-	if(puzzlebox_magic_number == "4") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + puzzlebox_task_answer + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
-	if(puzzlebox_magic_number == "5") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + puzzlebox_task_answer + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
-	if(puzzlebox_magic_number == "6") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + puzzlebox_task_answer + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
-	if(puzzlebox_magic_number == "7") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + puzzlebox_task_answer + "</br>" + GEN_8HEXPAIR
-	if(puzzlebox_magic_number == "8") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + puzzlebox_task_answer
+/obj/structure/maintterm/proc/puzzlebox_hex(str)
+	if(puzzlebox_magic_number == "1") puzzlebox_temp_output = (str) + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
+	if(puzzlebox_magic_number == "2") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + (str) + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
+	if(puzzlebox_magic_number == "3") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + (str) + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
+	if(puzzlebox_magic_number == "4") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + (str) + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
+	if(puzzlebox_magic_number == "5") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + (str) + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
+	if(puzzlebox_magic_number == "6") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + (str) + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR
+	if(puzzlebox_magic_number == "7") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + (str) + "</br>" + GEN_8HEXPAIR
+	if(puzzlebox_magic_number == "8") puzzlebox_temp_output = GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + GEN_8HEXPAIR + "</br>" + (str)
 
-/obj/structure/maintterm/proc/puzzlebox_endpoint()
-	if (!puzzlebox_given_answer)
-		return
+/obj/structure/maintterm/proc/puzzlebox_endpoint(str)
+	puzzlebox_temp_output = (str)
 	usr.visible_message(narrate_body("[usr] types something on the maitenance console."), narrate_body("You type '[puzzlebox_given_answer]' and confirm your input. The console processes your request."))
 	sleep(1 SECONDS)
-	if(puzzlebox_given_answer != puzzlebox_task_answer)
+	if(puzzlebox_given_answer != puzzlebox_temp_output)
 		usr.visible_message(narrate_body("[puzzlebox_task_wrong]"))
-		log_game("[key_name(usr)] used phrase '[puzzlebox_given_answer]' and failed a puzzle.")
+		log_game("[key_name(usr)] used phrase '[puzzlebox_given_answer]' and failed a puzzle. Expected answer: [puzzlebox_temp_output]")
 		message_admins("[key_name_admin(usr)] used phrase '[puzzlebox_given_answer]' and failed a puzzle.")
+		puzzlebox_temp_output = null
+		playsound(src.loc, 'sound/machines/terminal_error.ogg', 25)
 		return
-	if(puzzlebox_given_answer == puzzlebox_task_answer)
+	if(puzzlebox_given_answer == puzzlebox_temp_output)
 		usr.visible_message(narrate_body("[puzzlebox_task_right]"))
 		log_game("[key_name(usr)] used phrase '[puzzlebox_given_answer]' and solved a puzzle.")
 		message_admins("[key_name_admin(usr)] used phrase '[puzzlebox_given_answer]' and solved a puzzle.")
 		puzzlebox_puzzle_type = "ok"
+		puzzlebox_temp_output = null
+		playsound(src.loc, 'sound/machines/terminal_success.ogg', 25)
 		puzzle_icon()
 
 /obj/structure/maintterm/proc/puzzle_icon()
