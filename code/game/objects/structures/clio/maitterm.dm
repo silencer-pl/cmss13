@@ -5,6 +5,7 @@
 	desc = "A sliding hatch concealing a terminal used to perform local diagnostic tasks"
 	desc_lore = "Most space ships ultilize secondary terminals like these on a room-by-room basis as a failsafe meant to cover for the ship's central, AI-assisted maitenance system."
 	anchored = TRUE
+	plane = FLOOR_PLANE
 	unacidable = TRUE
 	unslashable = TRUE
 	var/puzzle = "No"
