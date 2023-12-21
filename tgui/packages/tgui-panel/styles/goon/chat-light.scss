@@ -1468,6 +1468,7 @@ h2.alert {
   font-style: italic;
   border-bottom: 1px dashed #000;
 }
+//Sector Patrol
 //Chargen
 .chargen_header {
   font-size: 140%;
@@ -1482,7 +1483,7 @@ h2.alert {
   text-align: justify;
   padding: 0em 1em;
 }
-
+//narration
 .narrate_head {
   font-size: 125%;
   color: #3d103d;
@@ -1494,5 +1495,12 @@ h2.alert {
   font-size: 100%;
   color: #020002;
   text-align: justify;
+  padding: 0em 1em;
+}
+//console green narration
+.narrate_console {
+  font-family: 'Courier New', cursive, sans-serif;
+  color: #084116;
+  text-align: left;
   padding: 0em 1em;
 }

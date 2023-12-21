@@ -670,6 +670,7 @@
 	to_chat(usr,"[narrate_output]")
 	if(tgui_alert(src, "Text preview is available. Send narration?", "Confirmation", list("Yes","No"), timeout = 0) != "Yes")
 		return
+	to_chat(world, "[narrate_output]")
 
 
 /client

@@ -1446,7 +1446,7 @@ em {
   font-style: italic;
   border-bottom: 1px dashed #fff;
 }
-
+//Sector Patrol
 //Chargen
 .chargen_header {
   font-size: 140%;
@@ -1461,7 +1461,7 @@ em {
   text-align: justify;
   padding: 0em 1em;
 }
-
+//narration
 .narrate_head {
   font-size: 125%;
   color: #ffccff;
@@ -1473,5 +1473,12 @@ em {
   font-size: 100%;
   color: #ff99ff;
   text-align: justify;
+  padding: 0em 1em;
+}
+//console green narration
+.narrate_console {
+  font-family: 'Courier New', cursive, sans-serif;
+  color: #1bdd4b;
+  text-align: left;
   padding: 0em 1em;
 }
