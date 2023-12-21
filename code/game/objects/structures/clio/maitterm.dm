@@ -97,6 +97,13 @@
 				puzzlebox_magic_number = "[rand(1,8)]"
 				puzzlebox_hex(puzzlebox_001_task1_answer)
 			to_chat(user, narrate_console("[puzzlebox_temp_output]"))
+	if(puzzlebox_puzzle_state != "01")
+		if(puzzlebox_puzzle_subtype == "01-info")
+			user.visible_message(narrate_body("[user] closes the maitenance hatch."), narrate_body("You slide the hatch back into place and hear it lock on the other side."))
+			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
+			name = "maintenance terminal hatch"
+			puzzlebox_puzzle_type = "solved"
+			puzzle_icon()
 // }001
 //End of event specifc chains.
 
