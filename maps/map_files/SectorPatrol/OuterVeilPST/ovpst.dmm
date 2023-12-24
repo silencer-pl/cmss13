@@ -1,31 +1,27 @@
 "ai" = (/turf/open/floor/almayer/uscm/directional{icon_state = "logo_directional1"},/area/space)
-"ao" = (/obj/structure/window/framed/almayer,/turf/open/space/basic,/area/space)
+"ao" = (/obj/structure/window/framed/almayer,/turf/open/floor/plating,/area/space)
 "ap" = (/obj/effect/decal/info_tag{pixel_y = 16; pixel_x = -16},/turf/open/floor/almayer{dir = 1; icon_state = "redcorner"},/area/space)
 "ar" = (/turf/open/floor/almayer{dir = 6; icon_state = "orange"},/area/space)
 "aZ" = (/turf/open/floor/almayer{icon_state = "blue"},/area/space)
-"bd" = (/obj/effect/decal/info_tag{pixel_x = -16; dir = 1},/turf/open/floor/almayer{icon_state = "red"},/area/space)
 "bm" = (/obj/structure/surface/table/reinforced/black,/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "bo" = (/obj/structure/bed/sofa/vert/grey/bot,/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "bC" = (/obj/effect/decal/cargo_stripes{icon_state = "ne"},/turf/open/floor/almayer{dir = 4; icon_state = "redcorner"},/area/space)
 "bR" = (/obj/structure/window/framed/almayer/hull,/turf/open/floor/almayer{icon_state = "plate"},/area/space)
 "ce" = (/obj/structure/bed/sofa/vert/grey/top,/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "co" = (/turf/open/floor/almayer{icon_state = "orange"},/area/space)
-"cq" = (/obj/effect/decal/info_tag{pixel_x = -16; dir = 1},/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/space)
 "dK" = (/obj/docking_port/stationary/emergency_response/external/pst_dock31,/turf/open/space/basic,/area/space)
 "eg" = (/obj/effect/decal/info_tag{pixel_x = -16; dir = 1},/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/space)
 "eD" = (/turf/open/floor/almayer/uscm/directional{dir = 1; icon_state = "logo_c"},/area/space)
-"eX" = (/obj/effect/decal/info_tag{pixel_y = 16},/turf/open/floor/almayer{dir = 9; icon_state = "blue"},/area/space)
 "gR" = (/turf/open/floor/almayer{dir = 5; icon_state = "emerald"},/area/space)
-"hg" = (/turf/open/floor/almayer{dir = 10; icon_state = "blue"},/area/space)
 "hj" = (/obj/docking_port/stationary/emergency_response/pst_start,/turf/open/space/basic,/area/space)
 "hD" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general/admin{icon = 'icons/obj/structures/doors/securedoor.dmi'; dir = 1; locked = null; icon_state = "door_locked"},/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/space)
 "hG" = (/obj/effect/decal/info_tag,/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/space)
-"io" = (/turf/open/floor/almayer{icon_state = "silver"},/area/space)
+"io" = (/obj/effect/decal/info_tag{pixel_x = -16; dir = 1},/turf/open/floor/almayer{icon_state = "red"},/area/space)
 "iO" = (/obj/effect/decal/info_tag{dir = 1},/turf/open/floor/almayer{icon_state = "emeraldcorner"},/area/space)
 "je" = (/turf/open/floor/almayer{dir = 9; icon_state = "red"},/area/space)
 "ji" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/security_generic{dir = 1},/turf/open/floor/almayer{icon_state = "redfull"},/area/space)
 "kt" = (/turf/open/floor/almayer{dir = 4; icon_state = "silver"},/area/space)
-"kV" = (/turf/open/floor/almayer,/area/space)
+"kV" = (/turf/open/floor/almayer{dir = 10; icon_state = "blue"},/area/space)
 "lh" = (/turf/closed/wall/almayer,/area/space)
 "lm" = (/obj/structure/machinery/conveyor{dir = 8},/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "lq" = (/turf/open/floor/almayer/uscm/directional{dir = 10; icon_state = "logo_directional1"},/area/space)
@@ -43,7 +39,7 @@
 "qn" = (/turf/open/floor/almayer{dir = 8; icon_state = "emeraldcorner"},/area/space)
 "qR" = (/obj/structure/machinery/door/poddoor/railing{dir = 8; id = "supply_elevator_railing"},/obj/effect/decal/cargo_stripes{icon_state = "e"},/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "rf" = (/obj/structure/machinery/conveyor{dir = 6},/turf/open/floor/almayer{allow_construction = 0},/area/space)
-"sM" = (/obj/structure/window/framed/almayer,/turf/open/floor/almayer{allow_construction = 0},/area/space)
+"sM" = (/obj/effect/decal/info_tag,/turf/open/floor/almayer{icon_state = "blue"},/area/space)
 "sV" = (/turf/open/floor/almayer/empty,/area/space)
 "tY" = (/obj/effect/decal/info_tag,/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/space)
 "uv" = (/turf/open/floor/almayer{icon_state = "tcomms"},/area/space)
@@ -51,9 +47,10 @@
 "uG" = (/obj/effect/decal/info_tag{pixel_y = 16},/turf/open/floor/almayer{dir = 5; icon_state = "blue"},/area/space)
 "uN" = (/turf/open/floor/almayer{dir = 6; icon_state = "red"},/area/space)
 "vB" = (/turf/open/floor/plating,/area/space)
-"vT" = (/obj/effect/decal/info_tag,/obj/effect/decal/info_tag{pixel_x = -16; dir = 1},/turf/open/floor/almayer{icon_state = "orange"},/area/space)
+"vT" = (/obj/effect/decal/info_tag{dir = 4},/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/space)
+"wk" = (/obj/effect/decal/info_tag{pixel_y = 16},/turf/open/floor/almayer{dir = 9; icon_state = "blue"},/area/space)
 "wY" = (/obj/effect/decal/info_tag,/turf/open/floor/almayer{dir = 6; icon_state = "silver"},/area/space)
-"xc" = (/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/space)
+"xc" = (/turf/open/floor/almayer{icon_state = "silver"},/area/space)
 "yd" = (/turf/open/underlay{icon = 'icons/turf/floors/underlay_approach.dmi'},/area/space)
 "yp" = (/turf/open/floor/almayer/uscm/directional{dir = 1; icon_state = "logo_directional1"},/area/space)
 "yy" = (/obj/effect/decal/info_tag{pixel_y = 16; pixel_x = -16},/turf/open/floor/almayer{dir = 1; icon_state = "emeraldcorner"},/area/space)
@@ -71,6 +68,7 @@
 "Gf" = (/obj/effect/decal/cargo_stripes{icon_state = "se"},/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "GA" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/securedoor.dmi'; dir = 1},/turf/open/floor/almayer{icon_state = "bluefull"},/area/space)
 "GN" = (/turf/open/floor/almayer{dir = 1; icon_state = "emeraldcorner"},/area/space)
+"GW" = (/obj/effect/decal/info_tag,/obj/effect/decal/info_tag{pixel_x = -16; dir = 1},/turf/open/floor/almayer{icon_state = "orange"},/area/space)
 "Hp" = (/turf/open/floor/almayer{dir = 1; icon_state = "emerald"},/area/space)
 "Hs" = (/turf/open/floor/almayer/uscm/directional{dir = 6; icon_state = "logo_directional1"},/area/space)
 "HC" = (/obj/structure/machinery/door/poddoor/railing{id = "supply_elevator_railing"},/obj/effect/decal/cargo_stripes{icon_state = "s"},/turf/open/floor/almayer{allow_construction = 0},/area/space)
@@ -78,6 +76,7 @@
 "IA" = (/turf/open/space/basic,/area/space)
 "IR" = (/obj/structure/bed/sofa/vert/grey,/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "La" = (/obj/structure/machinery/door/poddoor/almayer{id = "s_umbilical"; name = "\improper Umbillical Airlock"; unacidable = 1},/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/space)
+"LJ" = (/obj/effect/decal/info_tag{pixel_x = -16; dir = 1},/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/space)
 "LK" = (/turf/open/floor/almayer{dir = 4; icon_state = "blue"},/area/space)
 "LR" = (/obj/structure/machinery/conveyor{dir = 1},/turf/open/floor/almayer{allow_construction = 0},/area/space)
 "LV" = (/turf/open/floor/almayer{dir = 9; icon_state = "emerald"},/area/space)
@@ -86,19 +85,18 @@
 "PR" = (/turf/open/floor/almayer{dir = 10; icon_state = "orange"},/area/space)
 "Sg" = (/turf/open/underlay/clear,/area/space)
 "Si" = (/turf/open/floor/almayer{dir = 5; icon_state = "red"},/area/space)
-"SN" = (/obj/structure/window/framed/almayer,/turf/closed/wall/almayer,/area/space)
+"SN" = (/turf/open/floor/almayer,/area/space)
 "SV" = (/turf/open/floor/almayer/uscm/directional{dir = 4; icon_state = "logo_directional1"},/area/space)
 "Tg" = (/turf/open/floor/almayer{dir = 4; icon_state = "orange"},/area/space)
-"Tm" = (/obj/effect/decal/info_tag,/turf/open/floor/almayer{icon_state = "blue"},/area/space)
-"Tn" = (/obj/effect/decal/info_tag{dir = 4},/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/space)
+"Tm" = (/turf/open/floor/almayer{dir = 6; icon_state = "blue"},/area/space)
 "TK" = (/obj/structure/foamed_metal,/turf/open/floor/plating,/area/space)
 "TQ" = (/turf/open/floor/almayer{icon_state = "emeraldfull"},/area/space)
 "UM" = (/obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general{icon = 'icons/obj/structures/doors/maintdoor.dmi'},/turf/open/floor/almayer{icon_state = "orangefull"},/area/space)
 "Wg" = (/turf/open/floor/almayer/uscm/directional{dir = 8; icon_state = "logo_directional1"},/area/space)
 "XM" = (/turf/open/floor/almayer{dir = 5; icon_state = "orange"},/area/space)
-"Yb" = (/obj/effect/decal/info_tag{pixel_y = 16},/turf/open/floor/almayer{dir = 5; icon_state = "orange"},/area/space)
 "Yo" = (/turf/open/floor/almayer{icon_state = "plate"},/area/space)
 "YL" = (/turf/open/floor/almayer{dir = 10; icon_state = "red"},/area/space)
+"Zj" = (/obj/effect/decal/info_tag{pixel_y = 16},/turf/open/floor/almayer{dir = 5; icon_state = "orange"},/area/space)
 "ZF" = (/obj/structure/surface/table/reinforced/almayer_blend/north,/turf/open/floor/almayer{allow_construction = 0},/area/space)
 
 (1,1,1) = {"
@@ -183,30 +181,30 @@ IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOpOpOBigRTQTQTQLVGNpOpOpOqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgqgIAqgqgqgqgqgqgqgIAqgqgqgqgqgpOpOpOpOBigRTQLVGNpOpOpOpOqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqguvuvqgIAqguvuvqguvuvqgIAqguvuvlhlhpOpOpOpOpOpOTQpOpOpOpOpOpOqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqguvuvqgqgqguvuvqguvuvqgIAqguvuvlhlhpOpOpOpOpOpOTQpOpOpOpOpOpOqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqguvuvqgqgqguvuvqguvuvqgqgqguvuvlhlhpOpOpOpOpOpOTQpOpOpOpOpOpOqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqguvuvlhuvlhuvuvqguvuvlhuvlhuvuvlhlhlhlhlhlhlhpOTQpOlhlhlhlhlhqgqgqgqgqgqgqgqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqguvuvlhuvlhuvuvlhuvuvlhuvlhuvuvlhTKTKTKTKTKlhpOTQpOlhTKTKTKTKTKTKTKTKTKTKTKqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqguvuvuvuvuvuvuvlhuvuvuvuvuvuvuvlhTKTKTKTKTKlhpOTQpOlhTKTKTKTKTKTKTKTKTKTKTKqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqguvuvuvuvuvuvuvlhuvuvuvuvuvuvuvlhTKTKTKTKTKlhPzTQqnlhTKTKTKTKTKTKTKTKTKTKTKqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgqglhlhGAlhlhlhlhlhGAlhlhlhlhTKTKTKTKTKlhegTQTQlhTKTKTKTKTKTKTKlhlhlhlhqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgeXkVkVkVkVkVkVkVuGlhTKTKTKTKTKTKTKTKlhuvuvuvlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqghgaZaZaZaZaZTmaZxclhTKTKTKTKTKTKTKTKlhuvuvuvlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgqgGAlhlhlhlhlhlhlhGAlhlhlhlhTKTKTKTKTKlhegTQTQlhTKTKTKTKTKTKTKlhlhlhlhqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgwkSNSNSNSNSNSNSNuGlhTKTKTKTKTKTKTKTKlhuvuvuvlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgkVaZaZaZaZaZsMaZTmlhTKTKTKTKTKTKTKTKlhuvuvuvlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgqgqgqgpOLKlhlhlhTKTKTKTKTKTKTKTKlhuvuvuvlhlhlhlhlhlhlhlhlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOLKlhTKTKTKTKTKTKTKTKTKTKlhTQTQCllhpolFlFlFlFlFXMlhlhlhGAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOLKlhTKTKTKTKTKTKTKTKTKTKlhBiTQGNlhmZpOpOpOpOpOTglhlhpOuGqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOLKlhTKTKTKTKTKTKTKTKTKTKlhpOTQpOlhPRcococococoarlhlhpOLKqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOLKlhlhlhlhlhlhlhlhlhlhlhlhpOTQpOlhlhlhlhqelhlhlhlhlhpOLKqgqgqgqgqgqgqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOLKpOpOpOpOpOpOpOpOpOpOpOlhpOTQpOlhpOpOpOYbpOpOpOpOpOpOLKpOpOlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOOuaZaZaZvTcococococococoUMnRtYFoUMcococoCpaZaZaZaZaZaZhGaZTnAJuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOLKpOpOpOpOpOpOpOpOpOpOpOlhpOTQpOlhpOpOpOZjpOpOpOpOpOpOLKpOpOlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOOuaZaZaZGWcococococococoUMnRtYFoUMcococoCpaZaZaZaZaZaZhGaZvTAJuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOktlhlhlhqelhlhlhlhlhlhlhlhpOTQpOlhlhlhlhlhlhlhlhlhlhpOLKlhlhlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgpOktlhpolFlFlFXMlhTKTKlhlhlhpOTQpOlhTKTKTKTKTKTKTKTKlhpOLKqgqgqgqgqgqgqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgpOktlhmZpOpOpOTglhTKTKlhpOpOpOTQpOlhTKTKTKTKTKTKTKTKlhpOcqqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgpOktlhmZpOpOpOTglhTKTKlhpOpOpOTQpOlhTKTKTKTKTKTKTKTKlhpOLJqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 IAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgvBlhpOktlhmZpOpOpOTglhTKTKlhpOpOpOTQpOlhTKTKTKTKTKTKTKlhlhlhGAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-qgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgLRlhiowYlhPRcococoarlhTKTKlhbdBuiOTQqnlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgLRlhSNlhaoaoaoaolhlhlhlhlhlhjilhlhhDlhlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgrflmlmlmlmlmlmlmrfSNjeAjAjAjAjSiZFuvlhTKIlIlIlIlIlTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgqgqgqgqgqgqgnESNYLuDuDuDuDuNsMuvlhTKTKTKTKTKTKqgqgqgqgqgqgqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
-qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgnElhsMsMsMlhjiSNlhhDlhlhlhlhlhlhlhqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+qgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgLRlhxcwYlhPRcococoarlhTKTKlhioBuiOTQqnlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgLRlhaoaolhaoaoaolhlhlhlhlhlhjilhlhhDlhlhTKTKTKTKTKTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgrflmlmlmlmlmlmlmrfaojeAjAjAjAjSiZFuvlhTKIlIlIlIlIlTKTKlhuvuvuvqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgqgqgqgqgqgqgnEaoYLuDuDuDuDuNaouvlhTKTKTKTKTKTKqgqgqgqgqgqgqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
+qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgnElhaoaoaolhjiaolhhDlhlhlhlhlhlhlhqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgLRlhnhnhnhbCAjapBiHpyypOpOpOpOpOpOqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgrflmlmlmlmqRpOpOlqWgAMpOcepOcepObmqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
 qgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAqgqgqgHCHCHCGfpOpOaieDyppOIRpOIRpObmqgIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIA
