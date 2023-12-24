@@ -911,3 +911,18 @@
 	dir = SOUTH
 
 
+//Sector Patrol. Appending to /obj/structure/machinery/door/airlock/almayer for ease of use
+
+/obj/structure/machinery/door/airlock/almayer/uacm
+
+	name = "generic UACM door"
+	desc = "This is a placeholder. It should not be here."
+	desc_lore = "This exists as a generic item to orient others in the code."
+	opacity = FALSE
+
+/obj.structure/machinery/door/airlock/almayer/uacm/ovpst/security_generic
+	name = "red airlock"
+	desc = "A standard airlock, painted red."
+	desc_lore = "Traditionally, red coloring indicates areas related to law enforcement or area security."
+	icon = 'icons/obj/structures/doors/secdoor.dmi'
+	req_access = list(ACCESS_SP_OVPST_SECURITY)

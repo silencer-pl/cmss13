@@ -198,3 +198,25 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 #define ACCESS_LIST_CLF_BASE "CLF (Basic)"
 ///All access levels associated with CLF
 #define ACCESS_LIST_CLF_ALL "CLF (ALL)"
+
+//Sector Patrol
+//Starting Sector Patrol Stuff at 1000+ to avoid conflicts. Grouping ship/major map/faction every 100.
+
+// Event Tools Shorthand/Failsafe
+#define ACCESS_SP_ADMIN 1000
+
+// 10 - High Command/Overrides/Globals
+// 20 - Command
+// 30 - Engineering
+// 40 - Security
+// 50 - Cargo
+// 60 - Medical
+// 70 - General
+// 80 - Civilian
+// 90 - Below Civilian
+
+// 100 - OV-PST
+
+#define ACCESS_SP_OVPST_SECURITY 1140
+
+#define ACCESS_SP_OVPST_GENERAL 1170
