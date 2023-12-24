@@ -123,3 +123,13 @@
 	icon_state = "center"
 	layer = WEED_LAYER
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+//Label base decal
+/obj/effect/decal/info_tag
+	name = "orientation label"
+	desc = "Serial number and undewriting description should go here."
+	desc_lore = "Extra info about what lies at either end goes here"
+	gender = NEUTER
+	layer = TURF_LAYER
+	icon = 'icons/effects/stripe_label.dmi'
+	icon_state = "default"

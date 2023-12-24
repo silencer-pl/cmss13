@@ -219,4 +219,4 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 
 #define ACCESS_SP_OVPST_SECURITY 1140
 
-#define ACCESS_SP_OVPST_GENERAL 1170
+#define ACCESS_SP_OVPST_GENERAL 1170 //Default Ensign Zone
