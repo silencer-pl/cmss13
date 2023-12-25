@@ -204,19 +204,23 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 
 // Event Tools Shorthand/Failsafe
 #define ACCESS_SP_ADMIN 1000
-
-// 10 - High Command/Overrides/Globals
-// 20 - Command
-// 30 - Engineering
-// 40 - Security
-// 50 - Cargo
-// 60 - Medical
-// 70 - General
-// 80 - Civilian
-// 90 - Below Civilian
-
 // 100 - OV-PST
+// 10 - High Command/Overrides/Globals - Group A
+// 20 - Command - Group B
+// 30 - Engineering - Group C
+// 40 - Security - Group D
+// 50 - Cargo - Group E
+// 60 - Medical - Group F
+// 70 - General - Group G
+// 80 - Civilian - Group X
+// 90 - Below Civilian - Group Z
+// 0 - Admin/Category General Reserved. Not used.
+// 1 - Class 01, General or Certified.
+
+
 
 #define ACCESS_SP_OVPST_SECURITY 1140
+#define ACCESS_SP_OVPST_SECURITY_DEFAULT 1141
 
-#define ACCESS_SP_OVPST_GENERAL 1170 //Default Ensign Zone
+#define ACCESS_SP_OVPST_GENERAL 1170
+#define ACCESS_SP_OVPST_GENERAL_DEFAULT 1171 //Default Ensign Zone

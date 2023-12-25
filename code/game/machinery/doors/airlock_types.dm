@@ -924,7 +924,7 @@
 	name = "standard airlock"
 	desc = "A standard airlock wihtout any specific color coding or anything else that would set it apart from the many others."
 	desc_lore = "The so called 'general access' airlock is probably the most commonly used one in the galaxy, which is also why airlocks with this access level typically are the ones in their factory default colors, like this one."
-	req_access = list(ACCESS_SP_OVPST_GENERAL)
+	req_access = list(ACCESS_SP_OVPST_GENERAL_DEFAULT)
 
 /obj/structure/machinery/door/airlock/almayer/uacm/ovpst/general/admin //No access to anyone but admin-privelaged characters. The DM fun zones.
 	req_access = list(ACCESS_SP_ADMIN)
@@ -937,4 +937,4 @@
 	desc = "A standard airlock, painted red."
 	desc_lore = "Traditionally, red coloring indicates areas related to law enforcement or area security."
 	icon = 'icons/obj/structures/doors/secdoor.dmi'
-	req_access = list(ACCESS_SP_OVPST_SECURITY)
+	req_access = list(ACCESS_SP_OVPST_SECURITY_DEFAULT)
