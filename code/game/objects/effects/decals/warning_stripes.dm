@@ -140,37 +140,37 @@
 /obj/effect/decal/info_tag/pst/d31
 	name = "D-31 orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal - D-31 - Dock 31 Main Airlock"
-	desc_lore = "Main Airlocks are effectively entrances and exists from space stations and ships, used by smaller ships that latch onto the airlocks, typically using extending pathways called 'umbilicals'."
+	desc_lore = "Main Airlocks are effectively entrances and exits from space stations and ships, used by smaller ships that latch onto the airlocks, typically using extending pathways called 'umbilicals'."
 	icon_state = "pst_d-31"
 
 /obj/effect/decal/info_tag/pst/sec
 	name = "SEC orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal - SEC - "
-	desc_lore = "The label SEC indicates doors and areas that require an elevated security clerance, typically restricted for MPs and CMISRS agents."
+	desc_lore = "The label SEC indicates doors and areas that require an elevated security clearance, typically restricted for MPs and CMISRS agents."
 	icon_state = "pst_sec"
 
 /obj/effect/decal/info_tag/pst/scn
 	name = "SCN orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal - SCN - "
-	desc_lore = "The label SCN indicates doors and areas where computer systems actively scan its inhabitants and contents. Areas like this need to be clearly marked due to privacy and personal data handling laws passsed back in the UA in the aftermath of the Colony Wars."
+	desc_lore = "The label SCN indicates doors and areas where computer systems actively scan its inhabitants and contents. Areas like this need to be clearly marked due to privacy and personal data handling laws passed back in the UA in the aftermath of the Colony Wars."
 	icon_state = "pst_scn"
 
 /obj/effect/decal/info_tag/pst/int
 	name = "-INT- orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal - -INT- -"
-	desc_lore = "The label -INT- indicates intersections. Labels like this are typically placed on the 'primary' pathway, but have information regarding all pathways at an intersection."
+	desc_lore = "The label -INT- indicates intersections. Labels like this are typically placed on the 'primary' pathway but have information regarding all pathways at an intersection."
 	icon_state = "pst_int"
 
 /obj/effect/decal/info_tag/pst/eng
 	name = "ENG orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal - ENG -"
-	desc_lore = "The label ENG indicates doors and areas related to controlling and mantaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clerance."
+	desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance."
 	icon_state = "pst_eng"
 
 /obj/effect/decal/info_tag/pst/cpu
 	name = "CPU orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal - CPU -"
-	desc_lore = "The label CPU indicates doors and areas related to the operation of ship AIs, which typically are also directly tied to the ships Twilight FTL drives and Liquid Data FTL communication systems. These areas are typically sealled to all but the highest ranking command personnel on board a ship or station, but may be sometimes unlocked by the AIs themselves if maintenance is required."
+	desc_lore = "The label CPU indicates doors and areas related to the operation of ship AIs, which typically are also directly tied to the ships Twilight FTL drives and Liquid Data FTL communication systems. These areas are typically sealed to all but the highest-ranking command personnel on board a ship or station but may be sometimes unlocked by the AIs themselves if maintenance is required."
 	icon_state = "pst_cpu"
 
 /obj/effect/decal/info_tag/pst/ele
