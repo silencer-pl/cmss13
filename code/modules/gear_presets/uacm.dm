@@ -1,21 +1,19 @@
 /datum/equipment_preset/uacm
 	name = "UACM"
 
-/datum/equipment_preset/uacm/New()
-	. = ..()
-	access = get_access(ACCESS_LIST_MARINE_ALL)
-
 /datum/equipment_preset/uacm/basepc
 	name = "UACM Comissioned Officer"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND|EQUIPMENT_PRESET_MARINE
 
-	idtype = /obj/item/card/id/silver
+	idtype = /obj/item/card/id/dogtag
 	assignment = JOB_UACM_BASEPC
 	rank = JOB_UACM_BASEPC
 	paygrade = "NO1"
 	role_comm_title = "Officer"
 	skills = /datum/skills/SO
 	flags = EQUIPMENT_PRESET_EXTRA
+
+	access = ACCESS_SP_OVPST_GENERAL_DEFAULT
 
 	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_BRONZE)
 	minimap_background = MINIMAP_ICON_BACKGROUND_CIC
