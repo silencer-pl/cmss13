@@ -415,6 +415,7 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	desc = "A small container mounted in a special slot inside a wall or floor. Does not seem to be This one is labeled as 'D - Dock 31 RFID storage'"
 	icon_state = "safe_red_class_d_locked"
 	locked = 1
+	plane = GAME_PLANE
 
 /obj/structure/closet/secure_closet/sp/red/d01/wall/d31chips/Initialize()
 	. = ..()
