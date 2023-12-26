@@ -368,3 +368,43 @@ GLOBAL_LIST_EMPTY(co_secure_boxes)
 	icon_off = "secure_unlocked_cmdcabinet"
 	wall_mounted = TRUE
 
+//Sector Patrol
+//General Red Locker
+/obj/structure/closet/secure_closet/sp/red/
+	name = "red locker"
+	desc = "A red locker with a simple electronic locking mechanism. It does not seem to have any labels or other identifying information on it."
+	desc_lore = "Lockers with no specific access rights are convenient ways of temporarily storing things, but not something one would mind losing. Most space faring humans assume that if something is stored in a generally accessible locker like this, it is for anyone to use as needed."
+	icon_state = "red_nolabel_unlocked"
+	icon_closed = "red_nolabel_unlocked"
+	icon_locked = "red_nolabel_locked"
+	icon_opened = "red_nolabel_open"
+	icon_broken = "red_nolabel_broken"
+	icon_off = "red_nolabel_closed"
+
+//Class D Red Locker
+
+/obj/structure/closet/secure_closet/sp/red/d01
+	name = "red locker - D class"
+	desc = "A red locker with a simple electronic locking mechanism. It is labeled as 'D - '"
+	desc_lore = "Lockers with specific access classes typicaly contain spare, extra or non-standard gear related to duties that involve having the apropriate clerance level. A 'D' security class indicates that this locker contains something related to law enforcement or security on board UACM ships and installations."
+	req_access = list(ACCESS_SP_OVPST_SECURITY_DEFAULT)
+	icon_state = "red_class_d_unlocked"
+	icon_closed = "red_class_d_unlocked"
+	icon_locked = "red_class_d_locked"
+	icon_opened = "red_class_d_open"
+	icon_broken = "red_class_d_broken"
+	icon_off = "red_class_d_closed"
+
+/obj/structure/closet/secure_closet/sp/red/d01/wall
+	name = "red wall or floor mounted container - D class"
+	desc = "A small container mounted in a special slot inside a wall or floor. Does not seem to be This one is labeled as 'D - '"
+	desc_lore = "Containers like this, sometimes called 'safes' although they dont always come with added security measures, are typically used for storage of mundane gear, documents and small personal items near workstations and stationary posts."
+	icon_state = "safe_red_class_d_unlocked"
+	icon_closed = "safe_red_class_d_unlocked"
+	icon_locked = "safe_red_class_d_locked"
+	icon_opened = "safe_red_class_d_open"
+	icon_broken = "safe_red_class_d_broken"
+	icon_off = "safe_red_class_d_closed"
+	density = FALSE
+	store_mobs = FALSE
+	wall_mounted = TRUE
