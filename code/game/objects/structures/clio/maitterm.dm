@@ -106,6 +106,7 @@
 			puzzle_icon()
 // }001
 //End of event specifc chains.
+	to_chat(user, narrate_body("You see no reason to touch this right now.")) //EOF escaper
 
 
 /obj/structure/maintterm/proc/puzzlebox_hex(str)
