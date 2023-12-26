@@ -158,7 +158,7 @@
 /obj/effect/decal/info_tag/pst/int
 	name = "-INT- orientation label"
 	desc = "UACM Outer Veil Primary Supply Terminal - -INT- -"
-	desc_lore = "The label -INT- indicates intersections. Labels like this are typically placed on the 'primary' pathway but have information regarding all pathways at an intersection."
+	desc_lore = "The label -INT- indicates intersections. Labels like this are typically placed on the 'primary' pathway but have information regarding all pathways at an intersection and list all pathways at an intersection starting from the left-handed turn (if one exists) and moving in a clockwise fashion until all turns are covered."
 	icon_state = "pst_int"
 
 /obj/effect/decal/info_tag/pst/eng
