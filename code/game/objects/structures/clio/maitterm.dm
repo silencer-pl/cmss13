@@ -141,7 +141,7 @@
 
 /obj/structure/maintterm/proc/puzzle_icon()
 	if(puzzlebox_puzzle_type == "endpoint")
-		if(icon == 'icons/obj/structures/machinery/clio_maint_dark.dmi')
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. It seems to be flashing a red error message and is awaiting user input."
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs. Red error messages typically indicate that the terminal is the end point of a diagnostic issue and will typically require information from other terminals displaying a yellow error screen."
 		else
@@ -150,7 +150,7 @@
 		icon_state = "open_err"
 		update_icon()
 	if(puzzlebox_puzzle_type == "off")
-		if(icon == 'icons/obj/structures/machinery/clio_maint_dark.dmi')
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. The terminal appears to be offline."
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs. Terminals being offline means either a power issue or something wrong with the wiring of the terminal itself. This typically requires direct replcaements and precision tools."
 		else
@@ -159,7 +159,7 @@
 		icon_state = "open_off"
 		update_icon()
 	if(puzzlebox_puzzle_type == "info")
-		if(icon == 'icons/obj/structures/machinery/clio_maint_dark.dmi')
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. The terminal seems to be displaying a flood of text on a brigth blue blackground."
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs. Blue error screens typically mean that an AI process is stuck in an endless loop and will provide critical diagnostic information, usually used on yellow error screen terminals."
 		else
@@ -168,7 +168,7 @@
 		icon_state = "open_hang"
 		update_icon()
 	if(puzzlebox_puzzle_type == "parser")
-		if(icon == 'icons/obj/structures/machinery/clio_maint_dark.dmi')
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. A body of text with a visible input option on a yellow backdrop seems to be displaed on the screen."
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs. Yellow error screens typically output information that can be used to resolve red error terminals, but often require additonal information from terminals displaying blue colored error screens."
 		else
@@ -177,7 +177,7 @@
 		icon_state = "open_warn"
 		update_icon()
 	if(puzzlebox_puzzle_type == "ok")
-		if(icon == 'icons/obj/structures/machinery/clio_maint_dark.dmi')
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. The terminal is displaying a steady flow of code on a green backdrop."
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs. Green colored screens typically indicate normal operation and this terminal is likely ready to return to its standard operating mode."
 		else
@@ -186,7 +186,7 @@
 		icon_state = "open_ok"
 		update_icon()
 	if(puzzlebox_puzzle_type == "solved")
-		if(icon == 'icons/obj/structures/machinery/clio_maint_dark.dmi')
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. It appears to be working normally."
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
 		else
