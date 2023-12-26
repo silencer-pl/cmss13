@@ -1110,7 +1110,7 @@
 /obj/item/clothing/under/marine/uacm/uniform_standard
 	name = "\improper UACM comissioned officer uniform"
 	desc = "A standard 'formal' uniform, typically worn by commissioned officers of the UACM that work in offices away from combat or by Marines on leave away from their ship. An instantly recognizable classic, bound to turn heads for better or worse."
-	desc_lore = "While the UACM is stepping up efforts to encourage all ship crews to adapt the color-coded jumpsuit style uniforms, many UACM personnel prefer these more formal feeling wear that matches their previous uniforms closer. Some go as far as to claim that they both feel and perform better in these, but it’s hard to imagine why. If anything, it’s the jumpsuits that are designed to improve their users long term fatigue levels."
+	desc_lore = "While the UACM is stepping up efforts to encourage all ship crews to adapt the color-coded jumpsuit style uniforms, many UACM personnel prefer these more formal feeling wear that matches their previous uniforms closer. Some go as far as to claim that they both feel and perform better in these, but it's hard to imagine why. If anything, it's the jumpsuits that are designed to improve their users long term fatigue levels."
 	icon_state = "formal_jumpsuit"
 	worn_state = "formal_jumpsuit"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
@@ -1119,7 +1119,7 @@
 /obj/item/clothing/under/marine/uacm/cmisrs_inspector
 	name = "\improper CMISRS office uniform"
 	desc = "The 'office' variant of the CMISRS uniform, used by officers who work out of CMISRS capital ships and installations. Smoother and shinier than its field counterpart."
-	desc_lore = "These black uniforms were originally used by the upper echelons of the USCMC Provost’s Office, an agency infamous for both its zeal and overreach. Even though at least on paper the CMISRS is the inheritor of the Provost’s duties, a lot of talented officers were recruited into the UAAC-TIS instead and it is that agency that currently is known more for its zeal and unforgiveness. As such this uniform is decisively accruing the opposite meaning that it had during its use in the USCMC."
+	desc_lore = "These black uniforms were originally used by the upper echelons of the USCMC law enforcement circles, infamous for both their zeal and tendency for gross overreach. While on paper, the CMISRS has inherited those duties, a lot of talented officers were recruited into the UAAC-TIS instead and it is that agency that currently is known more for its zeal and unforgiveness. Whether this is enough to counter the reputation the black and crimson has among UACM personel remains to be seen."
 	icon_state = "tis"
 	worn_state = "tis"
 	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
