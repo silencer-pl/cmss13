@@ -207,3 +207,4 @@
 	desc = "A standard computer terminal with the words 'LNT' imprinted on its side. It appears to be working normally."
 	desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
 	icon = 'icons/obj/structures/machinery/clio_term.dmi'
+	plane = GAME_PLANE
