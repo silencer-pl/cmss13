@@ -13,7 +13,7 @@
 	skills = /datum/skills/SO
 	flags = EQUIPMENT_PRESET_EXTRA
 
-	access = ACCESS_SP_OVPST_GENERAL_DEFAULT
+	access = list(ACCESS_SP_OVPST_GENERAL_DEFAULT)
 
 	minimap_icon = list("cic" = MINIMAP_ICON_COLOR_BRONZE)
 	minimap_background = MINIMAP_ICON_BACKGROUND_CIC

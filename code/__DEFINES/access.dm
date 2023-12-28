@@ -201,7 +201,6 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 
 //Sector Patrol
 //Starting Sector Patrol Stuff at 1000+ to avoid conflicts. Grouping ship/major map/faction every 100.
-
 // Event Tools Shorthand/Failsafe
 #define ACCESS_SP_ADMIN 1000
 // 100 - OV-PST
@@ -216,9 +215,6 @@ most of them are tied into map-placed objects. This should be reworked in the fu
 // 90 - Below Civilian - Group Z
 // 0 - Admin/Category General Reserved. Not used.
 // 1 - Class 01, General or Certified.
-
-
-
 #define ACCESS_SP_OVPST_SECURITY 1140
 #define ACCESS_SP_OVPST_SECURITY_DEFAULT 1141
 
