@@ -208,3 +208,17 @@
 	desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
 	icon = 'icons/obj/structures/machinery/clio_term.dmi'
 	plane = GAME_PLANE
+
+/obj/structure/maintterm/computer/admin
+	req_access = list(ACCESS_SP_ADMIN)
+
+/obj/structure/maintterm/computer/admin/proc/change_lights(lights_id, lights_color)
+	var/bulbid = "[lights_id]"
+	var/bulbcolor = "[lights_color]"
+	if (!bulbid || !bulbcolor) return
+	for(var/obj/structure/machinery/light/L in world)
+		if(L.light_id == bulbid)
+			L.bulb_color = bulbcolor
+			L.light_color = bulbcolor
+			L.update()
+	return

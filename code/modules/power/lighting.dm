@@ -148,6 +148,7 @@
 	var/on = 0 // 1 if on, 0 if off - also names of icon states for both, which is significant
 	var/color_state // For colored bulbs, if present appends this to the icon_state between the base and 0/1
 	var/bulb_color  //Value for set_light call, can be any color macro or a hex value. Null unless carried over from bulbs
+	var/light_id //id string for outside manipulation calls that aren't lightswitches
 	icon_state = "tube1"
 	desc = "A lighting fixture that is fitted with a bright fluorescent light tube. Looking at it for too long makes your eyes go watery."
 	anchored = TRUE
@@ -542,6 +543,7 @@
 	L.status = status
 	L.rigged = rigged
 	L.brightness = src.brightness
+	L.bulb_color = src.bulb_color
 
 	// light item inherits the switchcount, then zero it
 	L.switchcount = switchcount
