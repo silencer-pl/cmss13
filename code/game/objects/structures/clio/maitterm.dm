@@ -26,7 +26,7 @@
 	var/puzzlebox_temp_output
 	var/puzzlebox_magic_number
 	//event
-	//001{
+	//001{Shuttle matching
 	var/global/puzzlebox_001_task1_answer
 	///}001
 /obj/structure/maintterm/attack_hand(mob/user as mob)
@@ -66,7 +66,7 @@
 			return
 
 //Event specifc chains to be replaced at will start here.
-//001{
+//001{ Shuttle Pair Matching Puzzle
 	if(puzzlebox_puzzle_state == "01")
 		if(!puzzlebox_001_task1_answer)
 			puzzlebox_001_task1_answer = GEN_8HEXPAIR
@@ -208,7 +208,20 @@
 	desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
 	icon = 'icons/obj/structures/machinery/clio_term.dmi'
 	plane = GAME_PLANE
+//manipulator variant, also for open_off puzzles
 
+/obj/structure/maintterm/manipulator
+	name = "computer machinery"
+
+
+/obj/structure/maintterm/manipulator/attack_hand(mob/user as mob)
+	..()
+//event chains start here, I'll work out the generic when I actually need it
+	if(puzzlebox_puzzle_state == "03")
+	return
+
+
+//admin terminal zone
 /obj/structure/maintterm/computer/admin
 
 
