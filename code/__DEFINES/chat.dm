@@ -35,3 +35,6 @@
 // Console outputs
 
 #define narrate_console(str) ("<div class='narrate_console'><p>" + str + "</p></div>")
+
+// Serial numbers
+#define narrate_serial(str) ("<div class='narrate_serial'><p>" + str + "</p></div>")

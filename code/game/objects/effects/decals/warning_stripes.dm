@@ -134,6 +134,20 @@
 	icon = 'icons/effects/stripe_label.dmi'
 	icon_state = "default"
 
+/obj/effect/decal/info_tag/examine(mob/user)
+	var/list/examine_strings = get_examine_text(user)
+	if(!examine_strings)
+		log_debug("Attempted to create an examine block with no strings! Atom : [src], user : [user]")
+		return
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, examine_strings)
+	to_chat(user, examine_block(examine_strings.Join("</div>")))
+
+/obj/effect/decal/info_tag/get_examine_text(mob/user)
+	. = list()
+	if(desc)
+		. += narrate_serial(desc)
+	if(desc_lore)
+		. += narrate_body("<a href='byond://?src=\ref[src];desc_lore=1'>Click here</a> for more information about this sign.")
 //Outer Veil PST
 //Dock 31
 

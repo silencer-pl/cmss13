@@ -218,7 +218,8 @@
 	..()
 //event chains start here, I'll work out the generic when I actually need it
 	if(puzzlebox_puzzle_state == "03")
-	return
+		to_chat(user, narrate_head("Shut up, parser"))
+		return
 
 
 //admin terminal zone
