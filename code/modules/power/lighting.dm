@@ -925,3 +925,31 @@
 	icon_state = "markerbulbindigo"
 	color_state = "indigo"
 	bulb_color = LIGHT_COLOUR_DARK_BLUE
+
+//admin items, use invisible but alphamapped icon and clickthrough for trigerable mood lighting
+
+/obj/structure/machinery/light/marker/admin
+
+	name = "admin light"
+	desc = "This shoudnt be visible to players"
+	icon_state = "admin_light"
+	base_state = "admin_light"
+	light_id = "admin"
+	color_state = null
+	bulb_color = LIGHT_COLOUR_WHITE
+	anchored = TRUE
+	density = FALSE
+	unslashable = TRUE
+	unacidable = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	light_type = /obj/item/light_bulb/marker/admin
+
+/obj/item/light_bulb/marker/admin
+
+	name = "makrer light bulb - admin"
+	desc = "Admin light bulb. Should not be visible."
+	icon_state = "admin_lightbulb"
+	base_state = "admin_lightbulb"
+	color_state = null
+	bulb_color = LIGHT_COLOUR_WHITE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

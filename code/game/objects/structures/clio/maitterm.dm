@@ -210,7 +210,13 @@
 	plane = GAME_PLANE
 
 /obj/structure/maintterm/computer/admin
-	req_access = list(ACCESS_SP_ADMIN)
+
+
+/obj/structure/maintterm/computer/admin/attack_hand(mob/user as mob)
+	if(puzzlebox_puzzle_state)
+		change_lights(lights_id = "sec-1", lights_color = "#FF00FF" )
+		sleep (5 SECONDS)
+	change_lights(lights_id = "sec-1", lights_color = LIGHT_COLOUR_WHITE)
 
 /obj/structure/maintterm/computer/admin/proc/change_lights(lights_id, lights_color)
 	var/bulbid = "[lights_id]"

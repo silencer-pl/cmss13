@@ -144,7 +144,7 @@
  */
 
 /// Full white. rgb(255, 255, 255)
-#define LIGHT_COLOR_WHITE "#FFFFFF"
+#define LIGHT_COLOUR_WHITE "#FFFFFF"
 /// Bright but quickly dissipating neon green. rgb(100, 200, 100)
 #define LIGHT_COLOUR_GREEN   "#64C864"
 /// Electric green. rgb(0, 255, 0)
