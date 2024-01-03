@@ -1,21 +1,25 @@
 /obj/item
 
-	name = "Generic item. Should not be seen anywhere in game. Plese please report this."
-	var/item_serial = "AAAAA-BBBBB-CCCCC-DDDDD-EEEEE"
+	name = "Generic item, or missed empty name iheritance. Please report this if you see it in the wild."
+	var/item_serial
+	var/item_serial_distance = SERIAL_ITEM_SIZE_MEDIUM
 
 /obj/item/examine(mob/user)
 	..()
-	if (!item_serial) to_chat(user, narrate_head("Warning. Looked at an item witha null serial value. This should not be possible unless for some reason it was nulled by code. Please ahelp this."))
-	to_chat(user, narrate_body("There is a serial number printed on the object. It reads:"))
-	to_chat(user, examine_block(narrate_serial("[item_serial]")))
+	if (item_serial != null)
+		if(!isxeno(user) && (get_dist(user, src) < item_serial_distance || isobserver(user)))
+			to_chat(user, narrate_body("The serial number is:"))
+			to_chat(user, examine_block(narrate_serial("[item_serial]")))
 
 /obj/structure
 
-	name = "Generic structure. Should not be seen anywhere in game. Plese please report this."
-	var/item_serial = "AAAAA-BBBBB-CCCCC-DDDDD-EEEEE"
+	name = "Generic structure, or missed empty name inheritance. Should not be seen anywhere in game. Plese report this if you see it in the wild."
+	var/item_serial
+	var/item_serial_distance = SERIAL_STRUCTURE_SIZE_MEDIUM
 
 /obj/structure/examine(mob/user)
 	..()
-	if (!item_serial) to_chat(user, narrate_head("Warning. Looked at an item witha null serial value. This should not be possible unless for some reason it was nulled by code. Please ahelp this."))
-	to_chat(user, narrate_body("There is a serial number printed on the object. It reads:"))
-	to_chat(user, examine_block(narrate_serial("[item_serial]")))
+	if (item_serial != null)
+		if(!isxeno(user) && (get_dist(user, src) < item_serial_distance || isobserver(user)))
+			to_chat(user, narrate_body("The serial number is:"))
+			to_chat(user, examine_block(narrate_serial("[item_serial]")))

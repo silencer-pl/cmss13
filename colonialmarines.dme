@@ -93,6 +93,7 @@
 #include "code\__DEFINES\redis.dm"
 #include "code\__DEFINES\regex.dm"
 #include "code\__DEFINES\sentry_laptop_configurations.dm"
+#include "code\__DEFINES\serial_numbers.dm"
 #include "code\__DEFINES\shuttles.dm"
 #include "code\__DEFINES\skills.dm"
 #include "code\__DEFINES\sounds.dm"
