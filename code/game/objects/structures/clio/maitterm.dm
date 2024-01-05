@@ -11,7 +11,6 @@
 	plane = FLOOR_PLANE
 	unacidable = TRUE
 	unslashable = TRUE
-	var/puzzlebox_serial_letters = "ABC-000"
 	var/global/puzzlebox_puzzle_state = "0"
 	var/puzzlebox_puzzle_type
 	var/puzzlebox_puzzle_subtype // For event shenanigans. Not used in generic chains.
@@ -41,7 +40,6 @@
 			return
 		user.visible_message(narrate_body("[user] opens the maitenance hatch."), narrate_body("You open the maintenance hatch, revealing the machinery underneath."))
 		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
-		name = "open maintenance terminal hatch, serial number: " + puzzlebox_serial_letters
 		puzzle_icon()
 		return
 	if(icon_state == "open_ok")
@@ -210,8 +208,15 @@
 	plane = GAME_PLANE
 //manipulator variant, also for open_off puzzles
 
+/obj/structure/maintterm/bigdatablock
+	name = "Liquid Data enabled computer"
+	desc = "A cluster of computers seemingly somehow connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster."
+	desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster in particular seems to go against both these principles - it seems to be a trio, not pair of computers and maintains a continuous connection to whatever its source is."
+	icon = 'icons/obj/structures/machinery/clio_bigboi.dmi'
+
 /obj/structure/maintterm/manipulator
 	name = "computer machinery"
+
 
 
 /obj/structure/maintterm/manipulator/attack_hand(mob/user as mob)
