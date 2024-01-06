@@ -21,7 +21,7 @@
 	var/puzzlebox_task_wrong = "The console beeps and nothing happens."
 	var/puzzlebox_err_text = "The display is garbled and the terminal seems unresponsive."
 	//parser list
-	var/list/puzzlebox_parser_commands = list(help, list)
+	var/list/puzzlebox_parser_commands = list("help", "list")
 	//end of defaults
 	var/puzzlebox_given_answer
 	var/puzzlebox_temp_output
@@ -181,7 +181,6 @@
 		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. A body of text with a visible input option on a yellow backdrop seems to be displaed on the screen."
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs. Yellow error screens typically output information that can be used to resolve red error terminals, but often require additonal information from terminals displaying blue colored error screens."
-		else
 		if(icon == 'icons/obj/structures/machinery/clio_bigboi.dmi')
 			desc = "A cluster of computers seemingly somehow connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. The screen seems to be displaying a body of text with a visible input option on a yellow backdrop."
 			desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. Yellow error screens typically output information that can be used to resolve red error terminals, but often require additonal information from terminals displaying blue colored error screens."
@@ -196,7 +195,7 @@
 			desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs. Green colored screens typically indicate normal operation and this terminal is likely ready to return to its standard operating mode."
 		if(icon == 'icons/obj/structures/machinery/clio_bigboi.dmi')
 			desc = "A cluster of computers seemingly somehow connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. The system seems to be operating fine, but additional information is avaialble on the screen."
-			desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. Green colored screens typically indicate that an issue has been resolved and this terminal is likely ready to return to its standard operating mode.""
+			desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. Green colored screens typically indicate that an issue has been resolved and this terminal is likely ready to return to its standard operating mode."
 		else
 			desc = "An open hatch, revealing a maitenance terminal. The terminal is displaying a steady flow of code on a green backdrop."
 			desc_lore = "Most space ships ultilize secondary terminals like these on a room-by-room basis as a failsafe meant to cover for the ship's central, AI-assisted maitenance system. Green colored screens typically indicate normal operation and this terminal can likely be closed."
