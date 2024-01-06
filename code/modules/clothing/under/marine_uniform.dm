@@ -1118,7 +1118,7 @@
 
 
 /obj/item/clothing/under/marine/uacm/jumpsuit_engie
-	name "\improper UACM comissioned officer jumpsuit style uniform - engineering variant"
+	name = "\improper UACM comissioned officer jumpsuit style uniform - engineering variant"
 	desc = "A snug and warm looking jumpsuit style uniform in dark blue. A sign of trouble in the old days and of grit and determination in the new. "
 	desc_lore = "Color coded, jumpsuit style uniforms are the UACM preferred choice and in a pinch of irony that is unsettlingly present across the new formation, the only UA formation that used anything close to a compatible system were the defunct Marines. Blue jumpsuits were associated with some of the most undisciplined and troublesome personnel, but also with some of the smartest people in the stars. The UACM is still hoping on retaining mostly the latter in the recruitment efforts, and while like most colonies and ships prefers the yellow color for Engineering objects, UACM engineering staff has almost uniformly opted for the dark blue shade of the current design. "
 	icon_state = "mt_jumpsuit"
