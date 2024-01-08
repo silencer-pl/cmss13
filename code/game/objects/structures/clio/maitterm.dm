@@ -20,6 +20,7 @@
 	var/puzzlebox_task_right = "The console pings and the display turns to a steady flow of code on a green backdrop."
 	var/puzzlebox_task_wrong = "The console beeps and nothing happens."
 	var/puzzlebox_err_text = "The display is garbled and the terminal seems unresponsive."
+	var/puzzlebox_door_id
 	//parser list
 	var/list/puzzlebox_parser_commands = list("help", "list")
 	//end of defaults
@@ -30,6 +31,8 @@
 	//001{Shuttle matching
 	var/global/puzzlebox_001_task1_answer
 	///}001
+	///{002 - Cargo Woes
+	var/puzzlebox_002_started
 /obj/structure/maintterm/attack_hand(mob/user as mob)
 	if(puzzlebox_puzzle_state == "0")
 		to_chat(user, narrate_body("You see no reason to touch this right now."))
@@ -239,8 +242,40 @@
 //admin terminal zone
 /obj/structure/maintterm/computer/admin
 
-
 /obj/structure/maintterm/computer/admin/attack_hand(mob/user as mob)
+
+	if(!puzzlebox_puzzle_subtype)
+		to_chat(user, narrate_head("Error. This admin control terminal has no subtype. This is most likely a mapping error. Admins have been notified, but just in case, please ahelp and laugh at silencer."))
+		message_admins("[key_name_admin(usr)] has found an admin terminal with no puzzlebox subtype set during an event state.")
+		return
+	if(puzzlebox_puzzle_subtype == "scn1")
+		var/puzzlebox_admin_option = tgui_input_list(usr, "Select a function", "Admin Terminal", list("RFID Sequence"), 0)
+		if (!puzzlebox_admin_option) return
+		if (puzzlebox_admin_option == "RFID Sequence")
+			change_lights(lights_id = "sec-1", lights_color = "#9300b8" )
+			usr.visible_message(narrate_body("[usr] pushes a few buttons on the console and the scanner activates. The whole area seems unnaturally silent for a moment. You can almost feel something watching through the security bulb for a split second, but it must just be the long hours spent travelling in space. The console beeps after a few seconds and the light changes back to normal."), narrate_console("> PROCESSING..."))
+			sleep (3 SECONDS)
+			change_lights(lights_id = "sec-1", lights_color = LIGHT_COLOUR_WHITE)
+			return
+	if(puzzlebox_puzzle_subtype == "scn2")
+		var/puzzlebox_admin_option = tgui_input_list(usr, "Select a function", "Admin Terminal", list("Start Second Puzzle Sequence", "Open Scanner Doors"), 0)
+		if (!puzzlebox_admin_option) return
+		if (puzzlebox_admin_option == "Start Second Puzzle Sequence")
+			if (puzzlebox_002_started == TRUE)
+				to_chat(user, narrate_body("Second puzzle already started"))
+				return
+			if (!puzzlebox_002_started)
+				puzzlebox_002_started = TRUE
+				puzzlebox_puzzle_state = "03"
+				return
+			else
+				to_chat(user, narrate_body("Exception. Something went wrong."))
+				return
+		if (puzzlebox_admin_option == "Open Scanner Doors")
+			if (puzzlebox_puzzle_state == "05")
+				open_doors()
+			else
+				to_chat(user, narrate_body("Exception. Puzzlebox state not 05."))
 
 /obj/structure/maintterm/computer/admin/proc/change_lights(lights_id, lights_color)
 	var/bulbid = "[lights_id]"
@@ -252,3 +287,8 @@
 			L.light_color = bulbcolor
 			L.update()
 	return
+
+/obj/structure/maintterm/computer/admin/proc/open_doors()
+	for(var/obj/structure/machinery/door/D in world)
+		if(D.id == src.puzzlebox_door_id)
+			D.open()
