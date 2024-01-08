@@ -540,7 +540,6 @@
 /area/shuttle/ert)
 "RV" = (
 /obj/structure/maintterm/black{
-	puzzlebox_serial_letters = "CPC";
 	puzzlebox_puzzle_type = "endpoint";
 	puzzlebox_puzzle_subtype = "01-endpoint";
 	puzzlebox_task_wrong = "The console buzzes and displays a short animation of the shuttle crashing into the station. It then flashes red and returns to its previous input.";
@@ -592,7 +591,6 @@
 /area/shuttle/ert)
 "TT" = (
 /obj/structure/maintterm/black{
-	puzzlebox_serial_letters = "CB-TRM";
 	puzzlebox_puzzle_type = "info";
 	puzzlebox_puzzle_subtype = "01-info"
 	},
@@ -656,7 +654,6 @@
 /area/shuttle/ert)
 "Xv" = (
 /obj/structure/maintterm/black{
-	puzzlebox_serial_letters = "PB-TRM";
 	puzzlebox_puzzle_type = "info";
 	puzzlebox_puzzle_subtype = "01-info"
 	},

@@ -235,23 +235,12 @@
 	desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
 	icon = 'icons/obj/structures/machinery/clio_bigboi.dmi'
 
-/obj/structure/maintterm/manipulator/attack_hand(mob/user as mob)
-	..()
-//event chains start here, I'll work out the generic when I actually need it
-	if(puzzlebox_puzzle_state == "03")
-		to_chat(user, narrate_head("Shut up, parser"))
-		return
-
 
 //admin terminal zone
 /obj/structure/maintterm/computer/admin
 
 
 /obj/structure/maintterm/computer/admin/attack_hand(mob/user as mob)
-	if(puzzlebox_puzzle_state)
-		change_lights(lights_id = "sec-1", lights_color = "#FF00FF" )
-		sleep (5 SECONDS)
-	change_lights(lights_id = "sec-1", lights_color = LIGHT_COLOUR_WHITE)
 
 /obj/structure/maintterm/computer/admin/proc/change_lights(lights_id, lights_color)
 	var/bulbid = "[lights_id]"
