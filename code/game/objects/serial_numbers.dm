@@ -9,7 +9,7 @@
 	if (item_serial != null)
 		if(!isxeno(user) && (get_dist(user, src) < item_serial_distance || isobserver(user)))
 			to_chat(user, narrate_body("The serial number is:"))
-			to_chat(user, examine_block(narrate_serial("[item_serial]")))
+			to_chat(user, narrate_serial_block(narrate_serial("[item_serial]")))
 
 /obj/structure
 
@@ -22,4 +22,4 @@
 	if (item_serial != null)
 		if(!isxeno(user) && (get_dist(user, src) < item_serial_distance || isobserver(user)))
 			to_chat(user, narrate_body("The serial number is:"))
-			to_chat(user, examine_block(narrate_serial("[item_serial]")))
+			to_chat(user, narrate_serial_block(narrate_serial("[item_serial]")))

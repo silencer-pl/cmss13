@@ -140,7 +140,7 @@
 		log_debug("Attempted to create an examine block with no strings! Atom : [src], user : [user]")
 		return
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, examine_strings)
-	to_chat(user, examine_block(examine_strings.Join("</div>")))
+	to_chat(user, narrate_serial_block(examine_strings.Join("</div>")))
 
 /obj/effect/decal/info_tag/get_examine_text(mob/user)
 	. = list()
