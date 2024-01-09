@@ -9,6 +9,17 @@
 		WEAR_R_HAND = 'icons/mob/humans/onmob/sp_cargo_rhand.dmi'
 		)
 
+/obj/structure/cargo/crate/
+	name = "generic cargo crate"
+	var/cargo_manifest
+
+/obj/structure/cargo/crate/examine(mob/user)
+	..()
+
+	if (cargo_manifest != null)
+		if(!isxeno(user) && (get_dist(user, src) < 4 || isobserver(user)))
+			to_chat(user, narrate_body("You can see the cargo manifest stapled on the crate. It reads:"))
+			to_chat(user, narrate_manifest_block(narrate_manifest("[cargo_manifest]")))
 /obj/structure/cargo/crate/general/sealed
 	name = "sealed generic UACM standard cargo crate"
 	desc = "A crate with the UACM insignia printed on the side. This crate is marked with green stripes and is sealed with tamper-proofing yellow tape."
@@ -28,3 +39,13 @@
 	climbable = 1
 	anchored = FALSE
 	throwpass = 1
+
+/obj/structure/cargo/crate/
+
+/obj/structure/cargo/crate/examine(mob/user)
+	..()
+
+	if (item_serial != null)
+		if(!isxeno(user) && (get_dist(user, src) < item_serial_distance || isobserver(user)))
+			to_chat(user, narrate_body("The serial number is:"))
+			to_chat(user, narrate_serial_block(narrate_serial("[item_serial]")))

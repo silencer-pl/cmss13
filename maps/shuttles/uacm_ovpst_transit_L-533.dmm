@@ -644,6 +644,16 @@
 	icon_state = "window1r"
 	},
 /area/shuttle/ert)
+"WN" = (
+/obj/effect/decal/cargo_stripes{
+	icon_state = "ns"
+	},
+/obj/structure/cargo/crate/general/sealed{
+	pixel_y = 6;
+	cargo_manifest = "A[br]B[hr]C"
+	},
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "Xj" = (
 /turf/closed/shuttle/lifeboat{
 	name = "Shuttle L-533";
@@ -651,13 +661,6 @@
 	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "23,6lu"
 	},
-/area/shuttle/ert)
-"Xv" = (
-/obj/structure/maintterm/black{
-	puzzlebox_puzzle_type = "info";
-	puzzlebox_puzzle_subtype = "01-info"
-	},
-/turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "Yq" = (
 /obj/effect/decal/cargo_stripes{
@@ -720,7 +723,7 @@ SW
 "}
 (5,1,1) = {"
 ce
-ys
+WN
 OO
 jT
 VZ
@@ -874,7 +877,7 @@ RW
 "}
 (19,1,1) = {"
 Bf
-Xv
+TT
 OO
 OO
 VZ
