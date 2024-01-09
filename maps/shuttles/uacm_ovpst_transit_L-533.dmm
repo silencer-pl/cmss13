@@ -686,7 +686,7 @@
 	},
 /obj/structure/cargo/crate/general/sealed{
 	pixel_y = 6;
-	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
+	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 0122-553110-GSP01</b></center>[hr]GENERAL SUPPLIES<br><br>COFFEE, GROUND, PREPACKAGED<br>            LIGHT ROAST x15<br>           MEDIUM ROAST x20<br>             DARK ROAST x15<br>[hr]                     WEIGHT<br>                      50 KG<br>[hr]<center><b>WARNING</b><br>TAMPERING WITH SEALED UACM<br>SUPPLY CRATES IS A FEDERAL<br>OFFENSE.<br>ALL TAMPERED CARGO IS<br>DESTROYED AT RESPONSIBLE<br>PARTIES EXPENSE</center><hr>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
