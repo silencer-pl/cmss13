@@ -650,7 +650,7 @@
 	},
 /obj/structure/cargo/crate/general/sealed{
 	pixel_y = 6;
-	cargo_manifest = "A[br]B[hr]C"
+	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
