@@ -21,8 +21,9 @@
 	var/puzzlebox_task_wrong = "The console beeps and nothing happens."
 	var/puzzlebox_err_text = "The display is garbled and the terminal seems unresponsive."
 	var/puzzlebox_door_id
-	//parser list
-	var/list/puzzlebox_parser_commands = list("help", "list")
+	//parser
+	var/puzzlebox_parser_lastscreen = "HOME"
+	var/puzzlebox_parser_input = "HOME"
 	//end of defaults
 	var/puzzlebox_given_answer
 	var/puzzlebox_temp_output
@@ -33,6 +34,8 @@
 	///}001
 	///{002 - Cargo Woes
 	var/puzzlebox_002_started
+	var/global/puzzlebox_002_crates_complete
+	var/global/puzzlebox_002_cpus_complete
 /obj/structure/maintterm/attack_hand(mob/user as mob)
 	if(puzzlebox_puzzle_state == "0")
 		to_chat(user, narrate_body("You see no reason to touch this right now."))
@@ -100,6 +103,8 @@
 				puzzlebox_magic_number = "[rand(1,8)]"
 				puzzlebox_hex(puzzlebox_001_task1_answer)
 			to_chat(user, narrate_console("[puzzlebox_temp_output]"))
+		else
+			to_chat(user, narrate_body("There does not seem to be any reason to use this right now."))
 
 	if(puzzlebox_puzzle_state != "01")
 		if(puzzlebox_puzzle_subtype == "01-info")
@@ -108,8 +113,21 @@
 			name = "maintenance terminal hatch"
 			puzzlebox_puzzle_type = "solved"
 			puzzle_icon()
+
 // }001
+// {002- Dock 31
+	if(puzzlebox_puzzle_state == "03" || puzzlebox_puzzle_state == "04")
+		if(!puzzlebox_puzzle_subtype)
+			to_chat(user, narrate_head("Error. Event puzzle state set with no set subtype. This is most likely a mapping error. Admins have been notified, but just in case, please ahelp and laugh at silencer."))
+			message_admins("[key_name_admin(usr)] has found a terminal with no puzzlebox subtype set during an event state.")
+			return
+		if(puzzlebox_puzzle_subtype == "02cargpparser")
+			puzzlebox_parse()
+
+
+// }002
 //End of event specifc chains.
+
 	to_chat(user, narrate_body("You see no reason to touch this right now.")) //EOF escaper
 
 
@@ -221,17 +239,82 @@
 
 	//End of event specifc icon procs
 
+//parsers
+
+
+
+
+/obj/structure/maintterm/proc/puzzlebox_parse()
+	if(!puzzlebox_parser_input)
+		puzzlebox_parser_input = puzzlebox_parser_lastscreen
+		return
+	if(puzzlebox_parser_input == "HOME")
+		puzzlebox_parser_lastscreen = "HOME"
+		sleep(rand(1,5))
+		to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("WARNING: General Fault CARG-MAN-ERR"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("Diagnostic General Permissions granted. Displaying Diagnostic Information:"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("Hi!"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("If you're seeing this error something clogged the intake, which most likely means someone made a mistake with the cargo manifest."))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("The good news is this should fix itself on its own. If you do not have twenty minutes to kill, I suggest getting out to the OBS section of the intake, reading the manifests of the crates that are stuck there then using the 'manifest' command on this console with the serial number of the crates to verify their contents."))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("The system should instruct you what to do next as you find issues with the manifests. Easy!"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("Again, don't worry. If you screw up too much, the system will fix it, it just needs time. Good luck!"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("-XOXO Aly."))
+		puzzlebox_parse_input()
+
+	if (puzzlebox_parser_input == "MANIFEST")
+		sleep(rand(1,5))
+		to_chat(usr, narrate_console("MANIFEST: Missing argument. For help, use 'HELP MANIFEST'. For the home screen, use 'HOME'."))
+		puzzlebox_parse_input()
+
+	if (puzzlebox_parser_input == "MANIFEST 0122-553110-GSP01")
+		sleep(rand(1,5))
+		to_chat(usr, narrate_console("MANIFEST:"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("ORDER: 0122-553110-GSP01"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("ORDERED BY: Lt. Hanako Wiliams, OV-PST Station Engineer"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("CARGO:"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("GENERAL SUPPLIES - FOOD AND BEVERAGE REFILLS - COFFEE MEDIUM ROAST"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("COUNT: 50."))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("EXPECTED WEIGHT PER COUNT: 1 KG"))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("COMMENT: Spacers may be fine with eating recycled cockroaches for months, but God help you if you run out of coffee. This is a critical resource. -H."))
+		sleep(rand(3,10))
+		to_chat(usr, narrate_console("EOF"))
+		puzzlebox_parse_input()
+
+/obj/structure/maintterm/proc/puzzlebox_parse_input()
+	puzzlebox_parser_input = tgui_input_text(usr, "The terminal awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+	to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
+	puzzlebox_parse()
+
 /obj/structure/maintterm/black
 	icon = 'icons/obj/structures/machinery/clio_maint_dark.dmi'
 
+//computer
 /obj/structure/maintterm/computer
 	name = "local network terminal"
 	desc = "A standard computer terminal with the words 'LNT' imprinted on its side. It appears to be working normally."
 	desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
 	icon = 'icons/obj/structures/machinery/clio_term.dmi'
 	plane = GAME_PLANE
-//manipulator variant, also for open_off puzzles
 
+
+
+//Big boi. Also with tool interactions
 /obj/structure/maintterm/bigdatablock
 	name = "Liquid Data enabled computer"
 	desc = "A cluster of computers seemingly somehow connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster."

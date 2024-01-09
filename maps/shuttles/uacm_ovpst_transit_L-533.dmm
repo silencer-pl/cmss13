@@ -281,6 +281,19 @@
 "wA" = (
 /turf/template_noop,
 /area/template_noop)
+"xc" = (
+/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
+	dir = 4;
+	pixel_y = 15;
+	pixel_x = -3
+	},
+/obj/effect/landmark/start/basepc,
+/obj/structure/cargo/crate/general/sealed{
+	pixel_y = 6;
+	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
+	},
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "ys" = (
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
@@ -333,6 +346,29 @@
 /turf/open/shuttle/lifeboat{
 	icon_state = "plating_striped"
 	},
+/area/shuttle/ert)
+"AJ" = (
+/obj/structure/cargo/crate/general/sealed{
+	pixel_y = 6;
+	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
+	},
+/turf/closed/shuttle/lifeboat{
+	name = "Shuttle L-533";
+	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
+	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
+	icon_state = "7,6r"
+	},
+/area/shuttle/ert)
+"Bc" = (
+/obj/structure/maintterm/black{
+	puzzlebox_puzzle_type = "info";
+	puzzlebox_puzzle_subtype = "01-info"
+	},
+/obj/structure/cargo/crate/general/sealed{
+	pixel_y = 6;
+	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
+	},
+/turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "Bf" = (
 /turf/closed/shuttle/lifeboat/transparent{
@@ -855,7 +891,7 @@ jA
 "}
 (17,1,1) = {"
 IR
-GA
+AJ
 Qi
 dr
 dr
@@ -866,7 +902,7 @@ ho
 "}
 (18,1,1) = {"
 nt
-Lo
+xc
 BA
 BA
 VZ
@@ -877,7 +913,7 @@ RW
 "}
 (19,1,1) = {"
 Bf
-TT
+Bc
 OO
 OO
 VZ
@@ -888,7 +924,7 @@ iP
 "}
 (20,1,1) = {"
 Bf
-Lo
+xc
 Lo
 BA
 VZ
