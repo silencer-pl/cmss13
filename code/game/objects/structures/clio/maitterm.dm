@@ -24,6 +24,7 @@
 	//parser
 	var/puzzlebox_parser_lastscreen = "HOME"
 	var/puzzlebox_parser_input = "HOME"
+	var/puzzlebox_parser_mode
 	//end of defaults
 	var/puzzlebox_given_answer
 	var/puzzlebox_temp_output
@@ -249,57 +250,69 @@
 		puzzlebox_parser_input = puzzlebox_parser_lastscreen
 		return
 	if(puzzlebox_parser_input == "HOME")
-		puzzlebox_parser_lastscreen = "HOME"
-		sleep(rand(1,5))
+		puzzlebox_parser_lastscreen = puzzlebox_parser_input
+		sleep(5)
 		to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
-		sleep(rand(3,10))
+		sleep(5)
 		to_chat(usr, narrate_console("WARNING: General Fault CARG-MAN-ERR"))
-		sleep(rand(3,10))
+		sleep(5)
 		to_chat(usr, narrate_console("Diagnostic General Permissions granted. Displaying Diagnostic Information:"))
-		sleep(rand(3,10))
+		sleep(5)
 		to_chat(usr, narrate_console("Hi!"))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("If you're seeing this error something clogged the intake, which most likely means someone made a mistake with the cargo manifest."))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("The good news is this should fix itself on its own. If you do not have twenty minutes to kill, I suggest getting out to the OBS section of the intake, reading the manifests of the crates that are stuck there then using the 'manifest' command on this console with the serial number of the crates to verify their contents."))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("The system should instruct you what to do next as you find issues with the manifests. Easy!"))
-		sleep(rand(3,10))
+		sleep(5)
+		to_chat(usr, narrate_console("If you're seeing this error something clogged the intake, which most likely means someone made a mistake with a cargo manifest."))
+		sleep(5)
+		to_chat(usr, narrate_console("The good news is this should fix itself on its own. If you do not have twenty minutes to kill, I suggest getting out to the OBS section of the intake, reading the manifests of the crates that are stuck there then go into 'MANIFEST' mode on this terminal and use the serials off the crates."))
+		sleep(5)
+		to_chat(usr, narrate_console("The system should instruct you what to do next as you find issues with the manifests. Or it will have override instructions in its adminstrator comments. Easy!"))
+		sleep(5)
 		to_chat(usr, narrate_console("Again, don't worry. If you screw up too much, the system will fix it, it just needs time. Good luck!"))
-		sleep(rand(3,10))
+		sleep(5)
 		to_chat(usr, narrate_console("-XOXO Aly."))
 		puzzlebox_parse_input()
 
-	if (puzzlebox_parser_input == "MANIFEST")
-		sleep(rand(1,5))
-		to_chat(usr, narrate_console("MANIFEST: Missing argument. For help, use 'HELP MANIFEST'. For the home screen, use 'HOME'."))
+	if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
+		puzzlebox_parser_lastscreen = puzzlebox_parser_input
+		sleep(5)
+		to_chat(usr, narrate_console("MANIFEST mode. Enter or scan manifest number AS TYPED from crate to search PST records."))
+		puzzlebox_parser_mode = "man"
 		puzzlebox_parse_input()
 
-	if (puzzlebox_parser_input == "MANIFEST 0122-553110-GSP01")
-		sleep(rand(1,5))
-		to_chat(usr, narrate_console("MANIFEST:"))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("ORDER: 0122-553110-GSP01"))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("ORDERED BY: Lt. Hanako Wiliams, OV-PST Station Engineer"))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("CARGO:"))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("GENERAL SUPPLIES - FOOD AND BEVERAGE REFILLS - COFFEE MEDIUM ROAST"))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("COUNT: 50."))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("EXPECTED WEIGHT PER COUNT: 1 KG"))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("COMMENT: Spacers may be fine with eating recycled cockroaches for months, but God help you if you run out of coffee. This is a critical resource. -H."))
-		sleep(rand(3,10))
-		to_chat(usr, narrate_console("EOF"))
-		puzzlebox_parse_input()
+	if (puzzlebox_parser_mode == "man")
+		if (puzzlebox_parser_input == "0122-553110-GSP01")
+			puzzlebox_parser_lastscreen = puzzlebox_parser_input
+			sleep(5)
+			to_chat(usr, narrate_console("MANIFEST:"))
+			sleep(5)
+			to_chat(usr, narrate_console("ORDER: 0122-553110-GSP01"))
+			sleep(5)
+			to_chat(usr, narrate_console("ORDERED BY: Lt. Hanako Wiliams, OV-PST Station Engineer"))
+			sleep(5)
+			to_chat(usr, narrate_console("CARGO:"))
+			sleep(5)
+			to_chat(usr, narrate_console("GENERAL SUPPLIES - FOOD AND BEVERAGE REFILLS - COFFEE MEDIUM ROAST"))
+			sleep(5)
+			to_chat(usr, narrate_console("COUNT: 50."))
+			sleep(5)
+			to_chat(usr, narrate_console("EXPECTED WEIGHT PER COUNT: 1 KG"))
+			sleep(5)
+			to_chat(usr, narrate_console("COMMENT: Spacers may be fine with eating recycled cockroaches for months, but God help you if you run out of coffee. This is a critical resource. -H."))
+			sleep(5)
+			to_chat(usr, narrate_console("EOF"))
+			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home" || !puzzlebox_parser_input)
+			puzzlebox_parser_mode = null
+			puzzlebox_parse()
 
 /obj/structure/maintterm/proc/puzzlebox_parse_input()
-	puzzlebox_parser_input = tgui_input_text(usr, "The terminal awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-	to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
-	puzzlebox_parse()
+	if (puzzlebox_parser_mode == "man")
+		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+		to_chat(usr, narrate_console("> MANIFEST [puzzlebox_parser_input]"))
+		puzzlebox_parse()
+	else
+		puzzlebox_parser_input = tgui_input_text(usr, "The terminal awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+		to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
+		puzzlebox_parse()
 
 /obj/structure/maintterm/black
 	icon = 'icons/obj/structures/machinery/clio_maint_dark.dmi'
