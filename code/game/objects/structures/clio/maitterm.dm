@@ -431,10 +431,9 @@
 		puzzlebox_parse()
 
 /obj/structure/maintterm/proc/speak(str)
-	if(!str)
-		return
-	for (var/mob/V in hearers(src))
-		V.show_message("<b>[src.name]</b> says: \"" + str + "\"", SHOW_MESSAGE_AUDIBLE)
+	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
+	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
+	src.visible_message("<b>[src]</b> says, \"[str]\"")
 
 /obj/structure/maintterm/black
 	icon = 'icons/obj/structures/machinery/clio_maint_dark.dmi'
