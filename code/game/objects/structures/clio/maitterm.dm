@@ -280,7 +280,6 @@
 
 	if (puzzlebox_parser_mode == "man")
 		if (puzzlebox_parser_input == "150885-553110-GSP01")
-			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -315,7 +314,6 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "150885-553110-GSP02")
-			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -338,7 +336,6 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "150885-553110-GSP03")
-			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -361,7 +358,6 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "180885-049321-ESP04")
-			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -396,7 +392,6 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "190885-054293-ACTIS-07")
-			puzzlebox_parser_lastscreen = "manifest"
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
 			to_chat(usr, narrate_console("ORDER: 190885-054293-ACTIS-07"))
@@ -418,7 +413,7 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home" || !puzzlebox_parser_input)
-			puzzlebox_parser_mode = null
+			puzzlebox_parser_mode = "home"
 			puzzlebox_parse()
 	else
 		to_chat(usr, narrate_console("ERROR: Invalid command."))
