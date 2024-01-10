@@ -130,7 +130,10 @@
 // }002
 //End of event specifc chains.
 
-	to_chat(user, narrate_body("EOF Exeption."))
+	if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
+		to_chat(user, narrate_body("The terminals screen turns off as it enters standby mode."))
+	else
+		to_chat(user, narrate_body("EOF Exeption."))
 
 
 /obj/structure/maintterm/proc/puzzlebox_hex(str)
@@ -247,30 +250,29 @@
 
 
 /obj/structure/maintterm/proc/puzzlebox_parse()
-	if(!puzzlebox_parser_input)
-		puzzlebox_parser_mode = "home"
-		return
-	if(puzzlebox_parser_input == "HOME")
-		puzzlebox_parser_mode = "home"
-		to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("WARNING: General Fault CARG-MAN-ERR"))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("Diagnostic General Permissions granted. Displaying Diagnostic Information:"))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("Hi!"))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("If you're seeing this error something clogged the intake, which most likely means someone made a mistake with a cargo manifest."))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("The good news is this should fix itself on its own. If you do not have twenty minutes to kill, I suggest getting out to the OBS section of the intake, reading the manifests of the crates that are stuck there then go into 'MANIFEST' mode on this terminal and use the serials off the crates."))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("The system should instruct you what to do next as you find issues with the manifests. Or it will have override instructions in its adminstrator comments. Easy!"))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("Again, don't worry. If you screw up too much, the system will fix it, it just needs time. Good luck!"))
-		sleep(TERMINAL_STANDARD_SLEEP)
-		to_chat(usr, narrate_console("-XOXO Aly."))
-		puzzlebox_parse_input()
 	if (puzzlebox_parser_mode == "home")
+		if(!puzzlebox_parser_input)
+			puzzlebox_parse_input()
+		if(puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
+			to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("WARNING: General Fault CARG-MAN-ERR"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Diagnostic General Permissions granted. Displaying Diagnostic Information:"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Hi!"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("If you're seeing this error something clogged the intake, which most likely means someone made a mistake with a cargo manifest."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("The good news is this should fix itself on its own. If you do not have twenty minutes to kill, I suggest getting out to the OBS section of the intake, reading the manifests of the crates that are stuck there then go into 'MANIFEST' mode on this terminal and use the serials off the crates."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("The system should instruct you what to do next as you find issues with the manifests. Or it will have override instructions in its adminstrator comments. Easy!"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Again, don't worry. If you screw up too much, the system will fix it, it just needs time. Good luck!"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("-XOXO Aly."))
+			puzzlebox_parser_mode = "home"
+			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
 			puzzlebox_parser_mode = "man"
 			puzzlebox_parse_input()
@@ -308,7 +310,9 @@
 			to_chat(usr, narrate_console("pom.sync: Updating directives! Standby!"))
 			to_chat(usr, narrate_body("The lights dim for a second and the room fills with a particular smell, like the air right after a lightning strike."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-
+		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
+			to_chat(usr, narrate_console("User exit. Goodbye."))
+			return
 	if (puzzlebox_parser_mode == "man")
 		if (puzzlebox_parser_input == "150885-553110-GSP01")
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
@@ -443,17 +447,27 @@
 			puzzlebox_parser_mode = "home"
 			puzzlebox_parse()
 	else
-		to_chat(usr, narrate_console("ERROR: Invalid command."))
+		if(!puzzlebox_parser_input)
+			to_chat(usr, narrate_console("Activity timeout. Returning to HOME mode. Activating Standby mode."))
+			puzzlebox_parser_mode = "home"
+			return
+		else
+			to_chat(usr, narrate_console("ERROR: Invalid command."))
+			puzzlebox_parser_input = null
+			puzzlebox_parse_input()
+			return
 
 /obj/structure/maintterm/proc/puzzlebox_parse_input()
 	if (puzzlebox_parser_mode == "man")
 		to_chat(usr, narrate_console("MANIFEST mode. Enter or scan manifest number AS TYPED from crate to search PST records. LIST for available mode list. HELP for help."))
 		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+		if (!puzzlebox_parser_input) return
 		to_chat(usr, narrate_console("> MANIFEST [puzzlebox_parser_input]"))
 		puzzlebox_parse()
 	if (puzzlebox_parser_mode == "home")
 		to_chat(usr, narrate_console("HOME mode. LIST for available mode list. HELP for help."))
 		puzzlebox_parser_input = tgui_input_text(usr, "The terminal awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+		if (!puzzlebox_parser_input) return
 		to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
 		puzzlebox_parse()
 
