@@ -22,9 +22,8 @@
 	var/puzzlebox_err_text = "The display is garbled and the terminal seems unresponsive."
 	var/puzzlebox_door_id
 	//parser
-	var/puzzlebox_parser_lastscreen = "HOME"
 	var/puzzlebox_parser_input = "HOME"
-	var/puzzlebox_parser_mode
+	var/puzzlebox_parser_mode = "home"
 	//end of defaults
 	var/puzzlebox_given_answer
 	var/puzzlebox_temp_output
@@ -129,7 +128,7 @@
 // }002
 //End of event specifc chains.
 
-	to_chat(user, narrate_body("You see no reason to touch this right now.")) //EOF escaper
+	to_chat(user, narrate_body("EOF Exeption."))
 
 
 /obj/structure/maintterm/proc/puzzlebox_hex(str)
@@ -247,10 +246,10 @@
 
 /obj/structure/maintterm/proc/puzzlebox_parse()
 	if(!puzzlebox_parser_input)
-		puzzlebox_parser_input = puzzlebox_parser_lastscreen
+		puzzlebox_parser_mode = "home"
 		return
 	if(puzzlebox_parser_input == "HOME")
-		puzzlebox_parser_lastscreen = puzzlebox_parser_input
+		puzzlebox_parser_mode = "home"
 		sleep(5)
 		to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
 		sleep(5)
@@ -270,17 +269,18 @@
 		sleep(5)
 		to_chat(usr, narrate_console("-XOXO Aly."))
 		puzzlebox_parse_input()
-
-	if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
-		puzzlebox_parser_lastscreen = puzzlebox_parser_input
-		sleep(5)
-		to_chat(usr, narrate_console("MANIFEST mode. Enter or scan manifest number AS TYPED from crate to search PST records."))
-		puzzlebox_parser_mode = "man"
-		puzzlebox_parse_input()
+	if (puzzlebox_parser_mode == "home")
+		if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
+			puzzlebox_parser_mode = "man"
+			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "pom.sync UACM-OVPST-D31-CARINT 190885-054293-ACTIS-07")
+			to_chat(usr, narrate_console("pom.sync: Updating directives! Standby!"))
+			to_chat(usr, narrate_body("The lights dim for a second and the room fills with a particular smell, like the air right after a lightning strike."))
+			sleep(5)
 
 	if (puzzlebox_parser_mode == "man")
 		if (puzzlebox_parser_input == "150885-553110-GSP01")
-			puzzlebox_parser_lastscreen = puzzlebox_parser_input
+			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -315,7 +315,7 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "150885-553110-GSP02")
-			puzzlebox_parser_lastscreen = puzzlebox_parser_input
+			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -338,7 +338,7 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "150885-553110-GSP03")
-			puzzlebox_parser_lastscreen = puzzlebox_parser_input
+			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -361,7 +361,7 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "180885-049321-ESP04")
-			puzzlebox_parser_lastscreen = puzzlebox_parser_input
+			puzzlebox_parser_lastscreen = "manifest"
 			sleep(5)
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
@@ -396,8 +396,7 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "190885-054293-ACTIS-07")
-			puzzlebox_parser_lastscreen = puzzlebox_parser_input
-			sleep(5)
+			puzzlebox_parser_lastscreen = "manifest"
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(10)
 			to_chat(usr, narrate_console("ORDER: 190885-054293-ACTIS-07"))
@@ -412,7 +411,7 @@
 			sleep(5)
 			to_chat(usr, narrate_console("EXPECTED WEIGHT PER COUNT: ?? KG"))
 			sleep(5)
-			to_chat(usr, narrate_console("COMMENT: These are one of the final components needed for the PST's AI. Not replacable. Handle them with care or I will find you. -C.R-W. | The Yutani-Newton paradox makes the weight of these extremely variable and as such its likely going to trigger the PST's intake security scanner. If this happens and you are the person resolving this, go to the HOME screen of your intake terminal and use the command 'pom.sync' followed by the serial number of your terminal (check around the monitor) and the serial number of this package. That's a single command, and not a mode like MANIFEST or whatever. This should clear the error and let the crates pass. Sorry for the trouble! -A.R-W."))
+			to_chat(usr, narrate_console("COMMENT: These are one of the final components needed for the PST's AI. Not replacable. Handle them with care or I will find you. -C.R-W. | The Yutani-Newton paradox makes the weight of these extremely variable and as such its likely going to trigger the PST's intake security scanner. If this happens and you are the person resolving this, go to the HOME screen of your intake terminal and use the command 'pom.sync' ,a space, the serial number of your terminal (check around the monitor) and the serial number of this order. Case sensitive. That's a single command, and not a mode like MANIFEST or whatever. This should clear the error and let the crates pass. Sorry for the trouble! -A.R-W."))
 			sleep(5)
 			to_chat(usr, narrate_console("STATUS: APPROVED. ETA 210885."))
 			sleep(5)
@@ -421,16 +420,26 @@
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home" || !puzzlebox_parser_input)
 			puzzlebox_parser_mode = null
 			puzzlebox_parse()
+	else
+		to_chat(usr, narrate_console("ERROR: Invalid command."))
 
 /obj/structure/maintterm/proc/puzzlebox_parse_input()
 	if (puzzlebox_parser_mode == "man")
+		to_chat(usr, narrate_console("MANIFEST mode. Enter or scan manifest number AS TYPED from crate to search PST records. LIST for available mode list. HELP for help."))
 		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
 		to_chat(usr, narrate_console("> MANIFEST [puzzlebox_parser_input]"))
 		puzzlebox_parse()
 	else
+		to_chat(usr, narrate_console("HOME mode. LIST for available mode list. HELP for help."))
 		puzzlebox_parser_input = tgui_input_text(usr, "The terminal awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
 		to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
 		puzzlebox_parse()
+
+/obj/structure/maintterm/proc/speak(str)
+	if(!str)
+		return
+	for (var/mob/V in hearers(src))
+		V.show_message("<b>[src.name]</b> says: \"" + str + "\"", SHOW_MESSAGE_AUDIBLE)
 
 /obj/structure/maintterm/black
 	icon = 'icons/obj/structures/machinery/clio_maint_dark.dmi'
