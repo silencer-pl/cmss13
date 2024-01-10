@@ -281,25 +281,13 @@
 "wA" = (
 /turf/template_noop,
 /area/template_noop)
-"xc" = (
-/obj/structure/bed/chair/dropship/passenger/shuttle_chair{
-	dir = 4;
-	pixel_y = 15;
-	pixel_x = -3
-	},
-/obj/effect/landmark/start/basepc,
-/obj/structure/cargo/crate/general/sealed{
-	pixel_y = 6;
-	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
-	},
-/turf/open/shuttle/lifeboat,
-/area/shuttle/ert)
 "ys" = (
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
 	},
 /obj/structure/cargo/crate/general/sealed{
-	pixel_y = 6
+	pixel_y = 6;
+	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP03</b></center><hr>GENERAL SUPPLIES<br><br>     COMPRESSED DIHYDROGEN MONOXIDE<br>                       CANISTER x15<br><hr>                             WEIGHT<br>                              60 KG<br><hr>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -348,25 +336,12 @@
 	},
 /area/shuttle/ert)
 "AJ" = (
-/obj/structure/cargo/crate/general/sealed{
+/obj/effect/decal/cargo_stripes{
+	icon_state = "ns"
+	},
+/obj/structure/cargo/crate/b/sealed{
 	pixel_y = 6;
-	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
-	},
-/turf/closed/shuttle/lifeboat{
-	name = "Shuttle L-533";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "7,6r"
-	},
-/area/shuttle/ert)
-"Bc" = (
-/obj/structure/maintterm/black{
-	puzzlebox_puzzle_type = "info";
-	puzzlebox_puzzle_subtype = "01-info"
-	},
-/obj/structure/cargo/crate/general/sealed{
-	pixel_y = 6;
-	cargo_manifest = "<b><center>UACM-OVEIL-GENSP<br>ID: 0122-553110-GSP01</b></center><hr>General Supplies:<br>Coffee Machine Refill Modules<br>      x 50<hr>WEIGHT: 50kg<br>"
+	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 180885-049321-ESP04</b></center><hr>ENGINEERING SUPPLIES<br><br>                      BASIC TOOLKIT<br>                                x30<br>                ELECTRONICS TOOLKIT<br>                                x15<br>                   ELECTRIC TOOLKIT<br>                                x15<br>       REPLACEMENT PARTS, KIT EL001<br>                                x30<br>       REPLACEMENT PARTS, KIT EL002<br>                                x20<br><hr>                             WEIGHT<br>                              25 KG<br><hr>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -493,7 +468,8 @@
 	icon_state = "ns"
 	},
 /obj/structure/cargo/crate/b/sealed{
-	pixel_y = 6
+	pixel_y = 6;
+	cargo_manifest = <hr><center><b>UACM 2ND LOGISTICS<br>ID: 190885-054293-ACTIS-07</b></center><hr>[REDACTED] SUPPLIES<br>HANDLE WITH CARE<br><br>     LIQUID DATA CONTAINMENT DEVICE<br>                    ID:UACM-ALM-CLO<br>                                 x1<br>                     ID:UPP-SBR-NIK<br>                                 x1<br>                     ID:TWE-HOD-ADA<br>                                 x1<br><hr>                             WEIGHT<br>                              ?? KG<br>              YUTANI-NEWTON PARADOX<br>        CLASS 3 CLASSIFIED MATERIAL<br><hr>
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -686,7 +662,7 @@
 	},
 /obj/structure/cargo/crate/general/sealed{
 	pixel_y = 6;
-	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 0122-553110-GSP01</b></center>[hr]GENERAL SUPPLIES<br><br>COFFEE, GROUND, PREPACKAGED<br>            LIGHT ROAST x15<br>           MEDIUM ROAST x20<br>             DARK ROAST x15<br>[hr]                     WEIGHT<br>                      50 KG<br>[hr]<center><b>WARNING</b><br>TAMPERING WITH SEALED UACM<br>SUPPLY CRATES IS A FEDERAL<br>OFFENSE.<br>ALL TAMPERED CARGO IS<br>DESTROYED AT RESPONSIBLE<br>PARTIES EXPENSE</center><hr>"
+	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP01</b></center><hr>GENERAL SUPPLIES<br><br>        COFFEE, GROUND, PREPACKAGED<br>                    LIGHT ROAST x15<br>                   MEDIUM ROAST x20<br>                     DARK ROAST x15<br><hr>                             WEIGHT<br>                              50 KG<br><hr>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -703,7 +679,8 @@
 	icon_state = "nes"
 	},
 /obj/structure/cargo/crate/general/sealed{
-	pixel_y = 6
+	pixel_y = 6;
+	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP02</b></center><hr>GENERAL SUPPLIES<br><br>   NUTRITION PASTE, REFILL CARTRIGE<br>                                x50<br><hr>                             WEIGHT<br>                              30 KG<br><hr>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -803,7 +780,7 @@ SW
 "}
 (9,1,1) = {"
 ce
-Nn
+AJ
 OO
 om
 VZ
@@ -891,7 +868,7 @@ jA
 "}
 (17,1,1) = {"
 IR
-AJ
+GA
 Qi
 dr
 dr
@@ -902,7 +879,7 @@ ho
 "}
 (18,1,1) = {"
 nt
-xc
+Lo
 BA
 BA
 VZ
@@ -913,7 +890,7 @@ RW
 "}
 (19,1,1) = {"
 Bf
-Bc
+TT
 OO
 OO
 VZ
@@ -924,7 +901,7 @@ iP
 "}
 (20,1,1) = {"
 Bf
-xc
+Lo
 Lo
 BA
 VZ
