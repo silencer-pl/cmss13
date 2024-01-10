@@ -469,7 +469,7 @@
 	},
 /obj/structure/cargo/crate/b/sealed{
 	pixel_y = 6;
-	cargo_manifest = <hr><center><b>UACM 2ND LOGISTICS<br>ID: 190885-054293-ACTIS-07</b></center><hr>[REDACTED] SUPPLIES<br>HANDLE WITH CARE<br><br>     LIQUID DATA CONTAINMENT DEVICE<br>                    ID:UACM-ALM-CLO<br>                                 x1<br>                     ID:UPP-SBR-NIK<br>                                 x1<br>                     ID:TWE-HOD-ADA<br>                                 x1<br><hr>                             WEIGHT<br>                              ?? KG<br>              YUTANI-NEWTON PARADOX<br>        CLASS 3 CLASSIFIED MATERIAL<br><hr>
+	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 190885-054293-ACTIS-07</b></center><hr>[REDACTED] SUPPLIES<br>HANDLE WITH CARE<br><br>     LIQUID DATA CONTAINMENT DEVICE<br>                    ID:UACM-ALM-CLO<br>                                 x1<br>                     ID:UPP-SBR-NIK<br>                                 x1<br>                     ID:TWE-HOD-ADA<br>                                 x1<br><hr>                             WEIGHT<br>                              ?? KG<br>              YUTANI-NEWTON PARADOX<br>        CLASS 3 CLASSIFIED MATERIAL<br><hr>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
@@ -680,7 +680,7 @@
 	},
 /obj/structure/cargo/crate/general/sealed{
 	pixel_y = 6;
-	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP02</b></center><hr>GENERAL SUPPLIES<br><br>   NUTRITION PASTE, REFILL CARTRIGE<br>                                x50<br><hr>                             WEIGHT<br>                              30 KG<br><hr>"
+	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP02</b></center><hr>GENERAL SUPPLIES<br><br>   NUTRITION PASTE, REFILL CARTRIDGE<br>                                x50<br><hr>                             WEIGHT<br>                              30 KG<br><hr>"
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
