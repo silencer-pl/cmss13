@@ -28,6 +28,7 @@
 	//parser
 	var/puzzlebox_parser_input
 	var/puzzlebox_parser_mode = "HOME"
+	var/puzzlebox_parser_welcome = TRUE
 	//end of defaults
 	var/puzzlebox_given_answer
 	var/puzzlebox_temp_output
@@ -135,7 +136,7 @@
 			if(puzzlebox_002_crates_complete == FALSE)
 				puzzlebox_parse()
 			if(puzzlebox_002_crates_complete == TRUE)
-				to_chat(src, narrate_body("The terminal seems to be in standby mode and is not responding to any input."))
+				to_chat(usr, narrate_body("The terminal seems to be in standby mode and is not responding to any input."))
 
 
 // }002
@@ -314,14 +315,17 @@
 		puzzlebox_parser_mode = "HOME"
 		puzzlebox_parse()
 	if (puzzlebox_parser_mode == "HOME")
-		if(!puzzlebox_parser_input)
-			to_chat(usr, narrate_body("The terminal comes alive and scans your dog tags. After a few seconds, the screen starts to print:"))
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == TRUE)
+			to_chat(usr, narrate_body("The terminal beeps and scans your dog tags. After a few seconds, the screen starts to print:"))
 			puzzlebox_parser_input = "HOME"
+			puzzlebox_parser_welcome = FALSE
 			puzzlebox_parse()
-	if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
+			return
+		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
+			if (puzzlebox_parser_welcome == TRUE) puzzlebox_parser_welcome == FALSE
 			to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			puzzlebox_parse_input()
 			to_chat(usr, narrate_console("WARNING: General Fault CARG-MAN-ERR"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("Diagnostic General Permissions granted. Displaying Diagnostic Information:"))
@@ -338,15 +342,15 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("-XOXO Aly."))
 			puzzlebox_parser_mode = "HOME"
-			puzzlebox_parse_process()
+			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
 			puzzlebox_parser_mode = "MANIFEST"
 			to_chat(usr, narrate_console("Entering MANIFEST mode..."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("Liquid Data connection secured."))
+			puzzlebox_parser_welcome = TRUE
 			puzzlebox_parse()
 		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input == "help")
-			puzzlebox_parse_input()
 			to_chat(usr, narrate_console("This is the home screen of the LNT."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("Upon detection of personnel with an active RFID chip, the terminal should give access to all modes you chip grants you."))
@@ -359,9 +363,8 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("During a diagnostic fault, temporary access to commands may be granted. All functions should be explained in the HOME and LIST menus."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			puzzlebox_parse_process()
-		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input == "list")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input == "list")
 			to_chat(usr, narrate_console("Available modes:"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("HOME - Default home screen and error description if applicable."))
@@ -376,7 +379,7 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EXIT - Enters passive mode."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			puzzlebox_parse_process()
+			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "pom.sync UACM-OVPST-D31-CARINT 190885-054293-ACTIS-07")
 			puzzlebox_parser_input = null
 			to_chat(usr, narrate_console("pom.sync: Updating directives! Standby!"))
@@ -397,33 +400,36 @@
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			to_chat(usr, narrate_console("User exit. Goodbye."))
 			puzzlebox_parser_input = null
+			puzzlebox_parser_welcome = FALSE
 			return
 		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
 			to_chat(usr, narrate_console("Accessing Emergency Message Buffer..."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			puzzlebox_parser_mode = "MESSAGE"
+			puzzlebox_parser_welcome = TRUE
 			puzzlebox_parse()
 
 //MANIFEST
 
 	if (puzzlebox_parser_mode == "MANIFEST")
 		if(!puzzlebox_parser_input)
-			to_chat(narrate_body(pick(5;"The screen briefly fills with random looking numbers and letters. Just as you think you can make something out; it flashes and clears itself. After a second, the screen starts to print:",95;"The screen flickers and erases all text. After a second, it starts to print:")))
+			to_chat(usr, narrate_body(pick(5;"The screen briefly fills with random looking numbers and letters. Just as you think you can make something out; it flashes and clears itself. After a second, the screen starts to print:",95;"The screen flickers and erases all text. After a second, it starts to print:")))
 			puzzlebox_parser_input = "MANIFEST"
+			puzzlebox_parser_welcome = FALSE
 			puzzlebox_parse()
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
+			return
 		if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
-			to_chat(narrate_console("MANIFEST Mode active."))
+			to_chat(usr, narrate_console("MANIFEST Mode active."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Connection to UAAC-TIS Database Secure."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Please enter order number AS-IS from the physical tag."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("LIST to list available modes, HELP for help screen, EXIT to exit."))
+			sleep(TERMINAL_STANDARD_SLEEP)
 			puzzlebox_parse_input()
-			sleep(TERMINAL_STANDARD_SLEEP)
-			to_chat(narrate_console("Connection to UAAC-TIS Database Secure."))
-			sleep(TERMINAL_STANDARD_SLEEP)
-			to_chat(narrate_console("Please enter order number AS-IS from the physical tag."))
-			sleep(TERMINAL_STANDARD_SLEEP)
-			to_chat(narrate_console("LIST to list available modes, HELP for help screen, EXIT to exit."))
-			sleep(TERMINAL_STANDARD_SLEEP)
-			puzzlebox_parse_process()
 		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input == "list")
-			puzzlebox_parse_input()
 			to_chat(usr, narrate_console("Available modes:"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("HOME - Default home screen and error description if applicable."))
@@ -434,9 +440,8 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EXIT - Enters passive mode."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			puzzlebox_parse_process()
-		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input == "help")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input == "help")
 			to_chat(usr, narrate_console("This mode can be used to lookup cargo order forms from their printed manifests."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("The database is synchronized via Liquid Data ports to UAAC-TIS mainframes, so it is always up to date."))
@@ -449,9 +454,8 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("Please follow instructions to the letter and there shouldn't be any issues. Good luck."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			puzzlebox_parse_process()
-		if (puzzlebox_parser_input == "150885-553110-GSP01")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "150885-553110-GSP01")
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(TERMINAL_LOOKUP_SLEEP)
 			to_chat(usr, narrate_console("ORDER: 0122-553110-GSP01"))
@@ -483,9 +487,8 @@
 			to_chat(usr, narrate_console("STATUS: APPROVED. ETA 210885."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EOF"))
-			puzzlebox_parse_process()
-		if (puzzlebox_parser_input == "150885-553110-GSP02")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "150885-553110-GSP02")
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(TERMINAL_LOOKUP_SLEEP)
 			to_chat(usr, narrate_console("ORDER: 150885-553110-GSP02"))
@@ -505,9 +508,8 @@
 			to_chat(usr, narrate_console("STATUS: APPROVED. ETA 210885."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EOF"))
-			puzzlebox_parse_process()
-		if (puzzlebox_parser_input == "150885-553110-GSP03")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "150885-553110-GSP03")
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(TERMINAL_LOOKUP_SLEEP)
 			to_chat(usr, narrate_console("ORDER: 150885-553110-GSP03"))
@@ -527,9 +529,8 @@
 			to_chat(usr, narrate_console("STATUS: APPROVED. ETA 210885."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EOF"))
-			puzzlebox_parse_process()
-		if (puzzlebox_parser_input == "180885-049321-ESP04")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "180885-049321-ESP04")
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(TERMINAL_LOOKUP_SLEEP)
 			to_chat(usr, narrate_console("ORDER: 180885-049321-ESP04"))
@@ -561,9 +562,8 @@
 			to_chat(usr, narrate_console("STATUS: APPROVED. ETA 210885."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EOF"))
-			puzzlebox_parse_process()
-		if (puzzlebox_parser_input == "190885-054293-ACTIS-07")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "190885-054293-ACTIS-07")
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(TERMINAL_LOOKUP_SLEEP)
 			to_chat(usr, narrate_console("ORDER: 190885-054293-ACTIS-07"))
@@ -583,14 +583,17 @@
 			to_chat(usr, narrate_console("STATUS: APPROVED. ETA 210885."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EOF"))
-			puzzlebox_parse_process()
+			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
 			to_chat(usr, narrate_console("Returning to HOME mode."))
 			puzzlebox_parser_mode = "HOME"
 			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parser_welcome = TRUE
 			puzzlebox_parse()
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			to_chat(usr, narrate_console("User exit. Goodbye."))
+			puzzlebox_parser_input = null
+			puzzlebox_parser_welcome = FALSE
 			return
 
 // MESSAGE
@@ -598,16 +601,32 @@
 	if (puzzlebox_parser_mode == "MESSAGE")
 //Intro segment
 		if(!puzzlebox_parser_input)
-			to_chat(narrate_body("The screen flickers and erases all text. After a second, it starts to print:"))
+			to_chat(usr, narrate_body("The screen flickers and erases all text. After a second, it starts to print:"))
 			puzzlebox_parser_input = "MESSAGE"
+			puzzlebox_parser_welcome = FALSE
 			puzzlebox_parse()
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
+			return
 		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
-			to_chat(narrate_console("MESSAGE mode - FTL Emergency Message Buffer."))
+			to_chat(usr, narrate_console("MESSAGE mode - FTL Emergency Message Buffer."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Messages in buffer: 02"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("LIST to list available modes, HELP for help screen, EXIT to exit."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parse_input()
 //Common Commands
 		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input == "help")
+			to_chat(usr, narrate_console("The FTL Emergency Message buffer is an instantly synced short message repository that is typically used by black boxes or distress signal devices."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Due to how the devices are synced, only sending of preset messages from authorized terminals is typically possible, at least for humans."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Use command BUFFER to display message titles and buffer IDs."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Type in the ID that commands provide you, as it appears on the screen, to review a given message."))
+			sleep(TERMINAL_STANDARD_SLEEP)
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input == "list")
-			puzzlebox_parse_input()
 			to_chat(usr, narrate_console("Available modes:"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("HOME - Default home screen and error description if applicable."))
@@ -618,45 +637,80 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EXIT - Enters passive mode."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			puzzlebox_parse_process()
+			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
-			puzzlebox_parser_mode = "home"
+			to_chat(usr, narrate_console("Returning to HOME mode."))
+			puzzlebox_parser_mode = "HOME"
+			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parser_welcome = TRUE
 			puzzlebox_parse()
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			to_chat(usr, narrate_console("User exit. Goodbye."))
 			puzzlebox_parser_input = null
+			puzzlebox_parser_welcome = FALSE
 			return
-//Start Menu chain here
+//List chain. List all messages in buffer here.
+		if (puzzlebox_parser_input == "BUFFER" || puzzlebox_parser_input == "buffer")
+			to_chat(usr, narrate_console("Available modes:"))
+			sleep(TERMINAL_LOOKUP_SLEEP)
+			to_chat(usr, narrate_console("ID              |SUBJECT                         |"))
+			to_chat(usr, narrate_console("GEN-000-000-001 |Warning: On these messages.     |"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("EME-021-112-153 |I'm sorry                       |"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parse_input()
+//Messages
+		if (puzzlebox_parser_input == "GEN-000-000-001")
+			to_chat(usr, narrate_console("Message found. Accessing..."))
+			sleep(TERMINAL_LOOKUP_SLEEP)
+			to_chat(usr, narrate_console("From: CDR. Alysia Reed-Wilo."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Subject: Warning: On these messages."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("All PST personnel, please keep in mind that this is an extremely raw channel into the LD stream."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("As such, it is extremely hard for us to manipulate, especially wipe old messages from the buffer."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("At present, just assume that messages from times before even the UACM can randomly appear on these terminals."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Also keep in mind that this channel is not secret by any stretch of the imagination. Please don't use it for personal stuff unless you don't mind broadcasting it to all the UACM."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Good news for you information diggers out there though, every terminal is worth looking at. You never know what artifact you may find."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Hopefully we can make this more usable as a BB board of sorts in time, but we will need help from LD locals as it were."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("-XOXO Aly"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("EOF."))
+			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "EME-021-112-153")
+			to_chat(usr, narrate_console("Available modes:"))
+			sleep(TERMINAL_LOOKUP_SLEEP)
 
 /obj/structure/maintterm/proc/puzzlebox_parse_input()
 	if (puzzlebox_parser_mode == "MANIFEST")
 		to_chat(usr, narrate_console("> MANIFEST _"))
 		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-	if (puzzlebox_parser_mode == "HOME")
-		to_chat(usr, narrate_console("> _"))
-		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-	if (puzzlebox_parser_mode == "MESSAGE")
-		to_chat(usr, narrate_console("> MESSAGE _"))
-		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-
-/obj/structure/maintterm/proc/puzzlebox_parse_process()
-	if (puzzlebox_parser_mode == "MANIFEST")
 		if (!puzzlebox_parser_input)
 			return
 		else
 			to_chat(usr, narrate_console("> MANIFEST [puzzlebox_parser_input]"))
 			puzzlebox_parse()
-	if (puzzlebox_parser_mode == "MESSAGE")
-		if (!puzzlebox_parser_input)
-			return
-		else
-			to_chat(usr, narrate_console("> MESSAGE [puzzlebox_parser_input]"))
-			puzzlebox_parse()
 	if (puzzlebox_parser_mode == "HOME")
+		to_chat(usr, narrate_console("> _"))
+		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
 		if (!puzzlebox_parser_input)
 			return
 		else
 			to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
+			puzzlebox_parse()
+	if (puzzlebox_parser_mode == "MESSAGE")
+		to_chat(usr, narrate_console("> MESSAGE _"))
+		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+		if (!puzzlebox_parser_input)
+			return
+		else
+			to_chat(usr, narrate_console("> MESSAGE [puzzlebox_parser_input]"))
 			puzzlebox_parse()
 
 /obj/structure/maintterm/proc/speak(str)
