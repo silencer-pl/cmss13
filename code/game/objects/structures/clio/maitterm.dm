@@ -1,7 +1,7 @@
 #define GEN_8HEXSTRING "[pick(GLOB.hex_string)][pick(GLOB.hex_string)][pick(GLOB.hex_string)][pick(GLOB.hex_string)][pick(GLOB.hex_string)][pick(GLOB.hex_string)][pick(GLOB.hex_string)][pick(GLOB.hex_string)]"
 #define GEN_8HEXPAIR GEN_8HEXSTRING + "-" + GEN_8HEXSTRING
-#define TERMINAL_STANDARD_SLEEP 5
-#define TERMINAL_LOOKUP_SLEEP 10
+#define TERMINAL_STANDARD_SLEEP 10
+#define TERMINAL_LOOKUP_SLEEP 20
 
 /obj/structure/maintterm
 	icon = 'icons/obj/structures/machinery/clio_maint.dmi'
@@ -26,7 +26,7 @@
 	var/puzzlebox_err_text = "The display is garbled and the terminal seems unresponsive."
 	var/puzzlebox_door_id
 	//parser
-	var/puzzlebox_parser_input = "HOME"
+	var/puzzlebox_parser_input
 	var/puzzlebox_parser_mode = "home"
 	//end of defaults
 	var/puzzlebox_given_answer
@@ -310,10 +310,12 @@
 
 
 /obj/structure/maintterm/proc/puzzlebox_parse()
+	if (!puzzlebox_parser_mode) //Idiotproofing :P
+		puzzlebox_parser_mode = "home"
+		puzzlebox_parse()
 	if (puzzlebox_parser_mode == "home")
-		if(!puzzlebox_parser_input)
-			puzzlebox_parse_input()
-		if(puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
+		if(!puzzlebox_parser_input || puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
+			to_chat(usr, narrate_body("The terminal comes alive and scans your dog tags. After a few seconds, the screen starts to print:"))
 			to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("WARNING: General Fault CARG-MAN-ERR"))
@@ -565,15 +567,19 @@
 	if (puzzlebox_parser_mode == "man")
 		to_chat(usr, narrate_console("MANIFEST mode. Enter or scan manifest number AS TYPED from crate to search PST records. LIST for available mode list. HELP for help."))
 		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-		if (!puzzlebox_parser_input) return
-		to_chat(usr, narrate_console("> MANIFEST [puzzlebox_parser_input]"))
-		puzzlebox_parse()
+		if (!puzzlebox_parser_input)
+			return
+		else
+			to_chat(usr, narrate_console("> MANIFEST [puzzlebox_parser_input]"))
+			puzzlebox_parse()
 	if (puzzlebox_parser_mode == "home")
 		to_chat(usr, narrate_console("HOME mode. LIST for available mode list. HELP for help."))
 		puzzlebox_parser_input = tgui_input_text(usr, "The terminal awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-		if (!puzzlebox_parser_input) return
-		to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
-		puzzlebox_parse()
+		if (!puzzlebox_parser_input)
+			return
+		else
+			to_chat(usr, narrate_console("> [puzzlebox_parser_input]"))
+			puzzlebox_parse()
 
 /obj/structure/maintterm/proc/speak(str)
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
