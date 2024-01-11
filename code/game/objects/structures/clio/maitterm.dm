@@ -323,7 +323,7 @@
 		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
 			return
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
-			if (puzzlebox_parser_welcome == TRUE) puzzlebox_parser_welcome == FALSE
+			if (puzzlebox_parser_welcome == TRUE) puzzlebox_parser_welcome = FALSE
 			to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("WARNING: General Fault CARG-MAN-ERR"))
