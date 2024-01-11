@@ -315,13 +315,13 @@
 		puzzlebox_parser_mode = "HOME"
 		puzzlebox_parse()
 	if (puzzlebox_parser_mode == "HOME")
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
+			return
 		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == TRUE)
 			to_chat(usr, narrate_body("The terminal beeps and scans your dog tags. After a few seconds, the screen starts to print:"))
 			puzzlebox_parser_input = "HOME"
 			puzzlebox_parser_welcome = FALSE
 			puzzlebox_parse()
-		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
-			return
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
 			if (puzzlebox_parser_welcome == TRUE) puzzlebox_parser_welcome = FALSE
 			to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
@@ -412,14 +412,15 @@
 //MANIFEST
 
 	if (puzzlebox_parser_mode == "MANIFEST")
-		if(!puzzlebox_parser_input)
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
+			return
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == TRUE)
 			to_chat(usr, narrate_body(pick(5;"The screen briefly fills with random looking numbers and letters. Just as you think you can make something out; it flashes and clears itself. After a second, the screen starts to print:",95;"The screen flickers and erases all text. After a second, it starts to print:")))
 			puzzlebox_parser_input = "MANIFEST"
 			puzzlebox_parser_welcome = FALSE
 			puzzlebox_parse()
-		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
-			return
 		if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
+			if (puzzlebox_parser_welcome == TRUE) puzzlebox_parser_welcome = FALSE
 			to_chat(usr, narrate_console("MANIFEST Mode active."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("Connection to UAAC-TIS Database Secure."))
@@ -600,14 +601,15 @@
 
 	if (puzzlebox_parser_mode == "MESSAGE")
 //Intro segment
-		if(!puzzlebox_parser_input)
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
+			return
+		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == TRUE)
 			to_chat(usr, narrate_body("The screen flickers and erases all text. After a second, it starts to print:"))
 			puzzlebox_parser_input = "MESSAGE"
 			puzzlebox_parser_welcome = FALSE
 			puzzlebox_parse()
-		if(!puzzlebox_parser_input && puzzlebox_parser_welcome == FALSE)
-			return
 		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
+			if (puzzlebox_parser_welcome == TRUE) puzzlebox_parser_welcome = FALSE
 			to_chat(usr, narrate_console("MESSAGE mode - FTL Emergency Message Buffer."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("Messages in buffer: 02"))
