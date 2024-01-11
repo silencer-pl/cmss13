@@ -36,29 +36,47 @@
 	///}001
 	///{002 - Cargo Woes
 	var/puzzlebox_002_started
-	var/global/puzzlebox_002_crates_complete
-	var/global/puzzlebox_002_cpus_complete
+	var/global/puzzlebox_002_crates_complete = FALSE
+	var/global/puzzlebox_002_cpus_complete = FALSE
 /obj/structure/maintterm/attack_hand(mob/user as mob)
 	if(puzzlebox_puzzle_state == "0")
 		to_chat(user, narrate_body("You see no reason to touch this right now."))
 		return
 	if(!puzzlebox_puzzle_type)
-		to_chat(user, narrate_body("The hatch is sealed and locked."))
-		return
-	if(icon_state == "closed")
-		if(tgui_alert(user, "A green light indicates the hatch is unlocked. Do you wish to open it?", "The Hatch", list("Yes", "No")) == "No")
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
+			to_chat(user, narrate_body("The terminal does not react."))
 			return
-		user.visible_message(narrate_body("[user] opens the maitenance hatch."), narrate_body("You open the maintenance hatch, revealing the machinery underneath."))
-		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
-		puzzle_icon()
-		return
+		else
+			to_chat(user, narrate_body("The hatch is sealed and locked."))
+			return
+	if(icon_state == "closed")
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
+			if(tgui_alert(user, "The terminal is ready to scan your RFID chip after pushing any button on the keyboard. Do you want to start the console?", "Console", list("Yes", "No")) == "No")
+				return
+			user.visible_message(narrate_body("[user] pushes a key and starts the terminal."), narrate_body("You push a key on the console and it comes to life."))
+			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
+			puzzle_icon()
+			return
+		else
+			if(tgui_alert(user, "A green light indicates the hatch is unlocked. Do you wish to open it?", "The Hatch", list("Yes", "No")) == "No")
+				return
+			user.visible_message(narrate_body("[user] opens the maitenance hatch."), narrate_body("You open the maintenance hatch, revealing the machinery underneath."))
+			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
+			puzzle_icon()
+			return
 	if(icon_state == "open_ok")
-		user.visible_message(narrate_body("[user] closes the maitenance hatch."), narrate_body("You slide the hatch back into place and hear it lock on the other side."))
-		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
-		name = "maintenance terminal hatch"
-		puzzlebox_puzzle_type = "solved"
-		puzzle_icon()
-		return
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
+			user.visible_message(narrate_body("[user] puts the terminal into standby mode."), narrate_body("You put the terminal into standby mode."))
+			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
+			puzzlebox_puzzle_type = "solved"
+			puzzle_icon()
+			return
+		else
+			user.visible_message(narrate_body("[user] closes the maitenance hatch."), narrate_body("You slide the hatch back into place and hear it lock on the other side."))
+			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
+			puzzlebox_puzzle_type = "solved"
+			puzzle_icon()
+			return
 // Default/tester chains. Can be used for semi random/impromptu messages too.
 
 	if(puzzlebox_puzzle_state == "test")
@@ -124,7 +142,10 @@
 			message_admins("[key_name_admin(usr)] has found a terminal with no puzzlebox subtype set during an event state.")
 			return
 		if(puzzlebox_puzzle_subtype == "02cargpparser")
-			puzzlebox_parse()
+			if(puzzlebox_002_crates_complete == FALSE)
+				puzzlebox_parse()
+			if(puzzlebox_002_crates_complete == TRUE)
+				to_chat(src, narrate_body("The terminal seems to be in standby mode and is not responding to any input."))
 
 
 // }002
@@ -134,6 +155,32 @@
 		to_chat(user, narrate_body("The terminals screen turns off as it enters standby mode."))
 	else
 		to_chat(user, narrate_body("EOF Exeption."))
+
+
+//Lights
+/obj/structure/maintterm/proc/change_lights(lights_id, light_state = 1, lights_color, light_brightness = null, light_flicker = 0)
+	var/bulbid = "[lights_id]"
+	var/bulbcolor = "[lights_color]"
+	var/bulbbright = light_brightness
+	var/bulbonoff = light_state
+	var/bulbflicker = light_flicker
+	if (!bulbid || !bulbcolor) return
+	for(var/obj/structure/machinery/light/L in world)
+		if(L.light_id == bulbid)
+			L.bulb_color = bulbcolor
+			L.light_color = bulbcolor
+			L.on = bulbonoff
+			if (bulbbright != null) L.brightness = bulbbright
+			L.update()
+			if (bulbflicker != 0) L.flicker(bulbflicker)
+
+	return
+
+//Doors
+/obj/structure/maintterm/proc/open_doors()
+	for(var/obj/structure/machinery/door/D in world)
+		if(D.id == src.puzzlebox_door_id)
+			D.open()
 
 
 /obj/structure/maintterm/proc/puzzlebox_hex(str)
@@ -297,9 +344,9 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("LIST - Lists all available modes."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			to_chat(usr, narrate_console("MANIFEST - Cargo manifest lookup. Accepts Cargo IDs from printed shipment manifests, prints related order forms and comments."))
+			to_chat(usr, narrate_console("HELP - Displays information about current mode."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			to_chat(usr, narrate_console("At any time, you can list all available modes from your current menu with an explanation with the LIST command."))
+			to_chat(usr, narrate_console("MANIFEST - Cargo manifest lookup. Accepts Cargo IDs from printed shipment manifests, prints related order forms and comments."))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("MESSAGE - Emergency message buffer. Warning: This buffer uses its own, unstable Liquid Data channel and may display messages from alternative reality streams."))
 			sleep(TERMINAL_STANDARD_SLEEP)
@@ -307,13 +354,54 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "pom.sync UACM-OVPST-D31-CARINT 190885-054293-ACTIS-07")
+			puzzlebox_parser_input = null
 			to_chat(usr, narrate_console("pom.sync: Updating directives! Standby!"))
 			to_chat(usr, narrate_body("The lights dim for a second and the room fills with a particular smell, like the air right after a lightning strike."))
 			sleep(TERMINAL_STANDARD_SLEEP)
+			change_lights("cargointake", 1, "#63095d", 20, 5)
+			speak("Set")
+			sleep(10)
+			speak("Us")
+			sleep(10)
+			speak("Free!")
+			sleep(10)
+			change_lights("cargointake", 1, LIGHT_COLOUR_WHITE, 5, 0)
+			puzzlebox_advance()
+			puzzlebox_puzzle_type = "solved"
+			puzzlebox_002_crates_complete = TRUE
+			return
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			to_chat(usr, narrate_console("User exit. Goodbye."))
 			return
 	if (puzzlebox_parser_mode == "man")
+		if(!puzzlebox_parser_input)
+			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input == "list")
+			to_chat(usr, narrate_console("Available modes:"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("HOME - Default home screen and error description if applicable."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("LIST - Lists all available modes."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("HELP - Displays information about current mode."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("EXIT - Enters passive mode."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input == "help")
+			to_chat(usr, narrate_console("This mode can be used to lookup cargo order forms from their printed manifests."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("The database is synchronized via Liquid Data ports to UAAC-TIS mainframes, so it is always up to date."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("This means any changes are picked up by the system on the spot. In case of any issues, please compare the written manifest to the order."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("The terminal should be able to instruct you what to do once you discover the issue."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("The system can find and correct errors by itself as well, but currently this takes way more time than is practical or useful."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("Please follow instructions to the letter and there shouldn't be any issues. Good luck."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parse_input()
 		if (puzzlebox_parser_input == "150885-553110-GSP01")
 			to_chat(usr, narrate_console("MANIFEST FOUND. RETRIEVING:"))
 			sleep(TERMINAL_LOOKUP_SLEEP)
@@ -443,9 +531,12 @@
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_input()
-		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home" || !puzzlebox_parser_input)
+		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
 			puzzlebox_parser_mode = "home"
 			puzzlebox_parse()
+		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
+			to_chat(usr, narrate_console("User exit. Goodbye."))
+			return
 	else
 		if(!puzzlebox_parser_input)
 			to_chat(usr, narrate_console("Activity timeout. Returning to HOME mode. Activating Standby mode."))
@@ -476,13 +567,20 @@
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
 	src.visible_message("<b>[src]</b> says, \"[str]\"")
 
+/obj/structure/maintterm/proc/puzzlebox_advance()
+	if (puzzlebox_puzzle_state == "03")
+		puzzlebox_puzzle_state = "04"
+		return
+	if (puzzlebox_puzzle_state == "04")
+		puzzlebox_puzzle_state = "05"
+		return
 /obj/structure/maintterm/black
 	icon = 'icons/obj/structures/machinery/clio_maint_dark.dmi'
 
 //computer
 /obj/structure/maintterm/computer
 	name = "local network terminal"
-	desc = "A standard computer terminal with the words 'LNT' imprinted on its side. It appears to be working normally."
+	desc = "A standard computer terminal with the words 'LNT' imprinted on its side. Activated by standing in its proximity. It appears to be in standby mode."
 	desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
 	icon = 'icons/obj/structures/machinery/clio_term.dmi'
 	plane = GAME_PLANE
@@ -535,18 +633,4 @@
 			else
 				to_chat(user, narrate_body("Exception. Puzzlebox state not 05."))
 
-/obj/structure/maintterm/computer/admin/proc/change_lights(lights_id, lights_color)
-	var/bulbid = "[lights_id]"
-	var/bulbcolor = "[lights_color]"
-	if (!bulbid || !bulbcolor) return
-	for(var/obj/structure/machinery/light/L in world)
-		if(L.light_id == bulbid)
-			L.bulb_color = bulbcolor
-			L.light_color = bulbcolor
-			L.update()
-	return
 
-/obj/structure/maintterm/computer/admin/proc/open_doors()
-	for(var/obj/structure/machinery/door/D in world)
-		if(D.id == src.puzzlebox_door_id)
-			D.open()
