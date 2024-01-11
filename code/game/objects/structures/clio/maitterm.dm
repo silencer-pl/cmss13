@@ -17,6 +17,8 @@
 	var/puzzlebox_puzzle_type
 	var/puzzlebox_puzzle_subtype // For event shenanigans. Not used in generic chains.
 	//defaults
+	var/desc_base
+	var/desc_lore_base
 	var/puzzlebox_task_text = "The terminal awaits an input, but does not seem to display any other information otherwise."
 	var/puzzlebox_task_answer = "reset"
 	var/puzzlebox_task_right = "The console pings and the display turns to a steady flow of code on a green backdrop."
@@ -39,6 +41,7 @@
 	var/global/puzzlebox_002_crates_complete = FALSE
 	var/global/puzzlebox_002_cpus_complete = FALSE
 /obj/structure/maintterm/attack_hand(mob/user as mob)
+//Opening and testing
 	if(puzzlebox_puzzle_state == "0")
 		to_chat(user, narrate_body("You see no reason to touch this right now."))
 		return
@@ -62,19 +65,6 @@
 				return
 			user.visible_message(narrate_body("[user] opens the maitenance hatch."), narrate_body("You open the maintenance hatch, revealing the machinery underneath."))
 			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
-			puzzle_icon()
-			return
-	if(icon_state == "open_ok")
-		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
-			user.visible_message(narrate_body("[user] puts the terminal into standby mode."), narrate_body("You put the terminal into standby mode."))
-			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
-			puzzlebox_puzzle_type = "solved"
-			puzzle_icon()
-			return
-		else
-			user.visible_message(narrate_body("[user] closes the maitenance hatch."), narrate_body("You slide the hatch back into place and hear it lock on the other side."))
-			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
-			puzzlebox_puzzle_type = "solved"
 			puzzle_icon()
 			return
 // Default/tester chains. Can be used for semi random/impromptu messages too.
@@ -151,10 +141,31 @@
 // }002
 //End of event specifc chains.
 
-	if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
-		to_chat(user, narrate_body("The terminals screen turns off as it enters standby mode."))
-	else
-		to_chat(user, narrate_body("EOF Exeption."))
+	if(icon_state != "closed")
+		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
+			user.visible_message(narrate_body("[user] puts the terminal into standby mode."), narrate_body("You put the terminal into standby mode."))
+			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
+			icon_state = "closed"
+			if(desc_base != null)
+				desc = desc_base
+				desc_base = null
+			if(desc_lore_base != null)
+				desc_lore = desc_lore_base
+				desc_lore_base = null
+			update_icon()
+			return
+		else
+			user.visible_message(narrate_body("[user] closes the maitenance hatch."), narrate_body("You slide the hatch back into place and hear it lock on the other side."))
+			playsound(src.loc, 'sound/machines/windowdoor.ogg', 25)
+			icon_state = "closed"
+			if(desc_base != null)
+				desc = desc_base
+				desc_base = null
+			if(desc_lore_base != null)
+				desc_lore = desc_lore_base
+				desc_lore_base = null
+			update_icon()
+			return
 
 
 //Lights
@@ -214,6 +225,8 @@
 		puzzle_icon()
 
 /obj/structure/maintterm/proc/puzzle_icon()
+	if(!desc_base) desc_base = desc
+	if(!desc_lore_base) desc_lore_base = desc_lore
 	if(puzzlebox_puzzle_type == "endpoint")
 		if(icon == 'icons/obj/structures/machinery/clio_term.dmi')
 			desc = "A standard computer terminal with the words 'LNT' imprinted on its side. It seems to be flashing a red error message and is awaiting user input."
