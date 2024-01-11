@@ -27,7 +27,7 @@
 	var/puzzlebox_door_id
 	//parser
 	var/puzzlebox_parser_input
-	var/puzzlebox_parser_mode = "home"
+	var/puzzlebox_parser_mode = "HOME"
 	//end of defaults
 	var/puzzlebox_given_answer
 	var/puzzlebox_temp_output
@@ -308,17 +308,17 @@
 
 
 
-
+//HOME
 /obj/structure/maintterm/proc/puzzlebox_parse()
 	if (!puzzlebox_parser_mode) //Idiotproofing :P
-		puzzlebox_parser_mode = "home"
+		puzzlebox_parser_mode = "HOME"
 		puzzlebox_parse()
-	if (puzzlebox_parser_mode == "home")
+	if (puzzlebox_parser_mode == "HOME")
 		if(!puzzlebox_parser_input)
 			to_chat(usr, narrate_body("The terminal comes alive and scans your dog tags. After a few seconds, the screen starts to print:"))
 			puzzlebox_parser_input = "HOME"
 			puzzlebox_parse()
- 	if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
+	if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
 			to_chat(usr, narrate_console("Dock 31 Cargo Intake Monitoring Station"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			puzzlebox_parse_input()
@@ -337,15 +337,14 @@
 			to_chat(usr, narrate_console("Again, don't worry. If you screw up too much, the system will fix it, it just needs time. Good luck!"))
 			sleep(TERMINAL_STANDARD_SLEEP)
 			to_chat(usr, narrate_console("-XOXO Aly."))
-			puzzlebox_parser_mode = "home"
+			puzzlebox_parser_mode = "HOME"
 			puzzlebox_parse_process()
 		if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
-			puzzlebox_parser_mode = "man"
-			puzzlebox_parse_input()
+			puzzlebox_parser_mode = "MANIFEST"
 			to_chat(usr, narrate_console("Entering MANIFEST mode..."))
 			sleep(TERMINAL_STANDARD_SLEEP)
-			to_chat(usr, narrate_console("Liquid Data connection secured. Awaiting query. "))
-			puzzlebox_parse_process()
+			to_chat(usr, narrate_console("Liquid Data connection secured."))
+			puzzlebox_parse()
 		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input == "help")
 			puzzlebox_parse_input()
 			to_chat(usr, narrate_console("This is the home screen of the LNT."))
@@ -397,10 +396,31 @@
 			return
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			to_chat(usr, narrate_console("User exit. Goodbye."))
+			puzzlebox_parser_input = null
 			return
-	if (puzzlebox_parser_mode == "man")
+		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
+			to_chat(usr, narrate_console("Accessing Emergency Message Buffer..."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parser_mode = "MESSAGE"
+			puzzlebox_parse()
+
+//MANIFEST
+
+	if (puzzlebox_parser_mode == "MANIFEST")
 		if(!puzzlebox_parser_input)
+			to_chat(narrate_body(pick(5;"The screen briefly fills with random looking numbers and letters. Just as you think you can make something out; it flashes and clears itself. After a second, the screen starts to print:",95;"The screen flickers and erases all text. After a second, it starts to print:")))
+			puzzlebox_parser_input = "MANIFEST"
+			puzzlebox_parse()
+		if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
+			to_chat(narrate_console("MANIFEST Mode active."))
 			puzzlebox_parse_input()
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(narrate_console("Connection to UAAC-TIS Database Secure."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(narrate_console("Please enter order number AS-IS from the physical tag."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(narrate_console("LIST to list available modes, HELP for help screen, EXIT to exit."))
+			sleep(TERMINAL_STANDARD_SLEEP)
 			puzzlebox_parse_process()
 		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input == "list")
 			puzzlebox_parse_input()
@@ -565,38 +585,74 @@
 			to_chat(usr, narrate_console("EOF"))
 			puzzlebox_parse_process()
 		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
-			puzzlebox_parser_mode = "home"
+			to_chat(usr, narrate_console("Returning to HOME mode."))
+			puzzlebox_parser_mode = "HOME"
+			sleep(TERMINAL_STANDARD_SLEEP)
 			puzzlebox_parse()
 		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 			to_chat(usr, narrate_console("User exit. Goodbye."))
 			return
-	else
+
+// MESSAGE
+
+	if (puzzlebox_parser_mode == "MESSAGE")
+//Intro segment
 		if(!puzzlebox_parser_input)
-			to_chat(usr, narrate_console("Activity timeout. Returning to HOME mode. Activating Standby mode."))
-			puzzlebox_parser_mode = "home"
-			return
-		else
-			to_chat(usr, narrate_console("ERROR: Invalid command."))
-			puzzlebox_parser_input = null
+			to_chat(narrate_body("The screen flickers and erases all text. After a second, it starts to print:"))
+			puzzlebox_parser_input = "MESSAGE"
+			puzzlebox_parse()
+		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
+			to_chat(narrate_console("MESSAGE mode - FTL Emergency Message Buffer."))
+//Common Commands
+		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input == "help")
 			puzzlebox_parse_input()
+		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input == "list")
+			puzzlebox_parse_input()
+			to_chat(usr, narrate_console("Available modes:"))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("HOME - Default home screen and error description if applicable."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("LIST - Lists all available modes."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("HELP - Displays information about current mode."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			to_chat(usr, narrate_console("EXIT - Enters passive mode."))
+			sleep(TERMINAL_STANDARD_SLEEP)
+			puzzlebox_parse_process()
+		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input == "home")
+			puzzlebox_parser_mode = "home"
+			puzzlebox_parse()
+		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
+			to_chat(usr, narrate_console("User exit. Goodbye."))
+			puzzlebox_parser_input = null
 			return
+//Start Menu chain here
 
 /obj/structure/maintterm/proc/puzzlebox_parse_input()
-	if (puzzlebox_parser_mode == "man")
-		to_chat(usr, narrate_console("MANIFEST mode. Enter or scan manifest number AS TYPED from crate to search PST records. LIST for available mode list. HELP for help."))
-		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
-	if (puzzlebox_parser_mode == "home")
-		to_chat(usr, narrate_console("HOME mode. LIST for available mode list. HELP for help."))
-		puzzlebox_parser_input = tgui_input_text(usr, "The terminal awaits your input. Commands are case sesitive.", "Terminal", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+	if (puzzlebox_parser_mode == "MANIFEST")
+		to_chat(usr, narrate_console("> MANIFEST _"))
+		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MANIFEST mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+	if (puzzlebox_parser_mode == "HOME")
+		to_chat(usr, narrate_console("> _"))
+		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+	if (puzzlebox_parser_mode == "MESSAGE")
+		to_chat(usr, narrate_console("> MESSAGE _"))
+		puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
 
 /obj/structure/maintterm/proc/puzzlebox_parse_process()
-	if (puzzlebox_parser_mode == "man")
+	if (puzzlebox_parser_mode == "MANIFEST")
 		if (!puzzlebox_parser_input)
 			return
 		else
 			to_chat(usr, narrate_console("> MANIFEST [puzzlebox_parser_input]"))
 			puzzlebox_parse()
-	if (puzzlebox_parser_mode == "home")
+	if (puzzlebox_parser_mode == "MESSAGE")
+		if (!puzzlebox_parser_input)
+			return
+		else
+			to_chat(usr, narrate_console("> MESSAGE [puzzlebox_parser_input]"))
+			puzzlebox_parse()
+	if (puzzlebox_parser_mode == "HOME")
 		if (!puzzlebox_parser_input)
 			return
 		else
