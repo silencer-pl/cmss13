@@ -215,6 +215,14 @@
 	},
 /turf/template_noop,
 /area/shuttle/ert)
+"sR" = (
+/obj/structure/surface/table/reinforced/almayer_B,
+/obj/structure/eventterminal/admin_event_terminal{
+	dir = 8;
+	puzzlebox_id = "shuttle"
+	},
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "tz" = (
 /obj/effect/decal/cargo_stripes{
 	icon_state = "ns"
@@ -297,6 +305,16 @@
 	pixel_y = 13
 	},
 /turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
+"zv" = (
+/obj/structure/eventterminal/puzzle01/endpoint{
+	pixel_x = -3;
+	pixel_y = -10
+	},
+/turf/open/shuttle/lifeboat{
+	dir = 1;
+	icon_state = "plating_striped"
+	},
 /area/shuttle/ert)
 "zz" = (
 /turf/closed/shuttle/lifeboat{
@@ -403,6 +421,13 @@
 	icon_state = "25,0"
 	},
 /turf/template_noop,
+/area/shuttle/ert)
+"Gl" = (
+/obj/structure/eventterminal/puzzle01/info_left{
+	pixel_x = -3;
+	pixel_y = 9
+	},
+/turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "GA" = (
 /turf/closed/shuttle/lifeboat{
@@ -707,7 +732,7 @@ SW
 (4,1,1) = {"
 ce
 Yq
-OO
+Gl
 OO
 OO
 OO
@@ -805,7 +830,7 @@ ho
 "}
 (13,1,1) = {"
 uX
-SA
+zv
 OO
 OO
 VZ
@@ -950,7 +975,7 @@ An
 uJ
 rM
 UG
-EI
+sR
 hb
 EI
 tB
