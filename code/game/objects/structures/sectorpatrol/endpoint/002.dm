@@ -79,12 +79,12 @@
 				return
 			if (puzzlebox_parser_input == "MANIFEST" || puzzlebox_parser_input == "manifest")
 				terminal_speak("Accessing Liquid Data Cargo Manifest record, standby...", 50)
-				emote("pings loudly.")
+				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MANIFEST"
 				return
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
 				terminal_speak("Accessing Emergency Message Buffer...", 50)
-				emote("pings loudly.")
+				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MESSAGE"
 				return
 		if (puzzlebox_parser_mode == "MANIFEST")
@@ -133,7 +133,7 @@
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Returning to HOME mode...", 50)
-				emote("pings loudly.")
+				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "HOME"
 				return
 			if (puzzlebox_parser_input == "150885-553110-GSP01")
@@ -252,7 +252,7 @@
 				return
 			if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
 				terminal_speak("Returning to HOME mode...", 50)
-				emote("pings loudly.")
+				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "HOME"
 				return
 			if (puzzlebox_parser_input == "BUFFER" || puzzlebox_parser_input == "buffer")

@@ -14,18 +14,7 @@
 	var/puzzlebox_id //for doors and lights etc
 
 //Cutscene tools - speaking, doors, lights, etc
-
-/obj/structure/eventterminal/proc/speak(str)
-	if (!str) return
-	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
-	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
-	src.visible_message("<b>[src]</b> says, \"[str]\"")
-
-/obj/structure/eventterminal/proc/emote(str)
-	if (!str) return
-	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
-	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))
-	src.visible_message("<b>[src]</b> [str]")
+//Emote and say moved to general objects and device defs
 
 /obj/structure/eventterminal/proc/open_doors(door_id = puzzlebox_id)
 	var/dooorid = "[door_id]"
