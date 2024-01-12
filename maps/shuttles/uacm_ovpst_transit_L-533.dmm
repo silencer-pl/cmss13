@@ -114,6 +114,13 @@
 	icon_state = "plate-l"
 	},
 /area/shuttle/ert)
+"kg" = (
+/obj/structure/eventterminal/puzzle01/info_right{
+	pixel_x = -3;
+	pixel_y = -10
+	},
+/turf/open/shuttle/lifeboat,
+/area/shuttle/ert)
 "kC" = (
 /turf/closed/shuttle/lifeboat{
 	name = "Shuttle L-533";
@@ -896,7 +903,7 @@ RW
 "}
 (19,1,1) = {"
 Bf
-OO
+kg
 OO
 OO
 VZ
