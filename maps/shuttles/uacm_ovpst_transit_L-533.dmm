@@ -550,18 +550,6 @@
 	icon_state = "23,6"
 	},
 /area/shuttle/ert)
-"RV" = (
-/obj/structure/maintterm/black{
-	puzzlebox_puzzle_type = "endpoint";
-	puzzlebox_puzzle_subtype = "01-endpoint";
-	puzzlebox_task_wrong = "The console buzzes and displays a short animation of the shuttle crashing into the station. It then flashes red and returns to its previous input.";
-	puzzlebox_task_right = "The console displays a short animation of the shuttle landing on the station safely, followed by a big green checkmark. It then beeps and the screen is filled with a steady flow of data to a green backdrop."
-	},
-/turf/open/shuttle/lifeboat{
-	dir = 1;
-	icon_state = "plating_striped"
-	},
-/area/shuttle/ert)
 "RW" = (
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "window1l"
@@ -600,13 +588,6 @@
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "24,4u"
 	},
-/area/shuttle/ert)
-"TT" = (
-/obj/structure/maintterm/black{
-	puzzlebox_puzzle_type = "info";
-	puzzlebox_puzzle_subtype = "01-info"
-	},
-/turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
 "TU" = (
 /turf/closed/shuttle/lifeboat{
@@ -726,7 +707,7 @@ SW
 (4,1,1) = {"
 ce
 Yq
-TT
+OO
 OO
 OO
 OO
@@ -824,7 +805,7 @@ ho
 "}
 (13,1,1) = {"
 uX
-RV
+SA
 OO
 OO
 VZ
@@ -890,7 +871,7 @@ RW
 "}
 (19,1,1) = {"
 Bf
-TT
+OO
 OO
 OO
 VZ
