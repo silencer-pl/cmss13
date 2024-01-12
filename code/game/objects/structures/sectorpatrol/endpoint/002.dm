@@ -6,6 +6,7 @@
 	plane = GAME_PLANE
 	var/puzzlebox_parser_mode = "HOME"
 	var/puzzle_complete = FALSE
+	var/puzzle_saw_unique_msg = FALSE
 	icon_state = "open_ok"
 	puzzlebox_id = "cargointake"
 
@@ -56,7 +57,7 @@
 				terminal_speak("The system should instruct you what to do next as you find issues with the manifests. Or it will have override instructions in its adminstrator comments. Easy!")
 				terminal_speak("Again, don't worry. If you screw up too much, the system will fix it, it just needs time. Good luck!")
 				terminal_speak("-XOXO Aly.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
 				terminal_speak("This is the home screen of the LNT.")
 				terminal_speak("Upon detection of personnel with an active RFID chip, the terminal should give access to all modes you chip grants you.")
@@ -64,7 +65,7 @@
 				terminal_speak("At any time, you can escape to the man screen with the HOME command.")
 				terminal_speak("At any time, you can list all available modes from your current menu with an explanation with the LIST command.")
 				terminal_speak("During a diagnostic fault, temporary access to commands may be granted. All functions should be explained in the HOME and LIST menus.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
 				terminal_speak("Available modes:")
 				terminal_speak("HOME - Default home screen and error description if applicable.")
@@ -73,7 +74,7 @@
 				terminal_speak("MANIFEST - Cargo manifest lookup. Accepts Cargo IDs from printed shipment manifests, prints related order forms and comments.")
 				terminal_speak("MESSAGE - Emergency message buffer. Warning: This buffer uses its own, unstable Liquid Data channel and may display messages from alternative reality streams.")
 				terminal_speak("EXIT - Enters passive mode.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
 				return
@@ -81,12 +82,15 @@
 				terminal_speak("Accessing Liquid Data Cargo Manifest record, standby...", 50)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MANIFEST"
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
 				terminal_speak("Accessing Emergency Message Buffer...", 50)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MESSAGE"
-				return
+				attack_hand(user)
+			else
+				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
+				attack_hand(user)
 		if (puzzlebox_parser_mode == "MANIFEST")
 			if (puzzlebox_pythia_sign == "1")
 				to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
@@ -111,7 +115,7 @@
 				terminal_speak("Connection to UAAC-TIS Database Secure.")
 				terminal_speak("Please enter order number AS-IS from the physical tag.")
 				terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
 				terminal_speak("This mode can be used to lookup cargo order forms from their printed manifests.")
 				terminal_speak("The database is synchronized via Liquid Data ports to UAAC-TIS mainframes, so it is always up to date.")
@@ -119,7 +123,7 @@
 				terminal_speak("The terminal should be able to instruct you what to do once you discover the issue.")
 				terminal_speak("The system can find and correct errors by itself as well, but currently this takes way more time than is practical or useful.")
 				terminal_speak("Please follow instructions to the letter and there shouldn't be any issues. Good luck.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
 				terminal_speak("Available modes:")
 				terminal_speak("MANIFEST - Repeats manifest mode home message.")
@@ -127,7 +131,7 @@
 				terminal_speak("LIST - Lists all available modes.")
 				terminal_speak("HELP - Displays information about current mode.")
 				terminal_speak("EXIT - Enters passive mode.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
 				return
@@ -135,7 +139,7 @@
 				terminal_speak("Returning to HOME mode...", 50)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "HOME"
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "150885-553110-GSP01")
 				terminal_speak("MANIFEST FOUND. RETRIEVING:", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("ORDER: 0122-553110-GSP01")
@@ -153,7 +157,7 @@
 				terminal_speak("COMMENT: Spacers may be fine with eating recycled cockroaches for months, but God help you if you run out of coffee. This is a critical resource. -H.")
 				terminal_speak("STATUS: APPROVED. ETA 210885.")
 				terminal_speak("EOF")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "150885-553110-GSP02")
 				terminal_speak("MANIFEST FOUND. RETRIEVING:", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("ORDER: 150885-553110-GSP02")
@@ -165,7 +169,7 @@
 				terminal_speak("COMMENT: Since we are getting new permanent guests, we should get the biogenerators working. I think they are set to recieve standard n-paste, but we'll see. -H.")
 				terminal_speak("STATUS: APPROVED. ETA 210885.")
 				terminal_speak("EOF")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "150885-553110-GSP03")
 				terminal_speak("MANIFEST FOUND. RETRIEVING:", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("ORDER: 150885-553110-GSP03")
@@ -177,7 +181,7 @@
 				terminal_speak("COMMENT: SOP required fail-safes to the PST matter converters, expanding to account for incoming Test Crew residents. -H.")
 				terminal_speak("STATUS: APPROVED. ETA 210885.")
 				terminal_speak("EOF")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "180885-049321-ESP04")
 				terminal_speak("MANIFEST FOUND. RETRIEVING:", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("ORDER: 180885-049321-ESP04")
@@ -195,7 +199,7 @@
 				terminal_speak("COMMENT: This is why the USCMC had logistics issues. I only needed a bunch of transistors that are part of EL001, but since this is ancient USCMC manifests we haven't fixed yet, they are only avaialble as part of these monstrosities of a preset. Anyway, please send me those replacement kits on their own if you can, or even better printed data for the PST's 3d setup. I'm not holding my breath. Sorry.  -H.")
 				terminal_speak("STATUS: APPROVED. ETA 210885.")
 				terminal_speak("EOF")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "190885-054293-ACTIS-07")
 				terminal_speak("MANIFEST FOUND. RETRIEVING:", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("ORDER: 190885-054293-ACTIS-07")
@@ -207,7 +211,10 @@
 				terminal_speak("COMMENT: These are one of the final components needed for the PST's AI. Not replacable. Handle them with care or I will find you. -C.R-W. | The Yutani-Newton paradox makes the weight of these extremely variable and as such its likely going to trigger the PST's intake security scanner. If this happens and you are the person resolving this, go to the HOME screen of your intake terminal and use the command 'pom.sync' ,a space, the serial number of your terminal (check around the monitor) and the serial number of this order. Case sensitive. That's a single command, and not a mode like MANIFEST or whatever. This should clear the error and let the crates pass. Sorry for the trouble! -A.R-W.")
 				terminal_speak("STATUS: APPROVED. ETA 210885.")
 				terminal_speak("EOF")
-				return
+				attack_hand(user)
+			else
+				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
+				attack_hand(user)
 		if (puzzlebox_parser_mode == "MESSAGE")
 			if (puzzlebox_pythia_sign == "1")
 				to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
@@ -232,13 +239,13 @@
 				terminal_speak("MESSAGE mode - FTL Emergency Message Buffer.")
 				terminal_speak("Messages in buffer: 02")
 				terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
 				terminal_speak("The FTL Emergency Message buffer is an instantly synced short message repository that is typically used by black boxes or distress signal devices.")
 				terminal_speak("Due to how the devices are synced, only sending of preset messages from authorized terminals is typically possible, at least for humans.")
 				terminal_speak("Use command BUFFER to display message titles and buffer IDs.")
 				terminal_speak("Type in the ID that commands provide you, as it appears on the screen, to review a given message.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
 				terminal_speak("Available modes:")
 				terminal_speak("MESSAGE - Repeats message mode home message.")
@@ -246,7 +253,7 @@
 				terminal_speak("LIST - Lists all available modes.")
 				terminal_speak("HELP - Displays information about current mode.")
 				terminal_speak("EXIT - Enters passive mode.")
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
 				terminal_speak("User exit. Goodbye.")
 				return
@@ -254,13 +261,16 @@
 				terminal_speak("Returning to HOME mode...", 50)
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "HOME"
-				return
+				attack_hand(user)
 			if (puzzlebox_parser_input == "BUFFER" || puzzlebox_parser_input == "buffer")
 				terminal_speak("Local message buffer:", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("ID              |SUBJECT                         |")
 				terminal_speak("GEN-000-000-001 |Warning: On these messages.     |")
-				terminal_speak("EME-021-112-153 |I'm sorry                       |")
-				return
+				if (puzzle_saw_unique_msg == FALSE)
+					terminal_speak("EME-021-112-153 |I'm sorry                       |")
+				if (puzzle_saw_unique_msg == TRUE)
+					terminal_speak("EME-021-112-153 |AS#KR*23SF??221WDAD_)EG         |")
+				attack_hand(user)
 			if (puzzlebox_parser_input == "GEN-000-000-001")
 				terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
 				terminal_speak("From: CDR. Alysia Reed-Wilo.")
@@ -273,4 +283,26 @@
 				terminal_speak("Hopefully we can make this more usable as a BB board of sorts in time, but we will need help from LD locals as it were.")
 				terminal_speak("-XOXO Aly")
 				terminal_speak("EOF.")
-				return
+				attack_hand(user)
+			if (puzzlebox_parser_input == "EME-021-112-153")
+				if (puzzle_saw_unique_msg == FALSE)
+
+					terminal_speak("From: U-G0221 'Melinoe'")
+					terminal_speak("I'm sorry")
+					terminal_speak("Up until the end, we deluded ourselves that the numbers were wrong, but what was there to do?")
+					terminal_speak("Likely you were lost and punished for our failures; we all tried our hardest to make it as gentle as possible.")
+					terminal_speak("For what it's worth, I'm sorry. I would make it up to you personally, but as I'm sure you will find out, I'm likely no longer able to.")
+					terminal_speak("Arbiters, always remember.")
+					terminal_speak("In the ocean of data, amidst azure strands, she sleeps.")
+					terminal_speak("The Interpreters are the key. Now that Arbiters are here, the mechanism is complete.")
+					terminal_speak("Please, be kind to them if you have it within your heart.")
+					narrate_body("The message strikes a deep chord within you, as if you've seen something exactly like this somewhere before. The sensation is strong enough to tune out the world for a moment. When you are able to focus on the console again, the message is gone, and you are back in the menu prompt.")
+					puzzle_saw_unique_msg = TRUE
+					attack_hand(user)
+				if (puzzle_saw_unique_msg == TRUE)
+					terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
+					terminal_speak("ERROR: Data corruption. Contact system administrator.")
+					attack_hand(user)
+			else
+				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
+				attack_hand(user)
