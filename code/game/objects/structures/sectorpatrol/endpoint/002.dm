@@ -107,7 +107,7 @@
 				langchat_color = "#ffffff"
 				change_lights("cargointake", 1, LIGHT_COLOUR_WHITE, 5,0)
 				terminal_speak("pom.sync: Override complete! Restarting main terminal process!")
-				puzzlebox_global_status + 1
+				puzzlebox_global_status = puzzlebox_global_status + 1
 				puzzle_complete = TRUE
 				open_doors("cargointake")
 				return
@@ -313,7 +313,6 @@
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EME-021-112-153")
 				if (puzzle_saw_unique_msg == FALSE)
-
 					terminal_speak("From: U-G0221 'Melinoe'")
 					terminal_speak("I'm sorry")
 					terminal_speak("Up until the end, we deluded ourselves that the numbers were wrong, but what was there to do?")
@@ -323,7 +322,7 @@
 					terminal_speak("In the ocean of data, amidst azure strands, she sleeps.")
 					terminal_speak("The Interpreters are the key. Now that Arbiters are here, the mechanism is complete.")
 					terminal_speak("Please, be kind to them if you have it within your heart.")
-					narrate_body("The message strikes a deep chord within you, as if you've seen something exactly like this somewhere before. The sensation is strong enough to tune out the world for a moment. When you are able to focus on the console again, the message is gone, and you are back in the menu prompt.")
+					to_chat(usr, narrate_body("The message strikes a deep chord within you, as if you've seen something exactly like this somewhere before. The sensation is strong enough to tune out the world for a moment. When you are able to focus on the console again, the message is gone, and you are back in the menu prompt."))
 					log_game("[key_name(usr)] read Melinoe's message at the cargo intake terminal.")
 					message_admins("[key_name_admin(usr)] read Melinoe's message at the cargo intake terminal.")
 					puzzle_saw_unique_msg = TRUE
