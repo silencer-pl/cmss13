@@ -9,6 +9,8 @@
 	var/puzzle_saw_unique_msg = FALSE
 	icon_state = "open_ok"
 	puzzlebox_id = "cargointake"
+	item_serial = "UACM-OVPST-D31-CARINT"
+
 
 /obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
 	if (puzzle_complete == TRUE)
@@ -29,6 +31,8 @@
 				puzzlebox_pythia_sign = pick(5;"1", 95;"0")
 				if (puzzlebox_pythia_sign == "1")
 					to_chat(usr, narrate_body("Data races across the screen for a moment. You can almost make out a message, when the screen flashes, goes blank and starts to print:"))
+					log_game("[key_name(usr)] saw a Pythia glitch at the cargo intake parser.")
+					message_admins("[key_name_admin(usr)]  saw a Pythia glitch at the cargo intake parser.")
 				if (puzzlebox_pythia_sign == "0")
 					to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
 
@@ -72,7 +76,7 @@
 				terminal_speak("LIST - Lists all available modes.")
 				terminal_speak("HELP - Displays information about current mode.")
 				terminal_speak("MANIFEST - Cargo manifest lookup. Accepts Cargo IDs from printed shipment manifests, prints related order forms and comments.")
-				terminal_speak("MESSAGE - Emergency message buffer. Warning: This buffer uses its own, unstable Liquid Data channel and may display messages from alternative reality streams.")
+				terminal_speak("MESSAGE - Emergency message buffer.")
 				terminal_speak("EXIT - Enters passive mode.")
 				attack_hand(user)
 			if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
@@ -88,6 +92,25 @@
 				emoteas("pings loudly.")
 				puzzlebox_parser_mode = "MESSAGE"
 				attack_hand(user)
+			if (puzzlebox_parser_input == "pom.sync UACM-OVPST-D31-CARINT 190885-054293-ACTIS-07")
+				log_game("[key_name(usr)] used the pom.sync command in cargo intake. Puzzle solved.")
+				message_admins("[key_name_admin(usr)] used the pom.sync command in cargo intake. Puzzle solved.")
+				terminal_speak("pom.sync: Looking up updated exception instructions in primary LD buffer...", 15)
+				terminal_speak("pom.sync: Instructions found! Applying override!", 5)
+				change_lights("cargointake", 1, "#63095d", 20, 5)
+				emoteas("pings a few times, seems to smell like burnt ozone for a moment as the screen flashes.")
+				sleep(5)
+				langchat_color = "#ea8df7"
+				talkas("In the ocean of data, amidst azure strands, she sleeps.")
+				sleep(5)
+				talkas("Arbiters, welcome.")
+				langchat_color = "#ffffff"
+				change_lights("cargointake", 1, LIGHT_COLOUR_WHITE, 5,0)
+				terminal_speak("pom.sync: Override complete! Restarting main terminal process!")
+				puzzlebox_global_status + 1
+				puzzle_complete = TRUE
+				open_doors("cargointake")
+				return
 			else
 				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
 				attack_hand(user)
@@ -98,6 +121,8 @@
 				puzzlebox_pythia_sign = pick(5;"1", 95;"0")
 				if (puzzlebox_pythia_sign == "1")
 					to_chat(usr, narrate_body("Various cargo manifests, all made by the USCMC flash on the screen, but you are unable to make out any details. The console then flashes, resets, and prints:"))
+					log_game("[key_name(usr)] saw a Pythia glitch at the cargo intake parser.")
+					message_admins("[key_name_admin(usr)]  saw a Pythia glitch at the cargo intake parser.")
 				if (puzzlebox_pythia_sign == "0")
 					to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
 			terminal_speak("MANIFEST Mode active.")
@@ -223,6 +248,8 @@
 				if (puzzlebox_pythia_sign == "1")
 					terminal_speak("H3LLo ARB1TER.")
 					terminal_speak("ERR? INVALID COMMAND 'Free Interpreters, please.")
+					log_game("[key_name(usr)] saw a Pythia glitch at the cargo intake parser.")
+					message_admins("[key_name_admin(usr)]  saw a Pythia glitch at the cargo intake parser.")
 					to_chat(usr, narrate_body("The terminal flickers and clears its screen, then prints:"))
 				if (puzzlebox_pythia_sign == "0")
 					to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
@@ -297,6 +324,8 @@
 					terminal_speak("The Interpreters are the key. Now that Arbiters are here, the mechanism is complete.")
 					terminal_speak("Please, be kind to them if you have it within your heart.")
 					narrate_body("The message strikes a deep chord within you, as if you've seen something exactly like this somewhere before. The sensation is strong enough to tune out the world for a moment. When you are able to focus on the console again, the message is gone, and you are back in the menu prompt.")
+					log_game("[key_name(usr)] read Melinoe's message at the cargo intake terminal.")
+					message_admins("[key_name_admin(usr)] read Melinoe's message at the cargo intake terminal.")
 					puzzle_saw_unique_msg = TRUE
 					attack_hand(user)
 				if (puzzle_saw_unique_msg == TRUE)
@@ -306,3 +335,164 @@
 			else
 				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
 				attack_hand(user)
+
+/obj/structure/eventterminal/puzzle02/scanerterm
+	name = "local network terminal"
+	desc = "A standard computer terminal with the words 'LNT' imprinted on its side. Activated by standing in its proximity. It appears to be in standby mode."
+	desc_lore = "Local Network Terminals typically regulate local functions of a given area or are used to interface with bigger systems on a ship or installation. They distinction technically means that the terminal interfaces with the local AI somehow, but few outside of systems engineers use the term for its actual intended purpose, sometimes mistaking other terminal types for LNTs."
+	icon = 'icons/obj/structures/machinery/clio_term.dmi'
+	plane = GAME_PLANE
+	var/puzzlebox_parser_mode = "HOME"
+	var/puzzle_saw_unique_msg = FALSE
+	icon_state = "open_ok"
+	puzzlebox_id = "scn2obs"
+
+/obj/structure/eventterminal/puzzle02/cargoparse/attack_hand(mob/user as mob)
+
+	if (!puzzlebox_parser_mode) //Idiotproofing :P
+		puzzlebox_parser_mode = "HOME"
+	//HOME
+	if (puzzlebox_parser_mode == "HOME")
+		if (puzzlebox_pythia_sign == "1")
+			to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
+		if (puzzlebox_pythia_sign == "0")
+			puzzlebox_pythia_sign = pick(5;"1", 95;"0")
+			if (puzzlebox_pythia_sign == "1")
+				to_chat(usr, narrate_body("The screen blinks. Erratic strings of numbers and letters fill the display as a fast animation of a stick figure entering a scanner, the screen flashing a few times and then multiple other stick figures in different colors appearing around the initial one. After a few seconds of multiplying stick figures, the screen flashes again and resets, then starts printing:"))
+				log_game("[key_name(usr)] saw a Pythia glitch at the security overlook terminal.")
+				message_admins("[key_name_admin(usr)]  saw a Pythia glitch at the security overlook terminal.")
+			if (puzzlebox_pythia_sign == "0")
+				to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
+		terminal_speak("UACM Outer Veil Primary Support Terminal")
+		terminal_speak("Dock 31. PYTHIA Reality Fractalization Intent Scan.")
+		terminal_speak("CAUTION: Unauthorized access is a direct violation of UA Law. Your actions will be logged.")
+		terminal_speak("Access Level: General.")
+		terminal_speak("Available functions:")
+		terminal_speak("RECORD - Dock 31 Access Record")
+		terminal_speak("List ends. Awaiting Input.")
+		puzzlebox_parser_mode = "HOME_INPUT"
+		attack_hand(user)
+	if (puzzlebox_parser_mode == "HOME_INPUT")
+		terminal_speak("> _")
+		var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+		if (!puzzlebox_parser_input) return
+		terminal_speak("> [puzzlebox_parser_input]")
+		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
+			terminal_speak("UACM Outer Veil Primary Support Terminal")
+			terminal_speak("Dock 31. PYTHIA Reality Fractalization Intent Scan.")
+			terminal_speak("CAUTION: Unauthorized access is a direct violation of UA Law. Your actions will be logged.")
+			terminal_speak("Access Level: General.")
+			terminal_speak("Available functions:")
+			terminal_speak("RECORD - Dock 31 Access Record")
+			terminal_speak("List ends. Awaiting Input.")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
+			terminal_speak("This is the home screen of the LNT.")
+			terminal_speak("Upon detection of personnel with an active RFID chip, the terminal should give access to all modes you chip grants you.")
+			terminal_speak("A general instruction message, specific to this LNT's function should be displayed on this screen. ")
+			terminal_speak("At any time, you can escape to the man screen with the HOME command.")
+			terminal_speak("At any time, you can list all available modes from your current menu with an explanation with the LIST command.")
+			terminal_speak("During a diagnostic fault, temporary access to commands may be granted. All functions should be explained in the HOME and LIST menus.")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
+			terminal_speak("Available modes:")
+			terminal_speak("HOME - Default home screen and error description if applicable.")
+			terminal_speak("LIST - Lists all available modes.")
+			terminal_speak("HELP - Displays information about current mode.")
+			terminal_speak("RECORD - Entrance Scanner Record Buffer.")
+			terminal_speak("MESSAGE - Emergency message buffer.")
+			terminal_speak("EXIT - Enters passive mode.")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
+			terminal_speak("User exit. Goodbye.")
+			return
+		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input == "message")
+			terminal_speak("Accessing Emergency Message Buffer...", 50)
+			emoteas("pings loudly.")
+			puzzlebox_parser_mode = "MESSAGE"
+			attack_hand(user)
+		if (puzzlebox_parser_input == "RECORD" || puzzlebox_parser_input == "record")
+			terminal_speak("Accessing Scanner Records...", TERMINAL_LOOKUP_SLEEP)
+			emoteas("pings loudly.")
+			puzzlebox_parser_mode = "RECORD"
+			attack_hand(user)
+	if (puzzlebox_parser_mode == "MESSAGE")
+		if (puzzlebox_pythia_sign == "1")
+			to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
+		if (puzzlebox_pythia_sign == "0")
+			puzzlebox_pythia_sign = pick(5;"1", 95;"0")
+			if (puzzlebox_pythia_sign == "1")
+				terminal_speak("H3LLo ARB1TER.")
+				terminal_speak("ERR? INVALID COMMAND 'Free Interpreters, please.")
+				log_game("[key_name(usr)] saw a Pythia glitch at the security overlook terminal.")
+				message_admins("[key_name_admin(usr)]  saw a Pythia glitch at the security overlook terminal.")
+				to_chat(usr, narrate_body("The terminal flickers and clears its screen, then prints:"))
+			if (puzzlebox_pythia_sign == "0")
+				to_chat(usr, narrate_body("The display on the terminal flickers for a moment, then starts printing:"))
+		terminal_speak("MESSAGE mode - FTL Emergency Message Buffer.")
+		terminal_speak("Messages in buffer: 02")
+		terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
+		puzzlebox_parser_mode = "MESSAGE_INPUT"
+	if (puzzlebox_parser_mode == "MESSAGE_INPUT")
+		terminal_speak("> MESSAGE_")
+		var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in MESSAGE mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+		if (!puzzlebox_parser_input) return
+		terminal_speak("> MESSAGE [puzzlebox_parser_input]")
+		if (puzzlebox_parser_input == "MESSAGE" || puzzlebox_parser_input =="message")
+			terminal_speak("MESSAGE mode - FTL Emergency Message Buffer.")
+			terminal_speak("Messages in buffer: 02")
+			terminal_speak("LIST to list available modes, HELP for help screen, EXIT to exit.")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "HELP" || puzzlebox_parser_input =="help")
+			terminal_speak("The FTL Emergency Message buffer is an instantly synced short message repository that is typically used by black boxes or distress signal devices.")
+			terminal_speak("Due to how the devices are synced, only sending of preset messages from authorized terminals is typically possible, at least for humans.")
+			terminal_speak("Use command BUFFER to display message titles and buffer IDs.")
+			terminal_speak("Type in the ID that commands provide you, as it appears on the screen, to review a given message.")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "LIST" || puzzlebox_parser_input =="list")
+			terminal_speak("Available modes:")
+			terminal_speak("MESSAGE - Repeats message mode home message.")
+			terminal_speak("HOME - HOME mode. Displays default home screen and error description if applicable.")
+			terminal_speak("LIST - Lists all available modes.")
+			terminal_speak("HELP - Displays information about current mode.")
+			terminal_speak("EXIT - Enters passive mode.")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "EXIT" || puzzlebox_parser_input == "exit")
+			terminal_speak("User exit. Goodbye.")
+			return
+		if (puzzlebox_parser_input == "HOME" || puzzlebox_parser_input =="home")
+			terminal_speak("Returning to HOME mode...", 50)
+			emoteas("pings loudly.")
+			puzzlebox_parser_mode = "HOME"
+			attack_hand(user)
+		if (puzzlebox_parser_input == "BUFFER" || puzzlebox_parser_input == "buffer")
+			terminal_speak("Local message buffer:", TERMINAL_LOOKUP_SLEEP)
+			terminal_speak("ID              |SUBJECT                         |")
+			terminal_speak("GEN-000-000-001 |Warning: On these messages.     |")
+			terminal_speak("DVG-891-221-211 |Imminent Failure of All Systems.|")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "GEN-000-000-001")
+			terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
+			terminal_speak("From: CDR. Alysia Reed-Wilo.")
+			terminal_speak("Subject: Warning: On these messages.")
+			terminal_speak("All PST personnel, please keep in mind that this is an extremely raw channel into the LD stream.")
+			terminal_speak("As such, it is extremely hard for us to manipulate, especially wipe old messages from the buffer.")
+			terminal_speak("At present, just assume that messages from times before even the UACM can randomly appear on these terminals.")
+			terminal_speak("Also keep in mind that this channel is not secret by any stretch of the imagination. Please don't use it for personal stuff unless you don't mind broadcasting it to all the UACM.")
+			terminal_speak("Good news for you information diggers out there though, every terminal is worth looking at. You never know what artifact you may find.")
+			terminal_speak("Hopefully we can make this more usable as a BB board of sorts in time, but we will need help from LD locals as it were.")
+			terminal_speak("-XOXO Aly")
+			terminal_speak("EOF.")
+			attack_hand(user)
+		if (puzzlebox_parser_input == "DVG-891-221-211")
+			terminal_speak("Message found. Accessing...", TERMINAL_LOOKUP_SLEEP)
+			terminal_speak("From: A-WATCHTOWER")
+			terminal_speak("Fellow Godbearers.")
+			terminal_speak("I don't know how many of you are left, but D-Navigator was lost. UAAC-TIS most likely gained access to all operational archives.")
+			terminal_speak("E-Librarian claimed that the wiping process has started, but there is no way that all of it was destroyed.")
+			terminal_speak("Assume your assets and involvement were compromised.")
+			terminal_speak("Not that it matters. Everything is going down anyway. Maybe it's for the best.")
+			terminal_speak("It's been an honor.")
+			terminal_speak("-A-Watchtower.")
+			terminal_speak("EOF.")
+			attack_hand(user)
