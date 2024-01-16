@@ -872,7 +872,7 @@
 	name = "marker light"
 	icon = 'icons/obj/items/lighting.dmi'
 	base_state = "marker" // base description and icon_state
-	bulb_color = LIGHT_COLOUR_HOLY_MAGIC
+	bulb_color = LIGHT_COLOR_HOLY_MAGIC
 	color_state = "yellow"
 	icon_state = "markeryellow1"
 	desc = "A marker light fixture that currently has an yellow/natural light bulb."
@@ -895,7 +895,7 @@
 	desc = "A marker light fixture that currently has an indigo light bulb."
 	icon_state = "markerindigo1"
 	color_state = "indigo"
-	bulb_color = LIGHT_COLOUR_DARK_BLUE
+	bulb_color = LIGHT_COLOR_DARK_BLUE
 
 /obj/structure/machinery/light/marker/built/Initialize()
 	. = ..()
@@ -913,7 +913,7 @@
 	throwforce = 5
 	w_class = SIZE_SMALL
 	color_state = "yellow"
-	bulb_color = LIGHT_COLOUR_HOLY_MAGIC
+	bulb_color = LIGHT_COLOR_HOLY_MAGIC
 	status = 0 // LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	base_state = "markerbulb"
 	matter = list("metal" = 60)
@@ -924,7 +924,7 @@
 	desc = "A light bulb for a marker light. This one is tintend indigo, giving it a distinct, dark blue shade."
 	icon_state = "markerbulbindigo"
 	color_state = "indigo"
-	bulb_color = LIGHT_COLOUR_DARK_BLUE
+	bulb_color = LIGHT_COLOR_DARK_BLUE
 
 //admin items, use invisible but alphamapped icon and clickthrough for trigerable mood lighting
 
@@ -936,7 +936,7 @@
 	base_state = "admin_light"
 	light_id = "admin"
 	color_state = null
-	bulb_color = LIGHT_COLOUR_WHITE
+	bulb_color = LIGHT_COLOR_WHITE
 	anchored = TRUE
 	density = FALSE
 	unslashable = TRUE
@@ -951,5 +951,5 @@
 	icon_state = "admin_lightbulb"
 	base_state = "admin_lightbulb"
 	color_state = null
-	bulb_color = LIGHT_COLOUR_WHITE
+	bulb_color = LIGHT_COLOR_WHITE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
