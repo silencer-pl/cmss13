@@ -13,13 +13,13 @@
 
 //Going to take this chance to sneak in emoting and speaking procs :P
 
-/obj/item/proc/speak(str)
+/obj/item/proc/speakas(str)
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
 	src.visible_message("<b>[src]</b> says, \"[str]\"")
 
-/obj/item/proc/emote(str)
+/obj/item/proc/emoteas(str)
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))

@@ -16,7 +16,7 @@
 	if (puzzle_complete == TRUE)
 		to_chat(src, narrate_body("The terminal is not responsive."))
 		return
-	if (puzzlebox_global_status < 3 && puzzlebox_global_status > 5)
+	if (puzzlebox_global_status < 3 && puzzlebox_global_status > 4)
 		to_chat(src, narrate_body("The terminal displays a random looking chain of numbers and letters and does not react to you pushing any of its keys."))
 		return
 	if (puzzlebox_global_status == 3 || puzzlebox_global_status == 4)
@@ -641,7 +641,7 @@
 				terminal_speak("In each chamber, first use the processor's terminal and run command 'pom.sync global_override' followed by a space and the serial number of THIS very terminal, which you should probably note down somewhere.")
 				terminal_speak("This should let you access the calibration port, or rather the hatch covering the port which you will need a screwdriver to open.")
 				terminal_speak("Once you can access the port, plug in your multitool and send a standard testing phrase to the terminal.")
-				terminal_speak("Check the terminals output. What you should see is digits going from zero to nine, followed by the 26 basic alphabet letters.")
+				terminal_speak("Check the terminals output. What you should see is digits going from zero to nine, followed by the 26 basic alphabet letters, lowercase then uppercase.")
 				terminal_speak("You see ANYTHING else, close the port, use the processor's terminal and use command 'pom.calibrate' and again, the serial number of THIS terminal.")
 				terminal_speak("Keep in mind that if you do it on the wrong terminal, it's going to be a while until you can use the command again, so don't just try and guess it. Or do, see if you're lucky. ")
 				terminal_speak("- XOXO, Aly.")
@@ -773,3 +773,241 @@
 			else
 				terminal_speak("Input unrecognized. Use HELP for help or LIST for mode list.")
 				attack_hand(user)
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master
+	name = "Liquid Data enabled computer"
+	desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster."
+	desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
+	icon = 'icons/obj/structures/machinery/clio_bigboi.dmi'
+	puzzlebox_id = "LD_Mainframe"
+	var/puzzlebox_panel_open = FALSE
+	var/puzzlebox_panel_locked = TRUE
+	var/puzzlebox_panel_phrasepased = FALSE
+	var/puzzlebox_lockout = FALSE
+	var/puzzlebox_parser_mode = "HOME"
+	var/puzzle_complete = FALSE
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master/proc/lockout()
+	puzzlebox_lockout = TRUE
+	sleep(5 MINUTES)
+	puzzlebox_lockout = FALSE
+	if(!puzzlebox_id) puzzlebox_id = "I forgot to set an ID. Oops."
+	log_game("[puzzlebox_id] has lifted its lockdown!")
+	message_admins("[puzzlebox_id] has lifted its lockdown!")
+	return
+
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master/correct
+
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master/correct/attack_hand(mob/user as mob)
+	if (puzzle_complete == TRUE)
+		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		return
+	if (puzzlebox_lockout == TRUE)
+		terminal_speak("Error. Calibration sequence resetting. Standby.")
+		return
+	if (puzzlebox_global_status < 3 && puzzlebox_global_status > 4)
+		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		return
+	if (puzzlebox_panel_open == TRUE && puzzlebox_panel_phrasepased == FALSE)
+		to_chat(usr, narrate_body("The terminal displays an animation of a cable being plugged into its side and is unresponsive to your inputs."))
+		return
+	if (puzzlebox_global_status == 3 || puzzlebox_global_status == 4)
+		if (!puzzlebox_parser_mode) //Idiotproofing :P
+			puzzlebox_parser_mode = "HOME"
+		//HOME
+		if (puzzlebox_parser_mode == "HOME")
+			terminal_speak("DOCK 31 LIQUID DATA CHANNEL SYNC SIGNAL DIAGNOSTICS")
+			terminal_speak("Maintenance mode detected. Command prompt unlocked. Awaiting input.")
+			puzzlebox_parser_mode = "HOME_INPUT"
+			attack_hand(user)
+		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == TRUE)
+			terminal_speak("Repeating tester sequence:")
+			terminal_speak("IN_THE_OCEAN_OF_DATA,")
+			terminal_speak("AMIDST_AZURE_STRANDS,")
+			terminal_speak("SHE_SLEEPS.")
+			puzzlebox_panel_phrasepased = FALSE
+			return
+		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
+			terminal_speak("> _")
+			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. This terminal will only accept specific commands, no general ones are available.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+			if (!puzzlebox_parser_input) return
+			terminal_speak("> [puzzlebox_parser_input]")
+			if (puzzlebox_parser_input == "pom.sync global_override UACM-OVPST-D31-LDDIAG")
+				if (puzzlebox_panel_locked == TRUE)
+					terminal_speak("pom.sync: Maintenance mode instruction set found! Applying!", 40)
+					emoteas("beeps loudly and a side panel opens, revealing a small port covered by a metal cover.")
+					desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. A panel on the side is open, revealing a small port covered by a metal cover. You are going to need a screwdriver or something similar to unseal the port."
+					desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. An open side panel typically can be used to connect a multitool or something similar, as long as the port itself is unsealed and kept open by a screwdriver or similar tool."
+					puzzlebox_panel_locked = FALSE
+					return
+				if (puzzlebox_panel_locked == FALSE)
+					terminal_speak("Error: Corresponding maintenance instruction already deployed.")
+					terminal_speak("Exiting...")
+					return
+			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
+				terminal_speak("Deploying recalibration buffer.", 50)
+				terminal_speak("Recalibration successful!")
+				log_game("[key_name(usr)] used the debug phrase on the correct terminal and solved the LD calibration puzzle.")
+				message_admins("[key_name(usr)] used the debug phrase on the correct terminal and solved the LD calibration puzzle.")
+				for (var/obj/structure/eventterminal/puzzle02/ldmainframe_master/T in world)
+					T.puzzlebox_panel_open = FALSE
+					T.puzzlebox_panel_locked = TRUE
+					T.puzzlebox_panel_phrasepased = FALSE
+					T.puzzlebox_lockout = FALSE
+					T.puzzle_complete = TRUE
+					T.desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster."
+					T.desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
+				for (var/obj/structure/eventterminal/puzzle02/ldmainframediag/D in world)
+					D.puzzle_complete = TRUE
+				puzzlebox_global_status = puzzlebox_global_status + 1
+				return
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master/correct/attackby(obj/item/W as obj, mob/user as mob)
+	if (!(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER) || (HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL))))
+		to_chat(user, SPAN_WARNING("You have no idea how to combine these two together."))
+		return
+	if (HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
+		if(puzzle_complete == TRUE)
+			to_chat(user, narrate_body("You see no way of opening anything on the terminal, everything seems locked from the inside."))
+			return
+		if(puzzlebox_panel_locked == TRUE)
+			to_chat(user, narrate_body("You see no way of opening anything on the terminal, everything seems locked from the inside."))
+			return
+		if(puzzle_complete == FALSE)
+			if (puzzlebox_panel_open == FALSE)
+				puzzlebox_panel_open = TRUE
+				to_chat(user, narrate_body("You push a tiny switch with the head of the screwdriver and the panel covering the side port opens. You can now connect a multitool."))
+				return
+			if (puzzlebox_panel_open == TRUE)
+				puzzlebox_panel_open = FALSE
+				to_chat(user, narrate_body("You push a tiny switch with the head of the screwdriver and the panel covering the side port closes."))
+				return
+
+	if (HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL))
+		if(puzzle_complete == TRUE)
+			to_chat(user, narrate_body("There does not seem to"))
+			return
+		if (puzzlebox_panel_open == FALSE || puzzle_complete == TRUE)
+			to_chat(user, narrate_body("There does not seem to be any place to apply the multitool."))
+			return
+		if (puzzlebox_panel_open == TRUE)
+			if (puzzlebox_panel_phrasepased == FALSE)
+				to_chat(user, narrate_body("The multitool beeps and works for a moment. After a few seconds, its screen comes alive and prints:"))
+				terminal_speak("UACM LD-COMPATIBLE MINI-OS", 3)
+				terminal_speak("REVISION: P-RC2", 3)
+				terminal_speak("MAINTENANCE INSTRUCTIONS DETECTED", 3)
+				terminal_speak("SENDING LD CALIBRATION PHRASE...", 15)
+				terminal_speak("DONE. HAVE A NICE DAY.", 1)
+				W.emoteas("The multitool beeps loudly.")
+				puzzlebox_panel_phrasepased = TRUE
+				return
+			if (puzzlebox_panel_phrasepased == TRUE)
+				to_chat(user, narrate_body("The multitool beeps and works for a moment. After a few seconds, its screen comes alive and prints:"))
+				terminal_speak("Error: Previous Maintenance instruction detected. Please consult terminal output. ")
+				W.emoteas("The multitool buzzes.")
+				return
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect
+
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect/attack_hand(mob/user as mob)
+	if (puzzle_complete == TRUE)
+		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		return
+	if (puzzlebox_lockout == TRUE)
+		terminal_speak("Error. Calibration sequence resetting. Standby.")
+		return
+	if (puzzlebox_global_status < 3 && puzzlebox_global_status > 4)
+		to_chat(src, narrate_body("The screen does not seem to respond to pressing any key."))
+		return
+	if (puzzlebox_panel_open == TRUE && puzzlebox_panel_phrasepased == FALSE)
+		to_chat(usr, narrate_body("The terminal displays an animation of a cable being plugged into its side and is unresponsive to your inputs."))
+		return
+	if (puzzlebox_global_status == 3 || puzzlebox_global_status == 4)
+		if (!puzzlebox_parser_mode) //Idiotproofing :P
+			puzzlebox_parser_mode = "HOME"
+		//HOME
+		if (puzzlebox_parser_mode == "HOME")
+			terminal_speak("DOCK 31 LIQUID DATA CHANNEL SYNC SIGNAL DIAGNOSTICS")
+			terminal_speak("Maintenance mode detected. Command prompt unlocked. Awaiting input.")
+			puzzlebox_parser_mode = "HOME_INPUT"
+			attack_hand(user)
+		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == TRUE)
+			terminal_speak("Repeating tester sequence:")
+			terminal_speak("IN_AZURE")
+			terminal_speak("abcdefghijklmnopqrstuvwxyz")
+			terminal_speak("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+			puzzlebox_panel_phrasepased = FALSE
+			return
+		if (puzzlebox_parser_mode == "HOME_INPUT" && puzzlebox_panel_phrasepased == FALSE)
+			terminal_speak("> _")
+			var/puzzlebox_parser_input = tgui_input_text(usr, "The terminal is in HOME mode and awaits your input. HELP, LIST and EXIT are universal commands.", "Terminal input", max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
+			if (!puzzlebox_parser_input) return
+			terminal_speak("> [puzzlebox_parser_input]")
+			if (puzzlebox_parser_input == "pom.sync global_override UACM-OVPST-D31-LDDIAG")
+				if (puzzlebox_panel_locked == TRUE)
+					terminal_speak("pom.sync: Maintenance mode instruction set found! Applying!", 40)
+					emoteas("beeps loudly and a side panel opens, revealing a small port covered by a metal cover.")
+					desc = "A cluster of three computers connected to each other. Blue liquid swirls and lights up inside of hand sized containers, looks like the light form a pattern of some kind. You can see a screen and a serial number printed right under it on the right side of the cluster. A panel on the side is open, revealing a small port covered by a metal cover. You are going to need a screwdriver or something similar to unseal the port."
+					desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is. An open side panel typically can be used to connect a multitool or something similar, as long as the port itself is unsealed and kept open by a screwdriver or similar tool."
+					puzzlebox_panel_locked = FALSE
+					return
+				if (puzzlebox_panel_locked == FALSE)
+					terminal_speak("Error: Corresponding maintenance instruction already deployed.")
+					terminal_speak("Exiting...")
+					return
+			if (puzzlebox_parser_input ==  "pom.calibrate UACM-OVPST-D31-LDDIAG")
+				terminal_speak("Deploying recalibration buffer.", 50)
+				terminal_speak("Error: No effect on error flag. Either the wrong terminal was recalibrated, or more than one terminal is faulty. Calibration buffer resetting, ETA until completion: 5 minutes.")
+				log_game("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
+				message_admins("[key_name(usr)] used the debug phrase on the wrong terminal and triggered a lockout. Point and laugh.")
+				for (var/obj/structure/eventterminal/puzzle02/ldmainframe_master/T in world)
+					INVOKE_ASYNC(T, PROC_REF(lockout))
+				return
+
+/obj/structure/eventterminal/puzzle02/ldmainframe_master/incorrect/attackby(obj/item/W as obj, mob/user as mob)
+	if (!(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER) || (HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL))))
+		to_chat(user, SPAN_WARNING("You have no idea how to combine these two together."))
+		return
+	if (HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
+		if(puzzle_complete == TRUE)
+			to_chat(user, narrate_body("You see no way of opening anything on the terminal, everything seems locked from the inside."))
+			return
+		if(puzzlebox_panel_locked == TRUE)
+			to_chat(user, narrate_body("You see no way of opening anything on the terminal, everything seems locked from the inside."))
+			return
+		if(puzzle_complete == FALSE)
+			if (puzzlebox_panel_open == FALSE)
+				puzzlebox_panel_open = TRUE
+				to_chat(user, narrate_body("You push a tiny switch with the head of the screwdriver and the panel covering the side port opens. You can now connect a multitool."))
+				return
+			if (puzzlebox_panel_open == TRUE)
+				puzzlebox_panel_open = FALSE
+				to_chat(user, narrate_body("You push a tiny switch with the head of the screwdriver and the panel covering the side port closes."))
+				return
+
+	if (HAS_TRAIT(W, TRAIT_TOOL_MULTITOOL))
+		if(puzzle_complete == TRUE)
+			to_chat(user, narrate_body("There does not seem to"))
+			return
+		if (puzzlebox_panel_open == FALSE || puzzle_complete == TRUE)
+			to_chat(user, narrate_body("There does not seem to be any place to apply the multitool."))
+			return
+		if (puzzlebox_panel_open == TRUE)
+			if (puzzlebox_panel_phrasepased == FALSE)
+				to_chat(user, narrate_body("The multitool beeps and works for a moment. After a few seconds, its screen comes alive and prints:"))
+				terminal_speak("UACM LD-COMPATIBLE MINI-OS", 3)
+				terminal_speak("REVISION: P-RC2", 3)
+				terminal_speak("MAINTENANCE INSTRUCTIONS DETECTED", 3)
+				terminal_speak("SENDING LD CALIBRATION PHRASE...", 15)
+				terminal_speak("DONE. HAVE A NICE DAY.", 1)
+				W.emoteas("The multitool beeps loudly.")
+				puzzlebox_panel_phrasepased = TRUE
+				return
+			if (puzzlebox_panel_phrasepased == TRUE)
+				to_chat(user, narrate_body("The multitool beeps and works for a moment. After a few seconds, its screen comes alive and prints:"))
+				terminal_speak("Error: Previous Maintenance instruction detected. Please consult terminal output. ")
+				W.emoteas("The multitool buzzes.")
+				return
