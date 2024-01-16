@@ -477,6 +477,17 @@
 	S["nanotrasen_relation"] >> nanotrasen_relation
 	//S["skin_style"] >> skin_style
 
+	//chargen
+	S["chargen_firsttime"] >> chargen_firsttime
+	S["chargen_done"] >> chargen_done
+	S["chargen_origin"] >> chargen_origin
+	S["chargen_birthright"] >> chargen_birthright
+	S["chargen_foundation"] >> chargen_foundation
+	S["chargen_wound"] >> chargen_wound
+	S["chargen_duty"] >> chargen_duty
+	S["chargen_service"] >> chargen_service
+	S["chargen_destiny"] >> chargen_destiny
+
 	S["uplinklocation"] >> uplinklocation
 	S["exploit_record"] >> exploit_record
 
@@ -551,6 +562,17 @@
 	if(!faction)  faction =  "None"
 	if(!religion) religion = RELIGION_AGNOSTICISM
 	if(!preferred_squad) preferred_squad = "None"
+
+// Chargen
+	if(!chargen_firsttime) chargen_firsttime = TRUE
+	if(!chargen_done) chargen_done = FALSE
+	if(!chargen_origin) chargen_origin = "None"
+	if(!chargen_birthright) chargen_birthright = "None"
+	if(!chargen_foundation) chargen_foundation = "None"
+	if(!chargen_wound) chargen_wound = "None"
+	if(!chargen_duty) chargen_duty = "None"
+	if(!chargen_service) chargen_service = "None"
+	if(!chargen_destiny) chargen_destiny = "None"
 
 	return 1
 
@@ -629,7 +651,21 @@
 	S["uplinklocation"] << uplinklocation
 	S["exploit_record"] << exploit_record
 
+
 	S["completed_tutorials"] << tutorial_list_to_savestring()
+
+	//CharGen
+
+	S["chargen_firsttime"] << chargen_firsttime
+	S["chargen_done"] << chargen_done
+	S["chargen_origin"] << chargen_origin
+	S["chargen_birthright"] << chargen_birthright
+	S["chargen_foundation"] << chargen_foundation
+	S["chargen_wound"] << chargen_wound
+	S["chargen_duty"] << chargen_duty
+	S["chargen_service"] << chargen_service
+	S["chargen_destiny"] << chargen_destiny
+
 
 	return 1
 

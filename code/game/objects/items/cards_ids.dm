@@ -389,6 +389,7 @@
 	item_state = "dogtag"
 	pinned_on_uniform = FALSE
 	var/dogtag_taken = FALSE
+	var/list/rfid //UACM Rfid chips
 
 
 /obj/item/card/id/dogtag/get_examine_text(mob/user)
@@ -396,7 +397,30 @@
 	if(ishuman(user))
 		. += SPAN_NOTICE("It reads \"[registered_name] - [assignment] - [blood_type]\"")
 
+/obj/item/card/id/dogtag/attackby(obj/item/W as obj, mob/user as mob)
 
+	if ( !(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER) || (istype(W, /obj/item/device/encryptionkey)) ))
+		to_chat(user, SPAN_WARNING("You have no idea how to combine these two together."))
+
+	if(HAS_TRAIT(W, TRAIT_TOOL_SCREWDRIVER))
+		var/turf/T = get_turf(user)
+		if(!T)
+			to_chat(user, "You cannot do it here.")
+			return
+		var/removed_rfid = FALSE
+		for (var/obj/item/device/uacmrfid/key in rfid)
+			key.forceMove(T)
+			rfid -= key
+			removed_rfid = TRUE
+		if(removed_rfid)
+			to_chat(user, SPAN_NOTICE("You wedge the RFID chip from the slot on the back of the dogtags."))
+
+	if(istype(W, /obj/item/device/uacmrfid))
+		if(user.drop_held_item())
+			W.forceMove(src)
+			rfid += W
+			to_chat(user, SPAN_NOTICE("The RFID slots into the dog tag with a click."))
+	return
 /obj/item/dogtag
 	name = "information dog tag"
 	desc = "A fallen marine's information dog tag."

@@ -113,3 +113,88 @@
 /obj/effect/decal/siding/wood_siding
 	name = "wood siding"
 	icon_state = "wood_siding1"
+
+//Sector Patrol
+
+/obj/effect/decal/cargo_stripes
+	name = "cargo zone markers"
+	gender = PLURAL
+	icon = 'icons/effects/cargo_stripes.dmi'
+	icon_state = "center"
+	layer = WEED_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+//Label base decal
+/obj/effect/decal/info_tag
+	name = "orientation label"
+	desc = "Serial number and undewriting description should go here."
+	desc_lore = "Extra info about what lies at either end goes here"
+	gender = NEUTER
+	layer = TURF_LAYER
+	icon = 'icons/effects/stripe_label.dmi'
+	icon_state = "default"
+
+/obj/effect/decal/info_tag/examine(mob/user)
+	var/list/examine_strings = get_examine_text(user)
+	if(!examine_strings)
+		log_debug("Attempted to create an examine block with no strings! Atom : [src], user : [user]")
+		return
+	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, examine_strings)
+	to_chat(user, narrate_serial_block(examine_strings.Join("</div>")))
+
+/obj/effect/decal/info_tag/get_examine_text(mob/user)
+	. = list()
+	if(desc)
+		. += narrate_serial(desc)
+	if(desc_lore)
+		. += narrate_body("<a href='byond://?src=\ref[src];desc_lore=1'>Click here</a> for more information about this sign.")
+//Outer Veil PST
+//Dock 31
+
+/obj/effect/decal/info_tag/pst/d31
+	name = "D-31 orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - D-31 - Dock 31 Main Airlock"
+	desc_lore = "Main Airlocks are effectively entrances and exits from space stations and ships, used by smaller ships that latch onto the airlocks, typically using extending pathways called 'umbilicals'."
+	icon_state = "pst_d-31"
+
+/obj/effect/decal/info_tag/pst/sec
+	name = "SEC orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - SEC - "
+	desc_lore = "The label SEC indicates doors and areas that require an elevated security clearance, typically restricted for MPs and CMISRS agents."
+	icon_state = "pst_sec"
+
+/obj/effect/decal/info_tag/pst/scn
+	name = "SCN orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - SCN - "
+	desc_lore = "The label SCN indicates doors and areas where computer systems actively scan its inhabitants and contents. Areas like this need to be clearly marked due to privacy and personal data handling laws passed back in the UA in the aftermath of the Colony Wars."
+	icon_state = "pst_scn"
+
+/obj/effect/decal/info_tag/pst/int
+	name = "-INT- orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - -INT- -"
+	desc_lore = "The label -INT- indicates intersections. Labels like this are typically placed on the 'primary' pathway but have information regarding all pathways at an intersection and list all pathways at an intersection starting from the left-handed turn (if one exists) and moving in a clockwise fashion until all turns are covered."
+	icon_state = "pst_int"
+
+/obj/effect/decal/info_tag/pst/eng
+	name = "ENG orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - ENG -"
+	desc_lore = "The label ENG indicates doors and areas related to controlling and maintaining the mechanical and computer elements of a colony, ship or station. These areas typically require an elevated engineering clearance."
+	icon_state = "pst_eng"
+
+/obj/effect/decal/info_tag/pst/cpu
+	name = "CPU orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - CPU -"
+	desc_lore = "The label CPU indicates doors and areas related to the operation of ship AIs, which typically are also directly tied to the ships Twilight FTL drives and Liquid Data FTL communication systems. These areas are typically sealed to all but the highest-ranking command personnel on board a ship or station but may be sometimes unlocked by the AIs themselves if maintenance is required."
+	icon_state = "pst_cpu"
+
+/obj/effect/decal/info_tag/pst/ele
+	name = "EL-E orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - EL-E -"
+	desc_lore = "The label EL-E indicates the Central Elevator shaft on board the PST, technically known as the 'Primary Access Elevator - E'"
+	icon_state = "pst_el.e"
+
+/obj/effect/decal/info_tag/pst/obs
+	name = "OBS orientation label"
+	desc = "UACM Outer Veil Primary Supply Terminal - OBS -"
+	desc_lore = "The label OBS typically indicates an observation area of some sort, used to look at regular operations of another area without disturbing the actual process within."
+	icon_state = "pst_obs"

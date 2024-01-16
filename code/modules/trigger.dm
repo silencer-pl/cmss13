@@ -5,7 +5,7 @@
 /obj/effect/step_trigger/message/memorial
 	message = "Please stand silently for a moment of reflection and respect. "
 	once = 0
-	
+
 /obj/effect/step_trigger/message/Trigger(mob/M)
 	if(!istype(M) || !M)
 		return
@@ -51,3 +51,17 @@
 	uses--
 	if(uses == 0)
 		qdel(src)
+
+/obj/effect/step_trigger/message/seeonce
+	var/trigger_id = ""
+	once = null
+
+/obj/effect/step_trigger/message/seeonce/Trigger(mob/M)
+	if(!istype(M) || !M)
+		return
+	if(M.client)
+		if(!("[trigger_id]" in M.saw_narrations))
+			to_chat(M, narrate_body("[message]"))
+			M.saw_narrations.Add("[trigger_id]")
+			if(once)
+				qdel(src)

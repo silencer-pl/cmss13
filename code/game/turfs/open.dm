@@ -959,3 +959,27 @@
 	name = "floor"
 	icon_state = "dark_sterile"
 	supports_surgery = TRUE
+
+// Sector Patrol
+// Underlay
+
+/turf/open/underlay
+	name = "underlay graphic"
+	icon = 'icons/turf/floors/underlay.dmi'
+	icon_state = "test"
+	mouse_opacity = FALSE
+	can_bloody = FALSE
+	supports_surgery = FALSE
+	layer = UNDER_TURF_LAYER
+/turf/open/underlay/clear
+	icon = 'icons/turf/floors/glass.dmi'
+	icon_state = "glass-555"
+
+// Glass Floors
+
+/turf/open/glass
+	name = "reinforced glass floor"
+	icon = 'icons/turf/floors/glass.dmi'
+	icon_state = "glass-0"
+	baseturfs = /turf/open/glass
+	layer = ABOVE_TURF_LAYER

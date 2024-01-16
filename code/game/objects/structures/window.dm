@@ -987,3 +987,16 @@
 	icon_state = "paddedsec_rwindow0"
 	basestate = "paddedsec_rwindow"
 	window_frame = /obj/structure/window_frame/corsat/security
+
+/obj/structure/window/framed/almayer/hull/hanako
+	name = "reinforced glass window"
+	desc = "A reinforced, tempred sheet of glass separating you from the void outside. If you see this break, run like hell."
+	desc_lore = "While not used at all on spaceships and other 'moving' parts of space travel, reinforced glass has seen some use on larger space stations and other static structures, where aesthetics are valued over practicality and where spare resources to fulfil such notions are plentiful. The results are probably some of the prettiest vistas humanity gets to see during their time out in the stars."
+	layer = WINDOW_LAYER
+	icon = 'icons/turf/floors/glass.dmi'
+	icon_state = "glass-o0"
+	not_damageable = TRUE
+	not_deconstructable = TRUE
+	unslashable = TRUE
+	unacidable = TRUE
+	health = 1000000 //Failsafe, shouldn't matter/turf/closed/wall/outer_glass
