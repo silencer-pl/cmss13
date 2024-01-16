@@ -96,7 +96,10 @@
 	starting = null
 	permutated = null
 	path = null
+	vis_source = null
+	process_start_turf = null
 	weapon_cause_data = null
+	bullet_traits = null
 	firer = null
 	QDEL_NULL(bound_beam)
 	SSprojectiles.stop_projectile(src)
@@ -214,15 +217,15 @@
 		ammo.fire_bonus_projectiles(src)
 
 	path = getline2(starting, target_turf)
-	p_x += Clamp((rand()-0.5)*scatter*3, -8, 8)
-	p_y += Clamp((rand()-0.5)*scatter*3, -8, 8)
+	p_x += clamp((rand()-0.5)*scatter*3, -8, 8)
+	p_y += clamp((rand()-0.5)*scatter*3, -8, 8)
 	update_angle(starting, target_turf)
 
 	src.speed = speed
 	// Randomize speed by a small factor to help bullet animations look okay
 	// Otherwise you get a   s   t   r   e   a   m of warping bullets in same positions
 	src.speed *= (1 + (rand()-0.5) * 0.30) // 15.0% variance either way
-	src.speed = Clamp(src.speed, 0.1, 100) // Safety to avoid loop hazards
+	src.speed = clamp(src.speed, 0.1, 100) // Safety to avoid loop hazards
 
 	// Also give it some headstart, flying it now ahead of tick
 	var/delta_time = world.tick_lag * rand() * 0.4
@@ -234,8 +237,8 @@
 	SSprojectiles.queue_projectile(src)
 
 /obj/projectile/proc/update_angle(turf/source_turf, turf/aim_turf)
-	p_x = Clamp(p_x, -16, 16)
-	p_y = Clamp(p_y, -16, 16)
+	p_x = clamp(p_x, -16, 16)
+	p_y = clamp(p_y, -16, 16)
 
 	if(process_start_turf != vis_source)
 		vis_travelled = 0
@@ -243,20 +246,9 @@
 	vis_source_pixel_x = process_start_pixel_x
 	vis_source_pixel_y = process_start_pixel_y
 
-	angle = 0 // Stolen from Get_Angle() basically
 	var/dx = p_x + aim_turf.x * 32 - source_turf.x * 32 // todo account for firer offsets
 	var/dy = p_y + aim_turf.y * 32 - source_turf.y * 32
-	if(!dy)
-		if(dx >= 0)
-			angle = 90
-		else
-			angle = 280
-	else
-		angle = arctan(dx/dy)
-		if(dy < 0)
-			angle += 180
-		else if(dx < 0)
-			angle += 360
+	angle = delta_to_angle(dx, dy)
 
 /obj/projectile/process(delta_time)
 	. = PROC_RETURN_SLEEP
@@ -282,9 +274,6 @@
 
 	return FALSE
 
-//#define LERP(a, b, t) (a + (b - a) * CLAMP01(t))
-#define LERP_UNCLAMPED(a, b, t) (a + (b - a) * t)
-
 /// Animates the projectile across the process'ed flight.
 /obj/projectile/proc/animate_flight(turf/start_turf, start_pixel_x, start_pixel_y, delta_time)
 	//Get pixelspace coordinates of start and end of visual path
@@ -298,7 +287,7 @@
 
 	//Change the bullet angle to its visual path
 
-	var/vis_angle = get_pixel_angle(x = pixel_x_target - pixel_x_source, y = pixel_y_target - pixel_y_source) //naming vars because the proc takes y then x and that's WEIRD
+	var/vis_angle = delta_to_angle(pixel_x_target - pixel_x_source, pixel_y_target - pixel_y_source)
 	var/matrix/rotate = matrix()
 	rotate.Turn(vis_angle)
 	apply_transform(rotate)
@@ -309,8 +298,8 @@
 	var/vis_current = vis_travelled + speed * (time_carry * 0.1) //speed * (time_carry * 0.1) for remainder time movement, visually "catching up" to where it should be
 	var/vis_interpolant = vis_current / vis_length
 
-	var/pixel_x_lerped = LERP_UNCLAMPED(pixel_x_source, pixel_x_target, vis_interpolant)
-	var/pixel_y_lerped = LERP_UNCLAMPED(pixel_y_source, pixel_y_target, vis_interpolant)
+	var/pixel_x_lerped = LERP(pixel_x_source, pixel_x_target, vis_interpolant)
+	var/pixel_y_lerped = LERP(pixel_y_source, pixel_y_target, vis_interpolant)
 
 	//Convert pixelspace to pixel offset relative to current loc
 
@@ -327,7 +316,7 @@
 
 	var/dist_current = distance_travelled + speed * (time_carry * 0.1) //speed * (time_carry * 0.1) for remainder time fade-in
 	var/alpha_interpolant = dist_current - 1 //-1 so it transitions from transparent to opaque between dist 1-2
-	var/alpha_new = LERP_UNCLAMPED(0, 255, alpha_interpolant)
+	var/alpha_new = LERP(0, 255, alpha_interpolant)
 
 	//Animate the visuals from starting position to new position
 
@@ -339,9 +328,6 @@
 
 	var/anim_time = delta_time * 0.1
 	animate(src, pixel_x = pixel_x_rel_new, pixel_y = pixel_y_rel_new, alpha = alpha_new, time = anim_time, flags = ANIMATION_END_NOW)
-
-//#undef LERP
-#undef LERP_UNCLAMPED
 
 /// Flies the projectile forward one single turf
 /obj/projectile/proc/fly()
@@ -1216,8 +1202,8 @@
 
 	if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
 	var/image/I = image('icons/obj/items/weapons/projectiles.dmi', src, P.ammo.ping, 10)
-	var/offset_x = Clamp(P.pixel_x + pixel_x_offset, -10, 10)
-	var/offset_y = Clamp(P.pixel_y + pixel_y_offset, -10, 10)
+	var/offset_x = clamp(P.pixel_x + pixel_x_offset, -10, 10)
+	var/offset_y = clamp(P.pixel_y + pixel_y_offset, -10, 10)
 	I.pixel_x += round(rand(-4,4) + offset_x, 1)
 	I.pixel_y += round(rand(-4,4) + offset_y, 1)
 
@@ -1235,8 +1221,9 @@
 		return
 	if(COOLDOWN_FINISHED(src, shot_cooldown))
 		visible_message(SPAN_DANGER("[src] is hit by the [P.name] in the [parse_zone(P.def_zone)]!"), \
-			SPAN_HIGHDANGER("You are hit by the [P.name] in the [parse_zone(P.def_zone)]!"), null, 4, CHAT_TYPE_TAKING_HIT)
+			SPAN_HIGHDANGER("[isxeno(src) ? "We" : "You"] are hit by the [P.name] in the [parse_zone(P.def_zone)]!"), null, 4, CHAT_TYPE_TAKING_HIT)
 		COOLDOWN_START(src, shot_cooldown, 1 SECONDS)
+
 
 	last_damage_data = P.weapon_cause_data
 	if(P.firer && ismob(P.firer))

@@ -9,7 +9,6 @@
 	max_health = XENO_HEALTH_TIER_9
 	plasma_gain = XENO_PLASMA_GAIN_TIER_6
 	plasma_max = XENO_PLASMA_TIER_5
-	crystal_max = XENO_CRYSTAL_LOW
 	xeno_explosion_resistance = XENO_EXPLOSIVE_ARMOR_TIER_2
 	armor_deflection = XENO_NO_ARMOR
 	evasion = XENO_EVASION_NONE
@@ -79,6 +78,10 @@
 	mutation_type = CARRIER_NORMAL
 
 	icon_xenonid = 'icons/mob/xenonids/carrier.dmi'
+
+	weed_food_icon = 'icons/mob/xenos/weeds_64x64.dmi'
+	weed_food_states = list("Carrier_1","Carrier_2","Carrier_3")
+	weed_food_states_flipped = list("Carrier_1","Carrier_2","Carrier_3")
 
 	var/list/hugger_image_index = list()
 	var/mutable_appearance/hugger_overlays_icon
