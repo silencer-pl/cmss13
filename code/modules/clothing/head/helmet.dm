@@ -1432,3 +1432,22 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_bomb = CLOTHING_ARMOR_MEDIUMHIGH
 	armor_bio = CLOTHING_ARMOR_MEDIUM
 	armor_internaldamage = CLOTHING_ARMOR_LOW
+
+//lasalle
+
+/obj/item/clothing/head/helmet/marine/veteran/lasalle
+
+	name = "Lasalle Bio-National helmet"
+	desc = "A helmet used by Lasalle Bio-National."
+	icon_state = "lasalle_helmet"
+	item_state = "lasalle_helmet"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'
+
+/obj/item/clothing/head/helmet/marine/veteran/lasalle/leader
+
+	name = "Lasalle Bio-National TL helmet"
+	desc = "A helmet used by Lasalle Bio-National Team Leaders."
+	icon_state = "lasalle_leader_helmet"
+	item_state = "lasalle_leader_helmet"

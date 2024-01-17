@@ -1003,3 +1003,17 @@
 	desc = "The officers uniform of the royal marines commando. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment"
 	icon_state = "rmc_uniform_lt"
 	worn_state = "rmc_uniform_lt"
+
+//Lasalle
+
+/obj/item/clothing/under/marine/lasalle
+
+	name = "Lasalle Bio-National uniform"
+	desc = "The field uniform of Lasalle Bio-National. They have shards of light Kevlar to help protect against stabbing weapons and bullets. Onpar with similar USCM equipment"
+	icon_state = "lasalle_uniform"
+	item_state = "lasalle_uniform"
+	worn_state = "lasalle_uniform"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'
+	flags_jumpsuit = FALSE

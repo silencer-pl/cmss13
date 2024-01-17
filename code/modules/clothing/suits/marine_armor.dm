@@ -1842,3 +1842,15 @@
 
 /atom/movable/marine_light
 	light_system = DIRECTIONAL_LIGHT
+
+//lasalle
+
+/obj/item/clothing/suit/storage/marine/veteran/pmc/lasalle
+
+	name = "Lasalle Bio-National armor"
+	desc = "A set of PMC armor used by Lasalle Bio-National."
+	icon_state = "lasalle_armor"
+	item_state = "lasalle_armor"
+	flags_atom = NO_NAME_OVERRIDE|NO_SNOW_TYPE
+	contained_sprite = TRUE
+	icon = 'icons/mob/humans/onmob/contained/lasalleBioMercs.dmi'
