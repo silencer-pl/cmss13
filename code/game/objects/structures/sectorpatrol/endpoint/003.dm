@@ -146,6 +146,19 @@
 				if(T.puzzlebox_saw_lesson2 == FALSE) T.puzzlebox_saw_lesson2 = TRUE
 				return
 
+/obj/structure/eventterminal/puzzle03/historycrt/proc/lesson3()
+	for (var/obj/structure/eventterminal/puzzle03/historyterm/T in world)
+		for (var/obj/structure/machinery/light/marker/admin/A in world )
+			while (A.light_id == "theathervoice")
+				T.puzzlebox_playing = TRUE
+				emoteas("turns on with an audible pop.")
+				icon_state = "blank"
+				update_icon()
+				sleep(5)
+				A.name = "Voice of RDML. Boulette"
+				A.langchat_color = "#25664d"
+				A.talkas("This part of orientation means to remind you all how we got here through our rocky history.", 30)
+
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
 	if (puzzlebox_complete == TRUE)
 		to_chat(usr, narrate_body("The terminal displays:"))
