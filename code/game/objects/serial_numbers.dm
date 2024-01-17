@@ -13,17 +13,21 @@
 
 //Going to take this chance to sneak in emoting and speaking procs :P
 
-/obj/item/proc/speakas(str)
+/obj/item/proc/speakas(str, delay)
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
 	src.visible_message("<b>[src]</b> says, \"[str]\"")
+	var/talkdealy = delay
+	if (talkdealy) sleep(talkdealy)
 
-/obj/item/proc/emoteas(str)
+/obj/item/proc/emoteas(str, delay)
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))
 	src.visible_message("<b>[src]</b> [str]")
+	var/talkdealy = delay
+	if (talkdealy) sleep(talkdealy)
 
 /obj/structure
 
@@ -40,14 +44,20 @@
 
 //As above
 
-/obj/structure/proc/talkas(str)
+/obj/structure/proc/talkas(str, delay)
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
 	src.visible_message("<b>[src]</b> says, \"[str]\"")
+	var/talkdealy = delay
+	if (talkdealy) sleep(talkdealy)
+	return
 
-/obj/structure/proc/emoteas(str)
+/obj/structure/proc/emoteas(str, delay)
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))
 	src.visible_message("<b>[src]</b> [str]")
+	var/talkdealy = delay
+	if (talkdealy) sleep(talkdealy)
+	return
