@@ -912,6 +912,14 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	specialty = "M10 pattern military police"
 	built_in_visors = list(new /obj/item/device/helmet_visor/security)
 
+/obj/item/clothing/head/helmet/marine/MP
+	desc = "This MP helmet is using the classic crimson and black color scheme. Reminds you of the good old or good bad times, depending on your assignment."
+	icon = 'icons/mob/humans/onmob/contained/mpblack.dmi'
+	icon_state = "helmet_mp"
+	item_state = "helmet_mp"
+	contained_sprite = TRUE
+	flags_atom = NO_SNOW_TYPE
+
 /obj/item/clothing/head/helmet/marine/MP/WO
 	name = "\improper M3 pattern chief MP helmet"
 	desc = "A well-crafted variant of the M10 Helmet typically distributed to Chief MPs. Useful for letting your men know who is in charge."
