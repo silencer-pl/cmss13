@@ -69,6 +69,8 @@
 				A.talkas("I can assure you that I would not agree to any of this, or their presence, if I didn't think they were genuinely trying to make amends.", 35)
 				A.talkas("I assure you; we won't be long. Again, welcome back to the UACM. Welcome home, Marines.", 30)
 				emoteas("flickers and shuts down.")
+				icon_state = "off"
+				update_icon()
 				T.puzzlebox_playing = FALSE
 				if(T.puzzlebox_saw_lesson1 == FALSE) T.puzzlebox_saw_lesson1 = TRUE
 				return
@@ -96,11 +98,53 @@
 				A.talkas("Today, we know that this victory was likely more a matter of overwhelming numbers than the supposed tactical and training superiority of the USCMC, but for better or worse...", 40)
 				A.talkas("...The label of fierce, scrappy warriors that were protectors of the common colonist stuck with the Marines for decades. As did the peace that they carved out in the Veil.", 40)
 				A.langchat_color = COLOR_WHITE
+				icon_state = "blank"
+				update_icon()
 				A.name = "RDML. Boulette"
 				A.emoteas("pauses for a few seconds and sighs audibly.", 20)
 				A.langchat_color = "#25664d"
 				A.name = "Voice of RDML. Boulette"
+				icon_state = "text"
+				update_icon()
 				A.talkas("It was at this time that other formations were called to life, the UAAC seeking to replicate its success. Marine leadership would claim these formations denied the USCMC resources they needed to keep the peace.", 45)
+				A.talkas("But the truth was, from the get-go the Marines were built to fail. The formation grew exponentially during the sweep, with no infrastructure ready for existing as a peacekeeping force.", 40)
+				A.talkas("And this is what it became. In addition, the corporate elements within the Marines as well as poor screening of hires led to a drastic drop in morale and discipline.", 40)
+				A.talkas("This could not have happened at a worse time. The Veil would soon see a massive colonization effort, following by an exponential increase of the illegal and hostile activity it brings. The Second Galactic Gold Rush had begun.", 50)
+				A.talkas("By 2170 the Marines were a shadow of their former self, although still functional as a formation and doing well enough by momentum alone, it was somewhere around this time that some High Command officers would come to believe that drastic action was needed.", 50)
+				A.talkas("I'm not going to bother regaling how that ended. Some of you may have been Marines by then, so you all know how it looked from the inside.", 35)
+				A.langchat_color = COLOR_WHITE
+				icon_state = "blank"
+				update_icon()
+				A.name = "RDML. Boulette"
+				A.emoteas("pauses and remains silent for a while. .", 80)
+				A.langchat_color = "#25664d"
+				A.name = "Voice of RDML. Boulette"
+				icon_state = "text"
+				update_icon()
+				A.talkas("Regardless of what happened with the USCMC and who was responsible, the UACM does not want to repeat its mistakes.")
+				A.talkas("In what is relevant to us and the station, logistics specialists, such as myself, have been called to make sure that the joint armed force does not suffer from such catastrophic mismanagement and theft of resources as the USCMC did.", 50)
+				A.talkas("This seemed like the perfect chance to implement, or at least try to implement, something that is my life's work. A centralized, standardized logistics and delivery system.", 40)
+				A.talkas("It was only after I had started that I found out, through Commander Reed-Wilo, that my theories were already liked by someone high up. Unfortunately it was the person organizing logistics for Deep Void.", 45)
+				A.talkas("This station is one of the cornerstones of this system, but instead of people it relies mostly on automated drones of various sizes and purposes. The part of orientation about the PST will go into more detail about its origins.", 50)
+				A.talkas("However, in a broad sense, this is the purpose of the Second Logistics. We are here to implement, at first in a local capacity, across the Neroid Sector, a broad network of logistics, communications, and early warning systems.", 50)
+				A.talkas("Unfortunately, as I mentioned at the start, I do not get the feeling we are expected to succeed. Not only because this station's core functions depend on technology that does not exist. Believe it or not, UAAC-TIS claims they have that one covered.", 50)
+				A.talkas("I had made it clear from the start that I intended to reach out to USCMC personnel that were cleared of any involvement with the traitors, and yet still were sent home and blacklisted. Personnel like you.", 45)
+				A.talkas("Not only will this place serve as a starting point for your second chance in the Marines and a place among the stars, where I feel like most of you belong.", 35)
+				emoteas("switches to the UACM logo.")
+				icon_state = "uacm"
+				update_icon()
+				A.talkas("Here, we will also recover old USCMC vessels, which like you have been left to rot or worse and either adapt them to service in the UACM or claim them as our own.", 35)
+				A.talkas("Those that we keep, we will keep as prototype units, each fitted with whatever technology UACM wants us to test. These ships will be ours, or rather yours to use as their Test Crews, which is your formal assignment on the PST.", 50)
+				A.talkas("There are other duties related to the maintenance of the PST and its core systems, however as those are still being brought on-line, these will be introduced to you in time.", 40)
+				A.talkas("For now, your focus should be on getting as comfortable as you can in your new dorms. You will likely be called to help as systems across the station are completed and tested.", 40)
+				A.talkas("You will also receive briefings on SOP and Maritime Law as our CMISRS office establishes itself. I’m sure some of you have already met LT. Foster.", 35)
+				A.talkas("This concludes this presentation. Thank you for your attention.", 25)
+				emoteas("flickers and shuts down.")
+				icon_state = "off"
+				update_icon()
+				T.puzzlebox_playing = FALSE
+				if(T.puzzlebox_saw_lesson2 == FALSE) T.puzzlebox_saw_lesson2 = TRUE
+				return
 
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
 	if (puzzlebox_complete == TRUE)
