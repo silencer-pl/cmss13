@@ -434,9 +434,9 @@ em {
   font-weight: bold;
 }
 
-.minorannounce {
+.bigannounce {
   font-weight: bold;
-  font-size: 185%;
+  font-size: 115%;
 }
 
 .greenannounce {
@@ -1101,7 +1101,7 @@ em {
 
 .xenoboldnotice {
   color: #51a16c;
-  font-style: italic;
+  font-weight: bold;
 }
 
 .xenowarning {
@@ -1446,7 +1446,7 @@ em {
   font-style: italic;
   border-bottom: 1px dashed #fff;
 }
-
+//Sector Patrol
 //Chargen
 .chargen_header {
   font-size: 140%;
@@ -1461,18 +1461,52 @@ em {
   text-align: justify;
   padding: 0em 1em;
 }
-
-
+//narration
 .narrate_head {
-  font-size: 140%;
+  font-size: 125%;
   color: #ffccff;
   text-align: center;
   padding: 0em 1em;
 }
 
 .narrate_body {
-  font-size: 110%;
+  font-size: 100%;
   color: #ff99ff;
   text-align: justify;
   padding: 0em 1em;
+}
+//console green narration
+.narrate_console {
+  font-family: 'Courier New', cursive, sans-serif;
+  color: #1bdd4b;
+  text-align: left;
+  padding: 0em 1em;
+}
+
+//serial numbers for Sector Patrol
+.narrate_serial {
+  font-family: 'Lucida Grande', monospace;
+  color: #d4d6d6;
+  text-align: center;
+  padding: 0em 1em;
+}
+
+.narrate_serial_block {
+  background: #1b1c1e;
+  border: 1px solid #a4bad6;
+  margin: 0.5em 15%;
+  padding: 0.5em 0.75em;
+}
+
+.narrate_manifest {
+  font-family: 'Lucida Grande', monospace;
+  color: #d4d6d6;
+  text-align: left;
+}
+
+.narrate_manifest_block {
+  background: #1b1c1e;
+  border: 1px solid #a4bad6;
+  margin: 0.5em 55% 0.5em 5%;
+  padding: 0.5em;
 }

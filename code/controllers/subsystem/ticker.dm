@@ -46,6 +46,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/totalPlayers = 0 //used for pregame stats on statpanel
 	var/totalPlayersReady = 0 //used for pregame stats on statpanel
+	var/tutorial_disabled = FALSE //zonenote
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
@@ -332,7 +333,7 @@ SUBSYSTEM_DEF(ticker)
 	if(mode)
 		GLOB.master_mode = SSmapping.configs[GROUND_MAP].force_mode ? SSmapping.configs[GROUND_MAP].force_mode : mode
 	else
-		GLOB.master_mode = "Sector Patrol - Intermission"
+		GLOB.master_mode = "Sector Patrol"
 	log_game("Saved mode is '[GLOB.master_mode]'")
 
 
@@ -469,7 +470,6 @@ SUBSYSTEM_DEF(ticker)
 	SIGNAL_HANDLER
 
 	winset(C, null, "mainwindow.icon=[SSticker.mode.taskbar_icon]")
-
 
 /datum/controller/subsystem/ticker/proc/hijack_ocurred()
 	if(mode)

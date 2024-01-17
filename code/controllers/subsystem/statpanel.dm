@@ -24,13 +24,15 @@ SUBSYSTEM_DEF(statpanels)
 	if (!resumed)
 		num_fires++
 		global_data = list(
-			"Sector Patrol - Intermission ALPHA",
-			"UACM Outer Void Primary Supply Terminal, Neroid Sector. ",
+			"Sector Patrol ALPHA",
+			"UACM Outer Void Primary Supply Terminal, Neroid Sector",
 			"August 21st, 2185",
 			"---------",
 //   "Round Time: [ROUND_TIME]",
-			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
-			"Round Time: [duration2text()]",
+//			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
+//			"Round Time: [duration2text()]",
+			"Chapter Zero",
+			"Interval 001 - 'Arrivals'"
 		)
 
 		src.currentrun = GLOB.clients.Copy()

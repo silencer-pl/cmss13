@@ -491,6 +491,10 @@
 	S["uplinklocation"] >> uplinklocation
 	S["exploit_record"] >> exploit_record
 
+	var/tutorial_string = ""
+	S["completed_tutorials"] >> tutorial_string
+	tutorial_savestring_to_list(tutorial_string)
+
 	//Sanitize
 	metadata = sanitize_text(metadata, initial(metadata))
 	real_name = reject_bad_name(real_name)
@@ -647,6 +651,9 @@
 	S["uplinklocation"] << uplinklocation
 	S["exploit_record"] << exploit_record
 
+
+	S["completed_tutorials"] << tutorial_list_to_savestring()
+
 	//CharGen
 
 	S["chargen_firsttime"] << chargen_firsttime
@@ -658,6 +665,7 @@
 	S["chargen_duty"] << chargen_duty
 	S["chargen_service"] << chargen_service
 	S["chargen_destiny"] << chargen_destiny
+
 
 	return 1
 

@@ -58,3 +58,12 @@
 	else
 		to_chat(user, SPAN_WARNING("ERROR: Could not locate local APC."))
 		user.balloon_alert(user, "could not locate!")
+
+//Sector Patrol
+
+/obj/item/device/multitool/uacm
+	name = "UACM prototype multitool"
+	desc = "A small handheld electronic device with a clear, green colored text output screen, two small keypads and several ports, some with extendable cables on the back. The UACM logo and a serial number is engraved into the bottom right of the front plate."
+	desc_lore = "These devices can be plugged into any computer system on board spacefaring vessels and used to access basic diagnostic readouts and measurement functions. This is an advanced model that is capable of not only reading signals, but also transmitting overrides, performing software upgrades, and otherwise tweaking some functions of the devices it is linked to. There are illegal software modifications that allow other devices have similar functionality, but this device seems to have been designed with UACM systems in mind and seems to be a prototype specific to the PST."
+	icon_state = "multitool_uacm"
+	item_serial_distance = SERIAL_ITEM_SIZE_CLOSE

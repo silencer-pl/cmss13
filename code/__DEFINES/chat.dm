@@ -6,6 +6,7 @@
 #define MESSAGE_TYPE_SYSTEM "system"
 #define MESSAGE_TYPE_LOCALCHAT "localchat"
 #define MESSAGE_TYPE_RADIO "radio"
+#define MESSAGE_TYPE_HIVEMIND "hivemind"
 #define MESSAGE_TYPE_INFO "info"
 #define MESSAGE_TYPE_WARNING "warning"
 #define MESSAGE_TYPE_DEADCHAT "deadchat"
@@ -20,6 +21,8 @@
 #define MESSAGE_TYPE_ADMINLOG "adminlog"
 #define MESSAGE_TYPE_ATTACKLOG "attacklog"
 #define MESSAGE_TYPE_DEBUG "debug"
+#define MESSAGE_TYPE_TERMINAL "terminal"
+#define MESSAGE_TYPE_LABELS "labels"
 
 /// Adds a generic box around whatever message you're sending in chat. Really makes things stand out.
 #define examine_block(str) ("<div class='examine_block'>" + str + "</div>")
@@ -30,4 +33,16 @@
 
 // Global Narrate
 #define narrate_head(str) ("<div class='narrate_head'><p>" + str + "</p></div>")
-#define narrate_body(str) ("<div class='narrate_body'>" + str + "</div>")
+#define narrate_body(str) ("<div class='narrate_body'><p>" + str + "</p></div>")
+
+// Console outputs
+
+#define narrate_console(str) ("<div class='narrate_console'><p>" + str + "</p></div>")
+
+// Serial numbers
+#define narrate_serial_block(str) ("<div class='narrate_serial_block'><p>" + str + "</p></div>")
+#define narrate_serial(str) ("<div class='narrate_serial'><p>" + str + "</p></div>")
+
+// Cargo Manifests
+#define narrate_manifest_block(str) ("<div class='narrate_manifest_block'><p>" + str + "</p></div>")
+#define narrate_manifest(str) ("<div class='narrate_manifest'><p>" + str + "</p></div>")
