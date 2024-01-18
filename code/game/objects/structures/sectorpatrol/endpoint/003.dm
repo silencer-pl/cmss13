@@ -31,7 +31,7 @@
 /obj/structure/eventterminal/puzzle03/historycrt/proc/lesson1()
 	for (var/obj/structure/eventterminal/puzzle03/historyterm/T in world)
 		for (var/obj/structure/machinery/light/marker/admin/A in world )
-			while (A.light_id == "theathervoice")
+			if (A.light_id == "theathervoice")
 				T.puzzlebox_playing = TRUE
 				emoteas("comes alive and displays the UACM logo.")
 				icon_state = "uacm"
@@ -78,7 +78,7 @@
 /obj/structure/eventterminal/puzzle03/historycrt/proc/lesson2()
 	for (var/obj/structure/eventterminal/puzzle03/historyterm/T in world)
 		for (var/obj/structure/machinery/light/marker/admin/A in world )
-			while (A.light_id == "theathervoice")
+			if (A.light_id == "theathervoice")
 				T.puzzlebox_playing = TRUE
 				emoteas("turns on with an audible pop.")
 				icon_state = "blank"
@@ -137,7 +137,7 @@
 				A.talkas("Those that we keep, we will keep as prototype units, each fitted with whatever technology UACM wants us to test. These ships will be ours, or rather yours to use as their Test Crews, which is your formal assignment on the PST.", 50)
 				A.talkas("There are other duties related to the maintenance of the PST and its core systems, however as those are still being brought on-line, these will be introduced to you in time.", 40)
 				A.talkas("For now, your focus should be on getting as comfortable as you can in your new dorms. You will likely be called to help as systems across the station are completed and tested.", 40)
-				A.talkas("You will also receive briefings on SOP and Maritime Law as our CMISRS office establishes itself. I’m sure some of you have already met LT. Foster.", 35)
+				A.talkas("You will also receive briefings on SOP and Maritime Law as our CMISRS office establishes itself. I'm sure some of you have already met LT. Foster.", 35)
 				A.talkas("This concludes this presentation. Thank you for your attention.", 25)
 				emoteas("flickers and shuts down.")
 				icon_state = "off"
@@ -149,7 +149,7 @@
 /obj/structure/eventterminal/puzzle03/historycrt/proc/lesson3()
 	for (var/obj/structure/eventterminal/puzzle03/historyterm/T in world)
 		for (var/obj/structure/machinery/light/marker/admin/A in world )
-			while (A.light_id == "theathervoice")
+			if (A.light_id == "theathervoice")
 				T.puzzlebox_playing = TRUE
 				emoteas("turns on with an audible pop.")
 				icon_state = "blank"
@@ -157,7 +157,76 @@
 				sleep(5)
 				A.name = "Voice of RDML. Boulette"
 				A.langchat_color = "#25664d"
-				A.talkas("This part of orientation means to remind you all how we got here through our rocky history.", 30)
+				A.talkas("This section talks in detail about the Outer Veil Primary Supply Terminal, our new home. Before I step aside and let someone with a decisively more attractive voice take over...", 40)
+				A.langchat_color = COLOR_WHITE
+				A.name = "Someone"
+				A.emoteas("audibly holds back a giggle from somewhere nearby.. .", 15)
+				A.langchat_color = "#25664d"
+				A.name = "Voice of RDML. Boulette"
+				icon_state = "text"
+				update_icon()
+				emoteas("begins to display a transcript of the recording.",10)
+				A.talkas("...Let me briefly explain how this structure fits into the greater unified logistics principle I'm trying to implement.", 35)
+				A.talkas("Unified logistics in general theorizes that much more than just simple commodities can be marked, transported, tracked, and delivered where they need to be.", 40)
+				A.talkas("With this system anything - personnel, information, technology, and yes, cargo has a source and a destination.", 35)
+				A.talkas("Absolutely anything that needs to be proliferated or delivered somewhere within the UACM structure, logistics needs to be able to handle and deliver.", 40)
+				A.talkas("Hub locations, such as the PST, need to be capable of receiving, storing, and delivering this to their destination.", 35)
+				A.talkas("What makes the PST uniquely suited for that? As it turns out, a lot, and for a reason.", 30)
+				A.talkas("Commander Alysia Reed-Wilo will explain the details, as she has spent a lot of time studying this station.", 35)
+				icon_state = "blank"
+				update_icon()
+				emoteas("goes blank abruptly as the audio pops. It pops again after a few seconds and the screen flickers but stays blank.", 35)
+				A.name = "Voice of CDR. Alysia Reed-Wilo"
+				A.langchat_color = "#b82fb1"
+				A.talkas("Hi! I'm sure you have better things to do than listen to me prattle on about Liquid Data synchronization and proliferation, so I'll keep this short.", 40)
+				emoteas("shows a simplified diagram of the PST, with text mirroring what the voice says printing on the left.", 1)
+				icon_state = "pst1"
+				update_icon()
+				A.talkas("In a nutshell, the PST is a gigantic space station with a total of 123 decs of various heights.", 30)
+				A.talkas("It features a central strut and three 'wings' that can open and close.", 25)
+				A.talkas("A central elevator, the one you took to get up to the Spire, links hangars and docking bays, which leads to the public and Memorial sectors and the specialized elevators.",40)
+				A.talkas("Each shaft goes to a different section of the PST, those are in sequence:", 25)
+				A.talkas("A, going to office and educational decks, it's where you're most likely go to get training. Or get yelled at. ",35)
+				A.talkas("B, heads to the dorm areas. C covers cargo decks, go figure and D is our corporate and civilian areas.",30)
+				A.talkas("Yes, you heard that right. To realize the Admirals strategy, civilian and corpo ships have access to some of the PST's systems. You are likely not going to interact much with them for a while",45)
+				icon_state = "pst2"
+				update_icon()
+				emoteas("zooms in on the diagram of the PST, showing a detailed segment of one of the elevator shafts. More text pops up on the left.",10)
+				A.talkas("The rest of the central segment consists of three massive Liquid Data transmission clusters, woven across the structure of the station, covering its entirety.", 40)
+				A.talkas("All electronics passing through this station get exposed to its gigantic LD resonance and stream. This is also incidentally why you were given RFID chips with LD clusters on them when you arrived.",50)
+				A.talkas("Do not remove or lose those. Internal systems of the station do not respond to someone they do not recognize, and those chips are how they recognize you.", 40)
+				A.talkas("And any piece of electronics here answers the station's central intelligence. This is, incidentally, our biggest problem. But one that Cassandra hopes to resolve soon. With your help I believe.",45)
+				A.talkas("As you may have noticed, everything is sluggish and desynchronized. This is because this station is not meant for current or even customized AIs.", 40)
+				A.talkas("Without boring you too much, there is no technology in existence that can handle this amount of LD data. We barely keep up with two limited streams, this thing uses three.", 45)
+				A.talkas("With that kink resolved, the synchronized LD streams are a near perfect match for the Admirals unified data concept. A unified, delay and lag-less information stream.",45)
+				A.talkas("This is the objective here. No biggie. Anyway. Believe it or not, this is not the last of this place's secrets, oh no.",35)
+				icon_state = "pst3"
+				update_icon()
+				emoteas("switches to a diagram of one of the station's wings. The display zooms in and shows highlighted clusters of machinery around central parts of the wing and more text, matching the presentation.",10)
+				A.talkas("Each of the station's wings utilizes pocket Twilight Paradox chambers to power a small army of TWE sourced equipment printers. A gift from an old friend, believe it or not.",45)
+				A.talkas("Task Force 14 members also sourced a lot of other gear. UPP fabricators. UA lathes. Corporate designs. Even some rare civilian customizations.",40)
+				A.talkas("The icing on the cake are the drones. Thousands of drones in each wing, again, running on rechargeable pocket Paradox drives.",35)
+				A.talkas("This is possible because this system's star emits an anomalous light, allowing for perpetual Paradox operation. Long story short, this whole place powers itself from the local star.")
+				A.talkas("And we have excess. Lots and lots of excess. We could easily add several more wings. The only issue is, again, the lack of a central system to properly operate the wings.",45)
+				A.talkas("All this is used in the PST's primary function - repairs and resupply to all who dock here. Down the line, the Admiral wants to see about special permission for limited UPP presence.",45)
+				A.talkas("If they recognize the design, have the raw materials, and are properly powered, the drones on this station can repair and refit any ship within days if not hours.",40)
+				icon_state = "blank"
+				update_icon()
+				emoteas("goes blank again.",5)
+				A.talkas("You can imagine how this all ties together. Prototype technology from every corner of the world being tested here, by you, proliferated back to everyone who asks.",40)
+				A.talkas("Or a Hub as the Admiral calls it.",10)
+				A.talkas("And that is your new home. I've been stopping here on and off for years now. It grows on you.",30)
+				A.talkas("Sorry for prattling, hah. If you haven't already, be sure to listen to my beloved about what else awaits you here. You will want to hear what she has to say.",40)
+				A.talkas("That sounds creepy hah. I promise you'll be fine. That's it from me!",25)
+				A.talkas("Seeya!",10)
+				icon_state = "off"
+				update_icon()
+				emoteas("pops and goes dark.")
+				T.puzzlebox_playing = FALSE
+				if(T.puzzlebox_saw_lesson3 == FALSE) T.puzzlebox_saw_lesson3 = TRUE
+				return
+
+
 
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
 	if (puzzlebox_complete == TRUE)
