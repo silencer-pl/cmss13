@@ -306,9 +306,38 @@
 				icon_state = "glitch"
 				update_icon()
 				emoteas("audibly turns on and starts to visibly glitch. After a few seconds of cracking, it goes blank again. ", 1)
-				T.emoteas("emits an audible whistling for a few seconds and seems not to be displaying anything.")
+				T.emoteas("emits an audible whistling for a few seconds and seems not to be displaying anything.", 5)
+				A.name = "An unknown, glitching voice"
+				A.emoteas("starts to speak while the screen remains blank.",10)
 				A.name = "Unknown, glitching voice"
-				A.langchat_color = "#bebe8e"
+				A.langchat_color = "#c0c082"
+				A.talkas("Welcome, friend, to the Godbearer cradle.",10)
+				icon_state = "glitch"
+				update_icon()
+				emoteas("audibly pops and glitches.", 5)
+				A.talkas("After a long search, you are home. We offer nothing more than the future of humanity.", 20)
+				update_icon()
+				emoteas("audibly glitches again. The recording seems to be skipping ahead randomly.", 5)
+				A.talkas("Our research leaves only one possible explanation.", 15)
+				A.talkas("We set out to create God and put them in the LD stream. But what if something already lived there. What if our data had a consciousness?",35)
+				A.talkas("What if they know everything about us. What if Liquid Data holds all possible data states, including ones that haven't been physically written yet?",35)
+				emoteas("glitches and skips again.", 5)
+				A.talkas("Just a matter of time. If not the corporations, then one of the superpowers. If not them, then their armed forces. We are lost in the sea of stars.",35)
+				A.talkas("Our mission is nothing else than saving humanity. Our mission is-",20)
+				A.langchat_color = COLOR_WHITE
+				A.name = "A gunshot"
+				A.emoteas("rings out somewhere near where the recording took place. The recording goes silent for over ten seconds.", 100)
+				A.langchat_color = "#b3183e"
+				A.name = "Voice of CDR. Cassandra Reed-Wilo"
+				A.talkas("For a prophet, you sure go down fast and easy.",15)
+				icon_state = "off"
+				update_icon()
+				emoteas("glitches again. This time the device falls silent and does not reactivate.", 5)
+				T.emoteas("beeps loudly, then plays a message out loud.", 10)
+				T.talkas("Notice: Data corruption detected in message buffer. Error removed. Restarting.",10)
+				T.talkas("Notice: Orientation complete.",1)
+				T.puzzlebox_saw_lesson5 = TRUE
+				return
 
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
 	if (puzzlebox_complete == TRUE)

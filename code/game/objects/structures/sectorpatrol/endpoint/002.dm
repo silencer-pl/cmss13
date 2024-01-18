@@ -794,7 +794,6 @@
 	if(!puzzlebox_id) puzzlebox_id = "I forgot to set an ID. Oops."
 	log_game("[puzzlebox_id] has lifted its lockdown!")
 	message_admins("[puzzlebox_id] has lifted its lockdown!")
-	return
 
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/correct
