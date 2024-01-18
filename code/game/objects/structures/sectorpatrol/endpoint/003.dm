@@ -33,10 +33,9 @@
 		for (var/obj/structure/machinery/light/marker/admin/A in world )
 			if (A.light_id == "theathervoice")
 				T.puzzlebox_playing = TRUE
-				emoteas("comes alive and displays the UACM logo.")
 				icon_state = "uacm"
 				update_icon()
-				sleep(5)
+				emoteas("comes alive and displays the UACM logo.", 5)
 				A.name = "Voice of RDML. Boulette"
 				A.langchat_color = "#25664d"
 				A.talkas("Welcome back home, Marines.", 20)
@@ -80,10 +79,9 @@
 		for (var/obj/structure/machinery/light/marker/admin/A in world )
 			if (A.light_id == "theathervoice")
 				T.puzzlebox_playing = TRUE
-				emoteas("turns on with an audible pop.")
 				icon_state = "blank"
 				update_icon()
-				sleep(5)
+				emoteas("turns on with an audible pop.", 5)
 				A.name = "Voice of RDML. Boulette"
 				A.langchat_color = "#25664d"
 				A.talkas("This part of orientation means to remind you all how we got here through our rocky history.", 30)
@@ -151,10 +149,9 @@
 		for (var/obj/structure/machinery/light/marker/admin/A in world )
 			if (A.light_id == "theathervoice")
 				T.puzzlebox_playing = TRUE
-				emoteas("turns on with an audible pop.")
 				icon_state = "blank"
 				update_icon()
-				sleep(5)
+				emoteas("turns on with an audible pop.", 5)
 				A.name = "Voice of RDML. Boulette"
 				A.langchat_color = "#25664d"
 				A.talkas("This section talks in detail about the Outer Veil Primary Supply Terminal, our new home. Before I step aside and let someone with a decisively more attractive voice take over...", 40)
@@ -226,7 +223,92 @@
 				if(T.puzzlebox_saw_lesson3 == FALSE) T.puzzlebox_saw_lesson3 = TRUE
 				return
 
+/obj/structure/eventterminal/puzzle03/historycrt/proc/lesson4()
+	for (var/obj/structure/eventterminal/puzzle03/historyterm/T in world)
+		for (var/obj/structure/machinery/light/marker/admin/A in world )
+			if (A.light_id == "theathervoice")
+				T.puzzlebox_playing = TRUE
+				icon_state = "blank"
+				update_icon()
+				emoteas("turns on with an audible pop.", 5)
+				A.name = "Voice of CDR. Cassandra Reed-Wilo"
+				A.langchat_color = "#b3183e"
+				A.talkas("Hello, Ensigns.", 10)
+				icon_state = "text"
+				update_icon()
+				emoteas("starts to print a transcript of the presentation.", 10)
+				A.talkas("The Admiral and Aly explained the technical and theoretical background of your new mission. I need you to be one more thing.", 35)
+				A.talkas("I need you to be the inheritors to Task Force 14's legacy.", 20)
+				A.talkas("Let me explain.", 10)
+				icon_state = "pst1"
+				update_icon()
+				emoteas("displays a simplified diagram of the station, with a transcript of the presentation printing on the left.", 10)
+				A.talkas("This was my first investigation after being transferred into UAAC-TIS from the USCMC. Kidnappings and theft of LD devices, which caught our interest.",40)
+				A.talkas("The PST, at that point active for over ten years, was at the end. At the time, it seemed like it was some sort of cult centered around AI's corrupted by LD irregularities.", 45)
+				A.talkas("Ultimately, what we'dd discovered here would put us on the trail of Deep Void, who were silent cosponsors of the station.",30)
+				A.talkas("As it turns out, someone in DV really liked Admiral Boulette's Unified Logistics Theory. So much in fact, they stole them and were trying to apply them. ",40)
+				A.talkas("The plan seemed to purge the cultists after their project was finished. And those were not just normal crazies, but Wey-Yu washouts. Actually skilled people, some of them at least.", 45)
+				icon_state = "uacm"
+				emoteas("flashes, then displays the UACM logo.",10)
+				A.talkas("At the tail end of the operation, with the cult… Out of the way, the crew of my ship and I did what we always do. We started to scour the PST for information.",40)
+				A.langchat_color = COLOR_WHITE
+				A.name = "Cassandra"
+				A.emoteas("pauses for a few seconds and sighs audibly.", 20)
+				A.langchat_color = "#b3183e"
+				A.name = "Voice of CDR. Cassandra Reed-Wilo"
+				A.talkas("Without going into too much of the highly classified details, what we found here was… In many ways a gamechanger. Not in a good way.",35)
+				A.talkas("The stations gigantic LD conduits are easily the largest concentration of Liquid Data in the known galaxy. But its not just a single, unified strain, no.")
+				A.talkas("In many ways, this stream is unique. In many dangerous, exploitative ways that should they fall in the wrong hands can end our race altogether.",35)
+				A.talkas("Task Force 14, the STG that I lead, was formed to safeguard this station and its secrets. Without anything else, this station houses the biggest Liquid Data store in the known galaxy.",45)
+				A.langchat_color = COLOR_WHITE
+				A.name = "Cassandra's"
+				A.emoteas("voice audibly breaks as she tries to speak again. She takes a moment to compose herself.", 80)
+				A.langchat_color = "#b3183e"
+				A.name = "Voice of CDR. Cassandra Reed-Wilo"
+				A.talkas("They were friends, every single one of them. Friends who joined the STG out of their own will. Friends who over time I grew to respect and like, even if half the times they were also giving me migraines.", 50)
+				A.talkas("Finally, when both me and Aly were in a coma following Blackfire, friends who unanimously decided to take the route that all but guaranteed that the USCMC fell.",40)
+				A.langchat_color = COLOR_WHITE
+				A.name = "Cassandra"
+				A.emoteas("pauses again, audibly letting out a few more pained breaths.", 50)
+				A.langchat_color = "#b3183e"
+				A.name = "Voice of CDR. Cassandra Reed-Wilo"
+				A.talkas("The rest you likely know from your own experiences. All of the USCMC were held responsible for the deaths at Blackfire.",30)
+				A.talkas("Before we parted our ways, your predecessors made me promise I would do what I could to reach out to Marines like you. Those whose futures, careers and homes were destroyed by something they had no idea even existed.",50)
+				A.talkas("And that is what the Test Crews of the PST are. Apart from your duties putting Boulie's theories into practice.",30)
+				icon_state = "pythia"
+				update_icon()
+				emoteas("blinks and goes dark for a second, then displays an unidentified symbol.", 5)
+				A.talkas("You are inheritors to the legacy and mission of Task Force 14. You hold the torch for a group of people that, at least for me, were nothing short of an extended family for the few years we worked on the same thing.",50)
+				A.talkas("I don't expect you to hold me in similar regards. Most of you I've likely never met and yet it was my decisions that stole over a year of your life and burned your world down.", 50)
+				A.talkas("Were the positions reversed, you would have to do a lot for me to trust you, let alone like you.",30)
+				A.talkas("But at the very least, I've laid out my motivations and the reasons for them bare for you. You are here to honor the legacy of some of the finest officers of the USCMC.",40)
+				A.talkas("I hope that at the very least, this place is a steppingstone for you as you reclaim your lost command or unit.",30)
+				A.talkas("Regardless of anything else, your time here will not be wasted. As part our duties here, Aly and myself will make sure you are familiar and know how to utilize the unique properties of the LD stores of this station.",50)
+				A.talkas("Boule and Aly already laid out the technical issues plaguing the PST. These should be resolved any day now.",30)
+				A.talkas("Once they do and there is the time to do so, you will be called upon the last of your expected duties, at least as far as I'm concerned.",35)
+				A.talkas("As direct inheritors of Task Force 14, at least per the logic the STG programmed into its own devices, only Test Crew members verified by the stations system have the authorization to open any TF14 caches left in the Neroid system.",50)
+				A.talkas("You will be taught to spot and open these stores. As the chose inheritors to TF14, you are likely the only people that can.",35)
+				A.talkas("Good luck. And welcome to the PST.",10)
+				icon_state = "glitch"
+				update_icon()
+				emoteas("switches back to an empty display. It starts to make a distinct clicking sound as what looks like a glitch animates on the screen for a few seconds. The display then swiches off with a pop.",40)
+				icon_state = "off"
+				update_icon()
+				T.puzzlebox_playing = FALSE
+				if(T.puzzlebox_saw_lesson4 == FALSE) T.puzzlebox_saw_lesson4 = TRUE
+				return
 
+/obj/structure/eventterminal/puzzle03/historycrt/proc/lesson5()
+	for (var/obj/structure/eventterminal/puzzle03/historyterm/T in world)
+		for (var/obj/structure/machinery/light/marker/admin/A in world )
+			if (A.light_id == "theathervoice")
+				T.puzzlebox_playing = TRUE
+				icon_state = "glitch"
+				update_icon()
+				emoteas("audibly turns on and starts to visibly glitch. After a few seconds of cracking, it goes blank again. ", 1)
+				T.emoteas("emits an audible whistling for a few seconds and seems not to be displaying anything.")
+				A.name = "Unknown, glitching voice"
+				A.langchat_color = "#bebe8e"
 
 /obj/structure/eventterminal/puzzle03/historyterm/attack_hand(mob/user as mob)
 	if (puzzlebox_complete == TRUE)
