@@ -18,16 +18,33 @@
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
 	src.visible_message("<b>[src]</b> says, \"[str]\"")
-	var/talkdealy = delay
-	if (talkdealy) sleep(talkdealy)
+	var/talkdelay = delay
+	if (!talkdelay)
+		if ((length("[str]")) <= 64)
+			sleep(40)
+			return
+		if ((length("[str]")) > 64)
+			sleep(60)
+			return
+	sleep(talkdelay)
+	return
+
 
 /obj/item/proc/emoteas(str, delay)
 	if (!str) return
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))
 	src.visible_message("<b>[src]</b> [str]")
-	var/talkdealy = delay
-	if (talkdealy) sleep(talkdealy)
+	var/talkdelay = delay
+	if (!talkdelay)
+		if ((length("[str]")) <= 64)
+			sleep(40)
+			return
+		if ((length("[str]")) > 64)
+			sleep(60)
+			return
+	sleep(talkdelay)
+	return
 
 /obj/structure
 
@@ -49,8 +66,15 @@
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE)
 	src.visible_message("<b>[src]</b> says, \"[str]\"")
-	var/talkdealy = delay
-	if (talkdealy) sleep(talkdealy)
+	var/talkdelay = delay
+	if (!talkdelay)
+		if ((length("[str]")) <= 64)
+			sleep(40)
+			return
+		if ((length("[str]")) > 64)
+			sleep(60)
+			return
+	sleep(talkdelay)
 	return
 
 /obj/structure/proc/emoteas(str, delay)
@@ -58,6 +82,13 @@
 	var/list/heard = get_mobs_in_view(GLOB.world_view_size, src)
 	src.langchat_speech(str, heard, GLOB.all_languages, skip_language_check = TRUE, animation_style = LANGCHAT_FAST_POP, additional_styles = list("langchat_small", "emote"))
 	src.visible_message("<b>[src]</b> [str]")
-	var/talkdealy = delay
-	if (talkdealy) sleep(talkdealy)
+	var/talkdelay = delay
+	if (!talkdelay)
+		if ((length("[str]")) <= 64)
+			sleep(40)
+			return
+		if ((length("[str]")) > 64)
+			sleep(60)
+			return
+	sleep(talkdelay)
 	return
