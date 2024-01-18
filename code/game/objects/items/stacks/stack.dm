@@ -42,6 +42,21 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 
 	if(!amount_sprites)
 		return
+	if(stack_id == "floor strut")
+		if(amount == 1)
+			icon_state = initial(icon_state) // One
+			desc = "A set of four struts and eight screws. There is an engraving on the rear of each strut."
+		else if(amount < max_amount * 0.5)
+			icon_state = "[initial(icon_state)]-2" // Two
+			desc = "A set of eight struts and sixteen screws. There is an engraving on the rear of each strut."
+		else if(amount < max_amount)
+			icon_state = "[initial(icon_state)]-3" // Many
+			desc = "Around ten struts and twice as many screws. There is an engraving on the rear of each strut."
+		else
+			icon_state = "[initial(icon_state)]-4" // Max
+			desc = "Twenty struts and fourty screws. There is an engraving on the rear of each strut."
+		return
+
 	if(amount == 1)
 		icon_state = initial(icon_state) //if it has only one sheet, it is the singular sprite
 	else if(amount < max_amount * 0.5)

@@ -612,3 +612,115 @@
 /turf/open/floor/corsat
 	icon = 'icons/turf/floors/corsat.dmi'
 	icon_state = "plating"
+
+//Sector Patrol. Also fixing tiling. Just kill me.
+
+/turf/open/floor/plating/modular
+
+	name = "UACM standarized interior plating"
+	desc = "Metal plates attached to the hull, with small, predrilled holes doting their surface."
+	desc_lore = "This special plating is typically permanently installed on ship hull floors meant for private or recreational locations. They come with small holes predrilled in preset, standardized distances that allow for the installation of modular tile struts, which in turn are used with the UACM standardized tiling system to add some color to private quarters of UACM personnel. The tiles themselves are printed in the PST's fabrication wings at minimal material cost. The drawback here is the amount of manual labor required to put these together and the fact that, some Marines argue at least, the UACM lacks any sense of style. Most agree that the jury is still out on that last one."
+	icon = 'icons/turf/floors/floors.dmi'
+	icon_state = "plating"
+	intact_tile = FALSE
+	tool_flags = NO_FLAGS
+	var/struts_install = 0
+	var/struts_attach = 0
+	var/tiles_install = 0
+
+/turf/open/floor/plating/modular/attackby(obj/item/C, mob/user)
+	if(iswelder(C))
+		if(!HAS_TRAIT(C, TRAIT_TOOL_BLOWTORCH))
+			to_chat(user, SPAN_WARNING("You need a stronger blowtorch!"))
+			return
+		var/obj/item/tool/weldingtool/welder = C
+		if(welder.isOn() && broken == 1)
+			if(welder.remove_fuel(1, user))
+				playsound(src, 'sound/items/Welder.ogg', 25, 1)
+				if(struts_install > 0)
+					to_chat(user, SPAN_INFO("You start fixing the struts and plating." ))
+					if(do_after(user, (40 + (15 * struts_install)) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+						to_chat(user, SPAN_INFO("You fix the struts and plating."))
+						icon_state = "[initial(icon_state)]_s[struts_attach]"
+						broken = FALSE
+						burnt = FALSE
+						return
+				if(struts_install == 0)
+					to_chat(user, SPAN_INFO("You start fixing the plating."))
+					if(do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+						to_chat(user, SPAN_INFO("You fix the plating."))
+						icon_state = initial(icon_state)
+						broken = FALSE
+						burnt = FALSE
+						return
+
+			else
+				to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+		return
+	if(istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.turf_place(src, user)
+		return
+	if(istype(C, /obj/item/stack/tile))
+		if(broken || burnt)
+			to_chat(user, SPAN_NOTICE("This section is too damaged to support a tile. Use a welder to fix the damage."))
+			return
+		var/obj/item/stack/tile/T = C
+		if(T.get_amount() < 1)
+			return
+		playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+		T.use(1)
+		//T.build(src)
+		return
+	if(istype(C, /obj/item/stack/rods/floorstrut))
+		if(struts_install < 4)
+			var/obj/item/stack/rods/floorstrut/F = C
+			if(F.get_amount() < 1)
+				return
+			user.visible_message(SPAN_NOTICE("[user] places a metal strut on the plating."), SPAN_INFO("You put the strut down on the plating and start to align its screws with one of the premade rows of holes." ), SPAN_DANGER("You hear a dull thump."))
+			if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				F.use(1)
+				struts_install = struts_install + 1
+				icon_state = "[initial(icon_state)]_s[struts_attach]"
+				name = "[initial(name)] and modular struts"
+				desc = "[initial(desc)] At least one metal strut has been placed and matched to the openings on the plating, ready to be attached to the platform."
+				desc_lore = "[initial(desc_lore)] The struts, screws and other elements that can be attached to the plating are all in compliance with the Northern Republic Production Standard, guaranteeing compatibility with almost any human ship in existence."
+				user.visible_message(SPAN_NOTICE("[user] finishes setting a strut."), SPAN_INFO("You align a strut and its screws with one of the rows of predrilled holes. It's ready to be fastened."))
+				return
+		if(struts_install >= 4)
+			to_chat(usr, SPAN_WARNING("All predrilled openings already have a strut on them."))
+			return
+
+/turf/open/floor/plating/modular/break_tile_to_plating()
+	if (!broken)
+		struts_install = initial(struts_install)
+		struts_attach = initial(struts_attach)
+		tiles_install = initial(tiles_install)
+		icon_state = "platingdmg[pick(1, 3)]"
+		name = "damaged [initial(name)]"
+		desc = "[initial(desc)] It's heavily damaged and in need of repairs."
+		desc_lore = "[initial(desc_lore)] Physical damage on plating like this is best removed using a welder."
+		broken = 1
+	return
+
+/turf/open/floor/plating/modular/break_tile()
+	if (!broken && !burnt)
+		tiles_install = 0
+		if (struts_attach == 0)
+			icon_state = "platingdmg2"
+		if (struts_attach > 0)
+			icon_state = "[initial(icon_state)]_s[struts_attach]"
+			desc = "[desc] It's heavily damaged and in need of repairs."
+			desc_lore = "[desc_lore] Physical damage on plating like this is best removed using a welder."
+		broken = 1
+	return
+
+/turf/open/floor/plating/modular/burn_tile()
+	if (!broken && !burnt)
+		tiles_install = 0
+		if (struts_attach == 0)
+			icon_state = "panelscorched"
+		if (struts_attach > 0)
+			icon_state = "[initial(icon_state)]_s[struts_attach]"
+		burnt = 1
+	return
