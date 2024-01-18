@@ -21,11 +21,9 @@
 	var/talkdelay = delay
 	if (!talkdelay)
 		if ((length("[str]")) <= 64)
-			sleep(40)
-			return
+			talkdelay = 40
 		if ((length("[str]")) > 64)
-			sleep(60)
-			return
+			talkdelay = 60
 	sleep(talkdelay)
 	return
 
@@ -38,11 +36,9 @@
 	var/talkdelay = delay
 	if (!talkdelay)
 		if ((length("[str]")) <= 64)
-			sleep(40)
-			return
+			talkdelay = 40
 		if ((length("[str]")) > 64)
-			sleep(60)
-			return
+			talkdelay = 60
 	sleep(talkdelay)
 	return
 
@@ -69,11 +65,9 @@
 	var/talkdelay = delay
 	if (!talkdelay)
 		if ((length("[str]")) <= 64)
-			sleep(40)
-			return
+			talkdelay = 40
 		if ((length("[str]")) > 64)
-			sleep(60)
-			return
+			talkdelay = 60
 	sleep(talkdelay)
 	return
 
@@ -85,10 +79,8 @@
 	var/talkdelay = delay
 	if (!talkdelay)
 		if ((length("[str]")) <= 64)
-			sleep(40)
-			return
+			talkdelay = 40
 		if ((length("[str]")) > 64)
-			sleep(60)
-			return
+			talkdelay = 60
 	sleep(talkdelay)
 	return
