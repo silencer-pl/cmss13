@@ -18,10 +18,10 @@
 		if(struts_install == 0)
 			return
 		if(tiles_install > 0)
-			to_chat(usr, SPAN_NOTICE("You should remove the tiles before you touch the struts. The snapping mechanism needs to be released with a crowbar."))
+			to_chat(usr, SPAN_NOTICE("You should remove the tiles before you touch the struts. The snapping mechanism needs to be released with a crowbar in GRAB intent."))
 			return
 		if(struts_install == struts_ready)
-			to_chat(usr, SPAN_NOTICE("The strut does not budge. You may need to loosen it with a screwdriver."))
+			to_chat(usr, SPAN_NOTICE("The strut does not budge. You need to loosen its screws with a screwdriver in GRAB intent."))
 			return
 		if(struts_install > struts_ready)
 			user.visible_message(SPAN_NOTICE("[user] gathers metalic bars of the plating."), SPAN_INFO("You pick up the struts." ))
@@ -139,7 +139,7 @@
 					struts_install += 1
 					icon_state = "[base_icon]_s[struts_install]"
 					update_icon()
-			user.visible_message(SPAN_NOTICE("[user] finishes setting a strut."), SPAN_INFO("You align a strut and its screws with one of the rows of predrilled holes. It's ready to be fastened."))
+			user.visible_message(SPAN_NOTICE("[user] finishes aligning struts on the floor."), SPAN_INFO("You finish aligning the struts. They should now be fastened with a screwdriver."))
 			return
 		if(struts_install >= 4)
 			to_chat(usr, SPAN_WARNING("All predrilled openings already have a strut on them."))
@@ -166,16 +166,16 @@
 				return
 		if (user.a_intent == INTENT_GRAB)
 			if  (struts_ready > 0)
-				user.visible_message(SPAN_NOTICE("[user] uses a screwdriver on the plating struts."), SPAN_INFO("You start to unscrew the strut."))
+				user.visible_message(SPAN_NOTICE("[user] uses a screwdriver on the plating struts."), SPAN_INFO("You start to unscrew the struts."))
 				while(struts_ready > 0)
 					if(do_after(user, 10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION),INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						sleep(2)
 						if(do_after(user, 10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION),INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 							struts_ready -= 1
 							sleep(2)
-				user.visible_message(SPAN_NOTICE("[user] finishes working on the plating."), SPAN_INFO("You finished unfasting all of the struts." ))
+				user.visible_message(SPAN_NOTICE("[user] finishes working on the plating."), SPAN_INFO("You finished unfasting all of the struts. You can pick them up by using an empty hand in GRAB intent." ))
 			if (struts_ready == 0)
-				to_chat(user, SPAN_NOTICE("All the struts are already unfastened."))
+				to_chat(user, SPAN_NOTICE("All the struts are already unfastened. To pick them up, use an empty hand and GRAB intent."))
 				return
 		if (user.a_intent == INTENT_HELP)
 			if (struts_install == 0)
@@ -183,13 +183,13 @@
 				return
 			if (struts_install == struts_ready)
 				if (struts_ready < 4)
-					to_chat(user, SPAN_NOTICE("There is noting more for you to screw in. Place anoter strut first."))
+					to_chat(user, SPAN_NOTICE("There is noting more for you to screw in. Place anoter strut first. If you want to remove struts, switch to GRAB intent."))
 					return
 				if (struts_ready >= 4)
-					to_chat(user, SPAN_NOTICE("All the struts are in place and secured. There is nothing else to screw in."))
+					to_chat(user, SPAN_NOTICE("All the struts are in place and secured. There is nothing else to screw in. If you want to remove struts, switch to GRAB intent."))
 					return
 			if (struts_install > struts_ready)
-				user.visible_message(SPAN_NOTICE("[user] uses a screwdriver on a strut on the paneling."), SPAN_INFO("You start to secure the strut."))
+				user.visible_message(SPAN_NOTICE("[user] starts to work on the paneling."), SPAN_INFO("You start to secure the struts."))
 				while (struts_install > struts_ready)
 					if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						sleep(2)
