@@ -43,14 +43,14 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 	if(!amount_sprites)
 		return
 	if(stack_id == "modular tile" || stack_id == "floor strut")
-		if(amount < 8)
-			icon_state = initial(icon_state) // One
-		else if(amount >= 8 && amount < 12)
-			icon_state = "[initial(icon_state)]-2" // Two
-		else if(amount >= 12 && amount < 16)
-			icon_state = "[initial(icon_state)]-3" // Three
+		if(amount < max_amount * 0.25)
+			icon_state = initial(icon_state) // Sub 1/4
+		else if(amount >= max_amount 0.25 && amount < max_amount * 0.5)
+			icon_state = "[initial(icon_state)]-2" // 1/4 - 1/2
+		else if(amount >= max_amount * 0.5 && amount < max_amount * 0.75)
+			icon_state = "[initial(icon_state)]-3" // 1/2 - 3/4
 		else
-			icon_state = "[initial(icon_state)]-4" // Many
+			icon_state = "[initial(icon_state)]-4" // 3/4 - 1
 		return
 
 	if(amount == 1)
