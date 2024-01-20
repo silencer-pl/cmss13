@@ -45,7 +45,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 	if(stack_id == "modular tile" || stack_id == "floor strut")
 		if(amount < max_amount * 0.25)
 			icon_state = initial(icon_state) // Sub 1/4
-		else if(amount >= max_amount 0.25 && amount < max_amount * 0.5)
+		else if(amount >= max_amount * 0.25 && amount < max_amount * 0.5)
 			icon_state = "[initial(icon_state)]-2" // 1/4 - 1/2
 		else if(amount >= max_amount * 0.5 && amount < max_amount * 0.75)
 			icon_state = "[initial(icon_state)]-3" // 1/2 - 3/4
