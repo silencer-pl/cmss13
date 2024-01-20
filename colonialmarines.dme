@@ -1382,6 +1382,7 @@
 #include "code\game\turfs\transit.dm"
 #include "code\game\turfs\turf.dm"
 #include "code\game\turfs\floors\desert.dm"
+#include "code\game\turfs\modular\modular_turf.dm"
 #include "code\game\turfs\walls\r_wall.dm"
 #include "code\game\turfs\walls\wall_icon.dm"
 #include "code\game\turfs\walls\wall_types.dm"
