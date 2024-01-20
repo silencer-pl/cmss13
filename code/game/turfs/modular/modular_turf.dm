@@ -10,6 +10,8 @@
 	var/struts_install = 0
 	var/struts_ready = 0
 	var/tiles_install = 0
+	var/tiles_color = "default"
+	var/base_icon = "plating"
 
 /turf/open/floor/plating/modular/attack_hand(mob/user)
 	if(user.a_intent == INTENT_GRAB)
@@ -25,7 +27,7 @@
 			user.visible_message(SPAN_NOTICE("[user] gathers metalic bars of the plating."), SPAN_INFO("You pick up the struts." ))
 			while (struts_install > struts_ready)
 				struts_install -= 1
-				icon_state = "[initial(icon_state)]_s[struts_install]"
+				icon_state = "[base_icon]_s[struts_install]"
 				update_icon()
 				var/obj/item/stack/rods/floorstrut/fs = new(get_turf(user))
 				var/replace = (user.get_inactive_hand()==src)
@@ -47,7 +49,7 @@
 					user.visible_message(SPAN_NOTICE("[user] starts to fix the struts and plating."), SPAN_INFO("You start fixing the struts and plating." ), SPAN_DANGER("You hear a hissing that gets distinctly louder for short intervals."))
 					if(do_after(user, (40 + (15 * struts_install)) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						user.visible_message(SPAN_NOTICE("[user] fixes the struts and plating."), SPAN_INFO("You fix the struts and plating." ), SPAN_DANGER("The hissing stops."))
-						icon_state = "[initial(icon_state)]_s[struts_install]"
+						icon_state = "[base_icon]_s[struts_install]"
 						name = "[initial(name)] and modular struts"
 						desc = "[initial(desc)] At least one metal strut has been placed and matched to the openings on the plating, ready to be attached to the platform."
 						desc_lore = "[initial(desc_lore)] The struts, screws and other elements that can be attached to the plating are all in compliance with the Northern Republic Production Standard, guaranteeing compatibility with almost any human ship in existence."
@@ -58,7 +60,7 @@
 					user.visible_message(SPAN_NOTICE("[user] starts to fix the plating."), SPAN_INFO("You start fixing the plating." ), SPAN_DANGER("You hear a hissing that gets distinctly louder for short intervals."))
 					if(do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						user.visible_message(SPAN_NOTICE("[user] fixes the plating."), SPAN_INFO("You fix the plating." ), SPAN_DANGER("The hissing stops."))
-						icon_state = initial(icon_state)
+						icon_state = base_icon
 						desc = initial(desc)
 						desc_lore = initial(desc_lore)
 						broken = FALSE
@@ -92,18 +94,22 @@
 				name = "Partially finished floor tiling"
 				desc = "Four metal struts attached to holes on the floor plating with some modular floor tiles already slotted into the struts. "
 				desc_lore = "These modular tiles are typically attached onto special plating that is typically permanently installed on ship hull floors meant for private or recreational locations. The plating comes with small holes predrilled in preset, standardized distances that allow for the installation of modular tile struts, which in turn are used with the UACM standardized tiling system to add some color to private quarters of UACM personnel. The tiles and struts that hold them are themselves are printed in the PST's fabrication wings at minimal material cost. "
-			user.visible_message(SPAN_NOTICE("[user] starts snapping panels onto struts."), SPAN_INFO("You start to snap panels onto struts."),SPAN_INFO("You hear a series of oddly satisfying clicks."))
+				tiles_color = T.tiles_color
+				if(!tiles_color)
+					to_chat(SPAN_BOLDWARNING("Warning. No tile color value inherited from tiles. This is most likely a scripting error. A default will be used. Please ping a Game Master and note what tile you used."))
+					tiles_color = initial(tiles_color)
+			user.visible_message(SPAN_NOTICE("[user] starts snapping panels onto struts."), SPAN_INFO("You start to snap panels onto struts. They attach with an audible click that somehow feels very satisfying."),SPAN_INFO("You hear a series of oddly satisfying clicks."))
 			while(tiles_install < 4)
 				T.use(1)
 				tiles_install += 1
 				if(tiles_install == 4)
-					icon_state = "[T.tile_icon]"
+					icon_state = "[tiles_color]"
 					update_icon()
 					name = "modular floor tiling"
 					desc = "Four NRPS compliant modular tiles snapped to struts attached to special plating attached to the hull. A Northern Republic classic. "
 					desc_lore = "These modular tiles are typically attached onto special plating that is typically permanently installed on ship hull floors meant for private or recreational locations. The plating comes with small holes predrilled in preset, standardized distances that allow for the installation of modular tile struts, which in turn are used with the UACM standardized tiling system to add some color to private quarters of UACM personnel. The tiles and struts that hold them are themselves are printed in the PST's fabrication wings at minimal material cost. "
 				else
-					icon_state = "[T.tile_icon][tiles_install]"
+					icon_state = "[tiles_color][tiles_install]"
 					update_icon()
 					sleep(3)
 			user.visible_message(SPAN_NOTICE("[user] finishes attaching floor tiles to struts."), SPAN_INFO("You finish snapping the pannels to the struts."),SPAN_INFO("The clicks stop."))
@@ -131,7 +137,7 @@
 				if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					F.use(1)
 					struts_install += 1
-					icon_state = "[initial(icon_state)]_s[struts_install]"
+					icon_state = "[base_icon]_s[struts_install]"
 					update_icon()
 			user.visible_message(SPAN_NOTICE("[user] finishes setting a strut."), SPAN_INFO("You align a strut and its screws with one of the rows of predrilled holes. It's ready to be fastened."))
 			return
@@ -150,7 +156,7 @@
 			if(do_after(user, (40 + (15 * struts_ready)) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				user.visible_message(SPAN_NOTICE("[user] fixes the struts and plating."), SPAN_INFO("You fix the struts and plating." ), SPAN_DANGER("The scraping stops."))
 				if(struts_install)
-					icon_state = "[initial(icon_state)]_s[struts_ready]"
+					icon_state = "[base_icon]_s[struts_ready]"
 					update_icon()
 					name = "[initial(name)] and modular struts"
 					desc = "[initial(desc)] At least one metal strut has been placed and matched to the openings on the plating, ready to be attached to the platform."
@@ -201,6 +207,9 @@
 				while (tiles_install > 0)
 					tiles_install -= 1
 					var/obj/item/stack/modulartiles/R = new(src, 1, /obj/item/stack/modulartiles)
+					R.tiles_color = tiles_color
+					R.icon_state = "tiles_[tiles_color]"
+					R.update_icon()
 					R.add_to_stacks(usr)
 					sleep(2)
 				user.visible_message(SPAN_NOTICE("[user] finishes detaching the tiles."), SPAN_INFO("You finish detaching the tiles."), SPAN_DANGER("The popping stops."))
@@ -208,7 +217,7 @@
 			if (tiles_install == 0)
 				to_chat(usr, SPAN_INFO("There are no tiles to remove."))
 				return
-		to_chat(user, SPAN_NOTICE("There does not seem to be a way to put these two together at the moment."))
+		to_chat(user, SPAN_NOTICE("There does not seem to be a way to put these two together at the moment. If you are trying to remove tiles, please switch to GRAB intent."))
 		return
 
 
@@ -234,7 +243,7 @@
 			desc = "[initial(desc)] It's damaged and in need of repairs."
 			desc_lore = "[initial(desc_lore)] Physical damage on plating like this is best removed using a welder. Somehow the struts on this panel survived whatever blew off the tiles, but typically they are not particularly explosion resistant, so they get damaged easily, requiring complete replacements. This fact is not seen as a flow by the Northern Republic that maintains the standard, as they argue explosions should not be an occurrence in areas where these tiles are used unless something is very wrong."
 		if (struts_ready > 0)
-			icon_state = "[initial(icon_state)]_s[struts_ready]"
+			icon_state = "[base_icon]_s[struts_ready]"
 			name = "damaged [initial(name)] and modular struts"
 			desc = "[initial(desc)] At least one metal strut has been placed and matched to the openings on the plating, ready to be attached to the platform. The plating and struts are badly damaged and will need repairs."
 			desc_lore = "[initial(desc_lore)] The struts, screws and other elements that can be attached to the plating are all in compliance with the Northern Republic Production Standard, guaranteeing compatibility with almost any human ship in existence. Physical damage on plating like this is best removed using a welder. Somehow the struts on this panel survived whatever blew off the tiles, but typically they are not particularly explosion resistant, so they get damaged easily, requiring complete replacements. This fact is not seen as a flow by the Northern Republic that maintains the standard, as they argue explosions should not be an occurrence in areas where these tiles are used unless something is very wrong."
@@ -250,25 +259,28 @@
 			desc = "[initial(desc)] It looks badly burnt and will need to be cleaned before use."
 			desc_lore = "[initial(desc_lore)] The tiles following the Northern Republic standard will by design burn off as fast as possible while generating as little heat and smoke as possible. This typically is enough to save the struts that hold them in place, all they need is a little cleaning that will require you to loosen their bolts with a screwdriver first."
 		if (struts_ready > 0)
-			icon_state = "[initial(icon_state)]_s[struts_ready]"
+			icon_state = "[base_icon]_s[struts_ready]"
 			name = "burnt [initial(name)] and modular struts"
 			desc = "[initial(desc)] At least one metal strut has been placed and matched to the openings on the plating, ready to be attached to the platform. It looks badly burnt and will need to be cleaned before use."
 			desc_lore = "[initial(desc_lore)] The struts, screws and other elements that can be attached to the plating are all in compliance with the Northern Republic Production Standard, guaranteeing compatibility with almost any human ship in existence. The tiles following the Northern Republic standard will by design burn off as fast as possible while generating as little heat and smoke as possible. This typically is enough to save the struts that hold them in place, all they need is a little cleaning that will require you to loosen their bolts with a screwdriver first."
 		burnt = 1
 	return
-//Completed main type, not to be used.
 /turf/open/floor/plating/modular/completed
 	struts_install = 4
 	struts_ready = 4
 	tiles_install = 4
-	var/tile_color = "default"
+	icon_state = "default"
+	tiles_color = "default"
+
 
 /turf/open/floor/plating/modular/completed/Initialize()
 	. = ..()
-
-	icon_state = tile_color
+	name = "modular floor tiling"
+	desc = "Four NRPS compliant modular tiles snapped to struts attached to special plating attached to the hull. A Northern Republic classic. "
+	desc_lore = "These modular tiles are typically attached onto special plating that is typically permanently installed on ship hull floors meant for private or recreational locations. The plating comes with small holes predrilled in preset, standardized distances that allow for the installation of modular tile struts, which in turn are used with the UACM standardized tiling system to add some color to private quarters of UACM personnel. The tiles and struts that hold them are themselves are printed in the PST's fabrication wings at minimal material cost. "
 
 //Specific completed colors
 
 /turf/open/floor/plating/modular/completed/white
-	tile_color = "white"
+	icon_state = "white"
+	tiles_color = "white"

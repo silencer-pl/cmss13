@@ -12,7 +12,7 @@
 	throw_range = 20
 	max_amount = 40
 	stack_id = "grey modular tile"
-	var/tile_icon = "default"
+	var/tiles_color = "default"
 	amount_sprites = TRUE
 
 /obj/item/stack/modulartiles/white
@@ -20,4 +20,4 @@
 	icon_state = "tiles_white"
 	singular_name = "grey NRPS modular floor tile"
 	stack_id = "white modular tile"
-	tile_icon = "white"
+	tiles_color = "white"
