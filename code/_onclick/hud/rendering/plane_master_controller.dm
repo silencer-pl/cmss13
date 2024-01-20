@@ -65,6 +65,8 @@ INITIALIZE_IMMEDIATE(/atom/movable/plane_master_controller)
 		FLOOR_PLANE,
 		LIGHTING_PLANE,
 		EXTERIOR_LIGHTING_PLANE,
+		SPACE_BACKDROP_PLANE,
+		SPACE_PLANE,
 	)
 
 /// Exists for convienience when referencing all non-master render plates.

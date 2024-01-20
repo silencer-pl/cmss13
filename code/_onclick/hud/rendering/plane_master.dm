@@ -36,6 +36,24 @@
 	appearance_flags = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
 
+/atom/movable/screen/plane_master/space
+
+	name = "space plane master"
+	plane = SPACE_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_OVERLAY
+/atom/movable/screen/plane_master/space_backdrop
+
+	name = "space backdrop plane master"
+	plane = SPACE_BACKDROP_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_OVERLAY
+
+/atom/movable/screen/plane_master/space_backdrop/backdrop(mob/mymob)
+	. = ..()
+
+	mymob.overlay_fullscreen("space", /atom/movable/screen/fullscreen/space)
+
 ///Contains most things in the game world
 /atom/movable/screen/plane_master/game_world
 	name = "game world plane master"

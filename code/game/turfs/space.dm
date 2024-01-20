@@ -9,6 +9,7 @@
 	name = "\proper space"
 	icon_state = "0"
 	can_bloody = FALSE
+	plane = SPACE_PLANE
 	layer = UNDER_TURF_LAYER
 	supports_surgery = FALSE
 
