@@ -126,7 +126,7 @@
 	name = "Shuttle L-533";
 	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
 	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "6,5"
+	icon_state = "11,5"
 	},
 /area/shuttle/ert)
 "lM" = (
@@ -190,11 +190,6 @@
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
-"pr" = (
-/turf/closed/shuttle/lifeboat/transparent{
-	icon_state = "26,4u"
-	},
-/area/shuttle/ert)
 "qV" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	icon_state = "0,6"
@@ -214,7 +209,7 @@
 	name = "Shuttle L-533";
 	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
 	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "24,6"
+	icon_state = "24,0"
 	},
 /area/shuttle/ert)
 "su" = (
@@ -242,14 +237,6 @@
 	},
 /turf/open/shuttle/lifeboat,
 /area/shuttle/ert)
-"tB" = (
-/turf/closed/shuttle/lifeboat{
-	name = "Shuttle L-533";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "23,1"
-	},
-/area/shuttle/ert)
 "uq" = (
 /turf/closed/shuttle/lifeboat{
 	name = "Shuttle L-533";
@@ -265,12 +252,6 @@
 	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
 	icon_state = "2,4"
 	},
-/area/shuttle/ert)
-"uJ" = (
-/obj/structure/prop/invuln/dropship_parts/lifeboat{
-	icon_state = "25,6"
-	},
-/turf/template_noop,
 /area/shuttle/ert)
 "uN" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
@@ -337,7 +318,7 @@
 	name = "Shuttle L-533";
 	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
 	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "6,1"
+	icon_state = "16,1"
 	},
 /area/shuttle/ert)
 "An" = (
@@ -425,12 +406,6 @@
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "24,3"
 	},
-/area/shuttle/ert)
-"FS" = (
-/obj/structure/prop/invuln/dropship_parts/lifeboat{
-	icon_state = "25,0"
-	},
-/turf/template_noop,
 /area/shuttle/ert)
 "Gl" = (
 /obj/structure/eventterminal/puzzle01/info_left{
@@ -580,14 +555,6 @@
 	},
 /turf/template_noop,
 /area/shuttle/ert)
-"RR" = (
-/turf/closed/shuttle/lifeboat{
-	name = "Shuttle L-533";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "23,6"
-	},
-/area/shuttle/ert)
 "RW" = (
 /turf/closed/shuttle/lifeboat/transparent{
 	icon_state = "window1l"
@@ -649,14 +616,6 @@
 	icon_state = "23,5"
 	},
 /area/shuttle/ert)
-"Vj" = (
-/turf/closed/shuttle/lifeboat{
-	name = "Shuttle L-533";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
-	icon_state = "25,1"
-	},
-/area/shuttle/ert)
 "VJ" = (
 /turf/closed/shuttle/lifeboat{
 	name = "Shuttle L-533";
@@ -702,11 +661,6 @@
 	cargo_manifest = "<hr><center><b>UACM 2ND LOGISTICS<br>ID: 150885-553110-GSP02</b></center><hr>GENERAL SUPPLIES<br><br>   NUTRITION PASTE, REFILL CARTRIDGE<br>                                x50<br><hr>                             WEIGHT<br>                              30 KG<br><hr>"
 	},
 /turf/open/shuttle/lifeboat,
-/area/shuttle/ert)
-"ZP" = (
-/turf/closed/shuttle/lifeboat/transparent{
-	icon_state = "26,2d"
-	},
 /area/shuttle/ert)
 
 (1,1,1) = {"
@@ -952,57 +906,57 @@ nn
 WK
 "}
 (23,1,1) = {"
-Xj
-em
+IR
+IR
 kC
 ke
 ke
 ke
 zK
-uq
-jA
+Td
+rM
 "}
 (24,1,1) = {"
-RR
-RR
+wA
+wA
 ce
 dr
 dr
 dr
-RR
-RR
 BC
+wA
+wA
 "}
 (25,1,1) = {"
-rM
-RR
+wA
+wA
 ce
 OO
 NE
 OO
-RR
-RR
 An
+wA
+wA
 "}
 (26,1,1) = {"
-uJ
-rM
+wA
+wA
 UG
 sR
 hb
 EI
-tB
-Vj
-FS
+jA
+wA
+wA
 "}
 (27,1,1) = {"
 wA
+wA
 gS
-pr
 TM
 FI
 mt
-ZP
 uN
+wA
 wA
 "}
