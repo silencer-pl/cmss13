@@ -11,7 +11,9 @@
 
 //#define AREA_LAYER 1
 
-#define UNDER_TURF_LAYER 1.99
+#define UNDER_TURF_LAYER 1.98
+
+#define SPACE_UNDERLAY_LAYER 1.99
 
 #define TURF_LAYER 2
 
