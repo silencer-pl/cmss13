@@ -42,19 +42,15 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 
 	if(!amount_sprites)
 		return
-	if(stack_id == "floor strut")
-		if(amount == 1)
+	if(stack_id == "modular tile" || stack_id == "floor strut")
+		if(amount < 8)
 			icon_state = initial(icon_state) // One
-			desc = "A set of four struts and eight screws. There is an engraving on the rear of each strut."
-		else if(amount < max_amount * 0.5)
+		else if(amount >= 8 && amount < 12)
 			icon_state = "[initial(icon_state)]-2" // Two
-			desc = "A set of eight struts and sixteen screws. There is an engraving on the rear of each strut."
-		else if(amount < max_amount)
-			icon_state = "[initial(icon_state)]-3" // Many
-			desc = "Around ten struts and twice as many screws. There is an engraving on the rear of each strut."
+		else if(amount >= 12 && amount < 16)
+			icon_state = "[initial(icon_state)]-3" // Three
 		else
-			icon_state = "[initial(icon_state)]-4" // Max
-			desc = "Twenty struts and fourty screws. There is an engraving on the rear of each strut."
+			icon_state = "[initial(icon_state)]-4" // Many
 		return
 
 	if(amount == 1)
@@ -312,7 +308,7 @@ Also change the icon to reflect the amount of sheets, if possible.*/
 /obj/item/stack/proc/add_to_stacks(mob/user)
 	var/obj/item/stack/oldsrc = src
 	src = null
-	for (var/obj/item/stack/item in user.loc)
+	for (var/obj/item/stack/item in oldsrc.loc)
 		if (item==oldsrc)
 			continue
 		if (!istype(item, oldsrc.type))

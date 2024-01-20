@@ -97,22 +97,26 @@ GLOBAL_LIST_INIT(rod_recipes, list (
 
 /obj/item/stack/rods/floorstrut
 	name = "NRPS compliant floor struts"
-	desc = "A set of four struts and eight screws. There is an engraving on the rear of each strut."
+	desc = "Metal struts with attached screws. They are suprisingly jingly when moved around, especially in larger stacks. There is an engraving on each struts back."
 	item_serial = "Product of the UACM OV-PST <br> Northern Republic Production Standard comforting"
 	item_serial_distance = SERIAL_ITEM_SIZE_CLOSE
-	singular_name = "NRPS compliant floor struts"
+	singular_name = "NRPS compliant floor strut"
 	icon_state = "tile_struts"
+	icon = 'icons/obj/items/floortiles.dmi'
 	flags_atom = FPRINT|CONDUCT
 	w_class = SIZE_SMALL
 	force = 2
 	throwforce = 2
 	throw_speed = SPEED_VERY_FAST
 	throw_range = 20
-	max_amount = 20
+	max_amount = 40
 	attack_verb = list("proded", "smacked", "whacked")
 	stack_id = "floor strut"
 	garbage = FALSE
 	amount_sprites = TRUE
+	recipes = null
 
-/obj/item/stack/rods/floorstrut/attack_hand(mob/user as mob)
-	user.visible_message(SPAN_NOTICE("[user] plays with a few small metal struts in their hand."), SPAN_HELPFUL("You flick a few of the struts in the palm of your hand. Oddly satisfying."), SPAN_DANGER("You hear the clacking of metal against metal for a while."))
+/obj/item/stack/rods/floorstrut/attack_self(mob/user)
+	..()
+	user.visible_message(SPAN_NOTICE("[user] plays with a small metal strut in their hand."), SPAN_HELPFUL("You flick one of the struts in the palm of your hand. Oddly satisfying."), SPAN_DANGER("You hear the clacking of metal against metal for a while."))
+	return

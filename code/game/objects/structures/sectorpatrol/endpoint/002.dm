@@ -108,7 +108,7 @@
 				langchat_color = "#ffffff"
 				change_lights("cargointake", 1, LIGHT_COLOR_WHITE, 5,0)
 				terminal_speak("pom.sync: Override complete! Restarting main terminal process!")
-				puzzlebox_global_status = puzzlebox_global_status + 1
+				puzzlebox_global_status += 1
 				open_doors("cargointake")
 				return
 			if (puzzlebox_parser_input == "pom.sync UACM-OVPST-D31-CARINT 190885-054293-ACTIS-07" && puzzle_complete == TRUE)
@@ -860,7 +860,7 @@
 					T.desc_lore = "While using Liquid Data enables faster than light communication, practical applications have mostly been successful in utilizing it for large bursts instead of continuous communication. As such Liquid Data machines are typically of large sizes and usually clustered into pairs and constantly checked for integrity. This cluster seems to go against both these principles - it seems to be a trio, not a pair of computers and maintains a continuous connection to whatever its source is."
 				for (var/obj/structure/eventterminal/puzzle02/ldmainframediag/D in world)
 					D.puzzle_complete = TRUE
-				puzzlebox_global_status = puzzlebox_global_status + 1
+				puzzlebox_global_status += 1
 				return
 
 /obj/structure/eventterminal/puzzle02/ldmainframe_master/correct/attackby(obj/item/W as obj, mob/user as mob)
