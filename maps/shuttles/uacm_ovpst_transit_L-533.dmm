@@ -216,7 +216,8 @@
 	name = "Twilight Paradox jump jet M-60";
 	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
 	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
-	icon_state = "0,6"
+	icon_state = "0,6";
+	item_serial = "M-60<br>TP CAPABLE SMALL CRAFT ENGINE<br>UACM-LV-533<br>CAUTION: TWILIGHT PARADOX ENGINE. HIGH CHANCE OF CRYSTALLINE CONTAMINATION"
 	},
 /turf/template_noop,
 /area/shuttle/ert)
@@ -242,7 +243,8 @@
 	name = "Twilight Paradox jump jet M-60";
 	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
 	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
-	icon_state = "0,5"
+	icon_state = "0,5";
+	item_serial = "M-60<br>TP CAPABLE SMALL CRAFT ENGINE<br>UACM-LV-533<br>CAUTION: TWILIGHT PARADOX ENGINE. HIGH CHANCE OF CRYSTALLINE CONTAMINATION"
 	},
 /turf/template_noop,
 /area/shuttle/ert)
@@ -304,7 +306,8 @@
 	name = "Twilight Paradox jump jet M-60";
 	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
 	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
-	icon_state = "0,0"
+	icon_state = "0,0";
+	item_serial = "M-60<br>TP CAPABLE SMALL CRAFT ENGINE<br>UACM-LV-533<br>CAUTION: TWILIGHT PARADOX ENGINE. HIGH CHANCE OF CRYSTALLINE CONTAMINATION"
 	},
 /obj/docking_port/mobile/emergency_response/l533,
 /turf/template_noop,
@@ -548,7 +551,8 @@
 	name = "Twilight Paradox jump jet M-60";
 	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
 	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
-	icon_state = "1,0"
+	icon_state = "1,0";
+	item_serial = "M-60<br>TP CAPABLE SMALL CRAFT ENGINE<br>UACM-LV-533<br>CAUTION: TWILIGHT PARADOX ENGINE. HIGH CHANCE OF CRYSTALLINE CONTAMINATION"
 	},
 /turf/template_noop,
 /area/shuttle/ert)
@@ -607,7 +611,8 @@
 	name = "Twilight Paradox jump jet M-60";
 	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
 	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
-	icon_state = "0,1"
+	icon_state = "0,1";
+	item_serial = "M-60<br>TP CAPABLE SMALL CRAFT ENGINE<br>UACM-LV-533<br>CAUTION: TWILIGHT PARADOX ENGINE. HIGH CHANCE OF CRYSTALLINE CONTAMINATION"
 	},
 /turf/template_noop,
 /area/shuttle/ert)
@@ -663,7 +668,8 @@
 	name = "Twilight Paradox jump jet M-60";
 	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
 	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
-	icon_state = "1,6"
+	icon_state = "1,6";
+	item_serial = "M-60<br>TP CAPABLE SMALL CRAFT ENGINE<br>UACM-LV-533<br>CAUTION: TWILIGHT PARADOX ENGINE. HIGH CHANCE OF CRYSTALLINE CONTAMINATION"
 	},
 /turf/template_noop,
 /area/shuttle/ert)
