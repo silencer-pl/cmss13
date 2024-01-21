@@ -214,8 +214,8 @@
 "qV" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	name = "Twilight Paradox jump jet M-60";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
+	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
+	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
 	icon_state = "0,6"
 	},
 /turf/template_noop,
@@ -240,8 +240,8 @@
 "su" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	name = "Twilight Paradox jump jet M-60";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
+	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
+	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
 	icon_state = "0,5"
 	},
 /turf/template_noop,
@@ -302,8 +302,8 @@
 "vG" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	name = "Twilight Paradox jump jet M-60";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
+	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
+	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
 	icon_state = "0,0"
 	},
 /obj/docking_port/mobile/emergency_response/l533,
@@ -546,8 +546,8 @@
 "NF" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	name = "Twilight Paradox jump jet M-60";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
+	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
+	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
 	icon_state = "1,0"
 	},
 /turf/template_noop,
@@ -605,8 +605,8 @@
 "RH" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	name = "Twilight Paradox jump jet M-60";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
+	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
+	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
 	icon_state = "0,1"
 	},
 /turf/template_noop,
@@ -661,8 +661,8 @@
 "Up" = (
 /obj/structure/prop/invuln/dropship_parts/lifeboat{
 	name = "Twilight Paradox jump jet M-60";
-	desc = "A transit shuttle, fairly big for its size. Its markings designate it as L-533, a UACM vessel.";
-	desc_lore = "Transit shuttles are typically maintained by space stations and other installations where docking for medium and large ships would be impractical or outright impossible. They are also typically used to drop off and pick up cargo and/or personnel from ships during their stay. L-533 has been part of its space stations since its fairly infamous start and little is known about its design.";
+	desc = "A complex mechanism made from reddish metal, housed inside a metal cylinder. It seems to emit a gentle glow.";
+	desc_lore = "Engines built to utilize the Twilight Paradox, a phenomenon that exists whenever natural light falls into the void of space, are all derived from the alien model found on Earth in 2073. This model was made from common resources found on Earth itself and the general belief is that this technology was customized and ready to be replicated on-planet for whoever finds it. The red element inside generates near unlimited power and allows ships to enter hyperspace while they skid on the so called 'Twilight Lines'. While this means that getting a Twilight Engine powered again should it lose all charge or even worse, in the depts of deep space, can be challenging, engines that work properly and are used regularly guarantee that their vessel does not have to worry about power nor fuel.";
 	icon_state = "1,6"
 	},
 /turf/template_noop,
