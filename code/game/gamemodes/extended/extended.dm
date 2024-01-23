@@ -6,7 +6,7 @@
 	votable = FALSE
 	var/research_allocation_interval = 10 MINUTES
 	var/next_research_allocation = 0
-	taskbar_icon = 'icons/taskbar/gml_colonyrp.png'
+	taskbar_icon = 'icons/taskbar/gml_sectorpatrol.png'
 
 /datum/game_mode/announce()
 	to_world("<B>Sector Patrol ALPHA</B>")
