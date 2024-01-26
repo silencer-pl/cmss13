@@ -51,6 +51,28 @@
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Lamp frames do not need any assembly and are ready for their tops out of the box."
 	var/crafting_lamp_top_color
 
+/obj/item/crafting/frame/lamp/attackby(obj/item/C, mob/user)
+	if(icon_state == "lamp_base")
+		if(istype(C, /obj/item/crafting/top/lamp/base))
+			var/obj/item/crafting/top/lamp/base/D = C
+			user.visible_message(SPAN_NOTICE("[user] starts to attach a lamp top to its base."), SPAN_INFO("You start to attach a lamp top to its base."),)
+			if(do_after(user, (15 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				crafting_lamp_top_color = D.variant_id
+				qdel(D)
+				icon_state = "lamp"
+				update_icon()
+				name = "assembled desk lamp"
+				desc = "A weighed base with a curved top attached to it, both made from light resin that resembles metal. The lightbulb is missing."
+				desc_lore = "While in a lot of NRPS compliant objects, connecting all tops to their frames means that the assembly is complete, the standard does allow extra steps in this final phase. This typically means either cosmetic touches or electric/electronic assemblies. Now that the base and tops are secured, screwing in an appropriate desk lamp light bulb will complete the assembly."
+				return
+		else
+			to_chat(usr, SPAN_NOTICE("There does not seem to be any reason to do that. If you are trying to assemble the lamp, attach a top to the base."))
+			return
+	else
+		to_chat(usr, SPAN_NOTICE("There does not seem to be any reason to do that."))
+		return
+
+
 // Loose frame parts
 
 /obj/item/crafting/frame_elements
