@@ -32,16 +32,31 @@
 //frames
 
 /obj/structure/crafting/frame/
-	name = "frame master object"
+	name = "structure frame master object"
 	icon_state = "default"
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands."
 
-
 /obj/structure/crafting/frame/table
-	name = "assembled table frame"
+	name = "table frame"
+	desc = "A set of metal rods in two distinct lengths, put together to form a table frame and secured by a set of screws."
+	icon_state = "table_metal_frame"
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, table frames need a top, which then should be secured using a wrench. "
 
 /obj/structure/crafting/frame/bed
+	name = "bed frame"
+	desc = "Four metal bards and supporting rods, put together into a bed frame. Held together by a series of screws."
+	icon_state = "bed_frame"
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, bed frames are ready for an expandable mattress and don't require any further tinkering."
 
 /obj/structure/crafting/frame/drawers
+	name = "cabinet frame"
+	desc = "Several sheets of metal snapped together along the edges using a series of premade hooks and holes."
+	icon_state = "drawer_frame"
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, cabinet frames need a set of drawers that clip onto inlaid tracks and don't require any additional tinkering. "
 
 /obj/structure/crafting/frame/chair
+	name = "office chair base with wheels"
+	desc = "An office chair with four 'legs', each one has a colored wheel at its tip.
+	var/frame_wheels = "default"
+	icon_state = "chair_base_wheels"
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once the wheels are secured, office chairs need a seat attached and then tightened with a wrench."
