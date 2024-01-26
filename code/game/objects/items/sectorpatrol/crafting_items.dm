@@ -64,23 +64,75 @@
 	desc = "A set of metal rods in two distinct lengths and a set of screws to hold them together."
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Table frame assembly per the Standard begins with assembling the frame with a screwdriver and the provided parts."
 
-/obj/item/crafting/frame_elements/drawer
+/obj/item/crafting/frame_elements/table/attackby(obj/item/C, mob/user)
+	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
+		user.visible_message(SPAN_NOTICE("[user] starts to assemble a frame with a screwdriver."), SPAN_INFO("You start to assemble the frame."), SPAN_DANGER("You hear metal gently brushing against other metal."))
+		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			var/obj/structure/crafting/frame/table/R = new(src, 1, /obj/structure/crafting/frame/table)
+			R.variant_id = variant_id
+			qdel(src)
+			return
+	else
+		to_chat(usr, SPAN_NOTICE("There does not seem to be any reason to do that. If you are trying to assemble the frame, use a screwdriver."))
+		return
+
+/obj/item/crafting/frame_elements/drawers
 	name = "carbinet frame elements"
 	icon_state = "drawer_frame_parts"
 	desc = "Several metal sheets with a set of notches and hooks."
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Cabinet frames can be assembled by hand and don't require any additional tools thanks to the system of hooks and notches. "
+
+/obj/item/crafting/frame_elements/drawers/attack_hand(mob/user)
+	user.visible_message(SPAN_NOTICE("[user] starts to assemble a cabinet frame from its components."), SPAN_INFO("You start to assemble a cabinet frame from its components."), SPAN_DANGER("You hear metal gently brushing against other metal."))
+	if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		var/obj/structure/crafting/frame/drawers/R = new(src, 1, /obj/structure/crafting/frame/drawers)
+		R.variant_id = variant_id
+		qdel(src)
+		return
 
 /obj/item/crafting/frame_elements/chair
 	name = "office chair base"
 	icon_state = "chair_base"
 	desc = "The base and hydraulics part of an office chair, with a small lever used to control the height of the finished assembly."
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Office chair frames do not need assembly and are ready for their tops. Due to how the seat and back is mounted, the wheels should be attached first."
+	var/crafting_chair_wheels = 0
+
+/obj/item/crafting/frame_elements/chair/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/crafting/top/chair/wheels/))
+		var/obj/item/crafting/top/chair/wheels/W = C
+		user.visible_message(SPAN_NOTICE("[user] starts to attach wheels into a chair frame."), SPAN_INFO("You start to attach wheels into a chair frame."), SPAN_DANGER("You hear gentle popping."))
+		while(crafting_chair_wheels < 5)
+			if(do_after(user, (10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				crafting_chair_wheels += 1
+				if(crafting_chair_wheels == 4)
+					user.visible_message(SPAN_NOTICE("[user] finishes attaching wheels to a chair frame and puts the chair down."), SPAN_INFO("You finish attaching wheels to a chair frame and put the chair down."), SPAN_DANGER("You hear a firm tap."))
+					var/obj/structure/crafting/frame/chair/R = new(src, 1, /obj/structure/crafting/frame/chair)
+					R.variant_id = variant_id
+					R.crafting_chair_wheel_id = W.variant_id
+					qdel(src)
+					return
+	else
+		to_chat(usr, SPAN_NOTICE("There does not seem to be any reason to do that. If you are trying to assemble the frame, start with the wheels."))
+		return
 
 /obj/item/crafting/frame_elements/bed
 	name = "bed frame elements"
 	icon_state = "bed_frame_parts"
 	desc = "Four thick rods and several smaller ones and a set of screws meant to hold them together."
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Bed frame assembly per the Standard begins with assembling the frame with a screwdriver and the provided parts."
+
+/obj/item/crafting/frame_elements/bed/attackby(obj/item/C, mob/user)
+
+	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
+		user.visible_message(SPAN_NOTICE("[user] starts to assemble a frame with a screwdriver."), SPAN_INFO("You start to assemble the frame."), SPAN_DANGER("You hear metal gently brushing against other metal."))
+		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			var/obj/structure/crafting/frame/bed/R = new(src, 1, /obj/structure/crafting/frame/bed)
+			R.variant_id = variant_id
+			qdel(src)
+			return
+	else
+		to_chat(usr, SPAN_NOTICE("There does not seem to be any reason to do that. If you are trying to assemble the frame, use a screwdriver."))
+		return
 
 
 // Top components
@@ -113,7 +165,7 @@
 	name = "compressed white mattress"
 	desc = "A sealed, very stretchy container with a white, foamy liquid inside. A light and a button are visible on the side."
 	icon_state = "bed_matress"
-	desc_lore "Any object produced in adherence to the Northern Republic Production Standard comes with a set of one or more components that attach to their respective frames. These elements are called 'tops' and typically are meant to be both highly modular and highly customizable. The NRPS does not care too much about aesthetics (except where they influence assembly) and there is a fair share of bigger and smaller companies out in the galaxy that make their living by producing unique, personalized top parts for NRPS compliant items. Tops are meant to come with no additional assembly parts, everything needed to attach one to its frame should already be present on the frame itself after assembly.<br><br>While formally called a mattress, these tops have little to do with what is considered one on Earth. Released in the Northern Republic and immediately appended into the NRPS, these stretchy, rubber like bags are filled with a foamy side product of smoke suppression systems research. When exposed to impact, a reaction within the liquid makes it rapidly expand into a thick, uniform substance which is generally considered extremely comfortable to rest on. Once set, the substance can be liquified again by sending a high enough electric charge through it, typically achieved by plugging in a multitool to the side of the mattress. "
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard comes with a set of one or more components that attach to their respective frames. These elements are called 'tops' and typically are meant to be both highly modular and highly customizable. The NRPS does not care too much about aesthetics (except where they influence assembly) and there is a fair share of bigger and smaller companies out in the galaxy that make their living by producing unique, personalized top parts for NRPS compliant items. Tops are meant to come with no additional assembly parts, everything needed to attach one to its frame should already be present on the frame itself after assembly.<br><br>While formally called a mattress, these tops have little to do with what is considered one on Earth. Released in the Northern Republic and immediately appended into the NRPS, these stretchy, rubber like bags are filled with a foamy side product of smoke suppression systems research. When exposed to impact, a reaction within the liquid makes it rapidly expand into a thick, uniform substance which is generally considered extremely comfortable to rest on. Once set, the substance can be liquified again by sending a high enough electric charge through it, typically achieved by plugging in a multitool to the side of the mattress. "
 
 /obj/item/crafting/top/chair/seat
 	name = "black office chair seat"
@@ -125,7 +177,7 @@
 	desc = "A set of small wheels with small, notched metal rods sticking out of their frames. "
 	icon_state = "chair_wheels"
 
-/obj/item/crafting/top/drawer
+/obj/item/crafting/top/drawers
 	name = "black cabinet drawers"
 	desc = "Two slide-in cabinet drawers with grooves etched on the side."
 	icon_state = "drawer_drawers"

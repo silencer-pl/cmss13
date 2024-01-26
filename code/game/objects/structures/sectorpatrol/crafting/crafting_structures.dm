@@ -15,7 +15,6 @@
 	icon_state = "package_xl"
 	desc = "Brown packaging in the shape of a box. If just looked at, seems like cardboard, but when touched, one would see that it seems way more rigid and seems to be in fact some sort of resin.  Seems like it would be easy to break open, but the process would clearly be one way. A label is visible on one of its corners."
 	desc_lore = "The Northern Republic Production Standard not only dictates screw hole sizes and tube lengths, but also regulates both packaging and labeling of anything adhering to the standard when it is produced. Essentially this means that every NRPS standard complaint wrapping is made of the same brownish artificial resin, meant to be a combination of cardboard and Styrofoam, and always comes with a label oriented towards the bottom-right hand corner of the package. Essentially this means that if you can read the letters, the package is likely upright."
-	w_class = SIZE_HUGE
 
 /obj/structure/crafting/packages/table
 	icon_state = "package_xl"
@@ -56,7 +55,7 @@
 
 /obj/structure/crafting/frame/chair
 	name = "office chair base with wheels"
-	desc = "An office chair with four 'legs', each one has a colored wheel at its tip.
-	var/frame_wheels = "default"
+	desc = "An office chair with four 'legs', each one has a colored wheel at its tip."
+	var/crafting_chair_wheel_id = "default"
 	icon_state = "chair_base_wheels"
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once the wheels are secured, office chairs need a seat attached and then tightened with a wrench."
