@@ -104,7 +104,8 @@
 	desc = "Several metal sheets with a set of notches and hooks."
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Cabinet frames can be assembled by hand and don't require any additional tools thanks to the system of hooks and notches. "
 
-/obj/item/crafting/frame_elements/drawers/attack_hand(mob/user)
+/obj/item/crafting/frame_elements/drawers/attack_self(mob/user)
+	..()
 	user.visible_message(SPAN_NOTICE("[user] starts to assemble a cabinet frame from its components."), SPAN_INFO("You start to assemble a cabinet frame from its components."), SPAN_DANGER("You hear metal gently brushing against other metal."))
 	if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		var/obj/structure/crafting/frame/drawers/R = new(src, 1, /obj/structure/crafting/frame/drawers)
