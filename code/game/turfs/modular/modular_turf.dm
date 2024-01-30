@@ -47,7 +47,7 @@
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 				if(struts_install > 0)
 					user.visible_message(SPAN_NOTICE("[user] starts to fix the struts and plating."), SPAN_INFO("You start fixing the struts and plating." ), SPAN_DANGER("You hear a hissing that gets distinctly louder for short intervals."))
-					if(do_after(user, (40 + (15 * struts_install)) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+					if(do_after(user, (CRAFTING_DELAY_LONG + (15 * struts_install)) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						user.visible_message(SPAN_NOTICE("[user] fixes the struts and plating."), SPAN_INFO("You fix the struts and plating." ), SPAN_DANGER("The hissing stops."))
 						icon_state = "[base_icon]_s[struts_install]"
 						name = "[initial(name)] and modular struts"
@@ -58,7 +58,7 @@
 						return
 				if(struts_install == 0)
 					user.visible_message(SPAN_NOTICE("[user] starts to fix the plating."), SPAN_INFO("You start fixing the plating." ), SPAN_DANGER("You hear a hissing that gets distinctly louder for short intervals."))
-					if(do_after(user, 40 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+					if(do_after(user, CRAFTING_DELAY_LONG * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						user.visible_message(SPAN_NOTICE("[user] fixes the plating."), SPAN_INFO("You fix the plating." ), SPAN_DANGER("The hissing stops."))
 						icon_state = base_icon
 						desc = initial(desc)
@@ -134,7 +134,7 @@
 				desc = "[initial(desc)] At least one metal strut has been placed and matched to the openings on the plating, ready to be attached to the platform."
 				desc_lore = "[initial(desc_lore)] The struts, screws and other elements that can be attached to the plating are all in compliance with the Northern Republic Production Standard, guaranteeing compatibility with almost any human ship in existence."
 			while(struts_install < 4)
-				if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				if(do_after(user, CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 					F.use(1)
 					struts_install += 1
 					icon_state = "[base_icon]_s[struts_install]"
@@ -153,7 +153,7 @@
 			return
 		if(burnt)
 			user.visible_message(SPAN_NOTICE("[user] starts to unscrew and clean the struts and plating."), SPAN_INFO("You start to unscrew and clean the struts and plating.."), SPAN_DANGER("You hear a very faint scraping noise."))
-			if(do_after(user, (40 + (15 * struts_ready)) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			if(do_after(user, (CRAFTING_DELAY_LONG + (15 * struts_ready)) * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				user.visible_message(SPAN_NOTICE("[user] fixes the struts and plating."), SPAN_INFO("You fix the struts and plating." ), SPAN_DANGER("The scraping stops."))
 				if(struts_install)
 					icon_state = "[base_icon]_s[struts_ready]"
@@ -168,9 +168,9 @@
 			if  (struts_ready > 0)
 				user.visible_message(SPAN_NOTICE("[user] uses a screwdriver on the plating struts."), SPAN_INFO("You start to unscrew the struts."))
 				while(struts_ready > 0)
-					if(do_after(user, 10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION),INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+					if(do_after(user, CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION),INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						sleep(2)
-						if(do_after(user, 10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION),INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+						if(do_after(user, CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION),INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 							struts_ready -= 1
 							sleep(2)
 				user.visible_message(SPAN_NOTICE("[user] finishes working on the plating."), SPAN_INFO("You finished unfasting all of the struts. You can pick them up by using an empty hand in GRAB intent." ))
@@ -191,9 +191,9 @@
 			if (struts_install > struts_ready)
 				user.visible_message(SPAN_NOTICE("[user] starts to work on the paneling."), SPAN_INFO("You start to secure the struts."))
 				while (struts_install > struts_ready)
-					if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+					if(do_after(user, CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 						sleep(2)
-						if(do_after(user, 20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+						if(do_after(user, CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 							struts_ready += 1
 				user.visible_message(SPAN_NOTICE("[user] finishes working on the plating."), SPAN_INFO("You fasten all available struts." ))
 				return

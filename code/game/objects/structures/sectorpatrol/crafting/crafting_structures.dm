@@ -47,7 +47,7 @@
 	if(crafting_top_ready == TRUE)
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] lifts a table top of its frame."), SPAN_INFO("You lift a table top of its frame."))
-			if(do_after(user, (10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				switch(icon_state)
 					if("table_metal_black")
 						var/obj/item/crafting/top/table/tabletop = new(get_turf(user))
@@ -68,7 +68,7 @@
 	if(istype(C, /obj/item/crafting/top/table/))
 		var/obj/item/crafting/top/table/W = C
 		user.visible_message(SPAN_NOTICE("[user] starts starts to align a table top with a frame."), SPAN_INFO("You start to to align a table top with a frame."))
-		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			switch(W.variant_id)
 				if("default")
 					icon_state = "table_metal_black"
@@ -84,7 +84,7 @@
 	if(HAS_TRAIT(C, TRAIT_TOOL_WRENCH))
 		if(crafting_top_ready == TRUE)
 			user.visible_message(SPAN_NOTICE("[user] tightens the screws attaching the table top to its frame."), SPAN_INFO("You tighten the screws attaching the table top to its frame."), SPAN_DANGER("You hear metal scratch against metal."))
-			if(do_after(user, (30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				switch(icon_state)
 					if("table_metal_black")
 						new /obj/structure/surface/modular/table(get_turf(src))
@@ -100,7 +100,7 @@
 			to_chat(usr, SPAN_NOTICE("Remove the top before disassembling the frame. To remove the top, click the frame with an empty hand in GRAB mode."))
 			return
 		user.visible_message(SPAN_NOTICE("[user] starts to disassemble the frame."), SPAN_INFO("You start to disassemble the frame."))
-		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			var/obj/item/crafting/frame_elements/elements = new(get_turf(usr))
 			elements.variant_id = variant_id
 			qdel(src)

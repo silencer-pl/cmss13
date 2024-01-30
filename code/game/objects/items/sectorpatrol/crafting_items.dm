@@ -56,7 +56,7 @@
 		if(istype(C, /obj/item/crafting/top/lamp/base))
 			var/obj/item/crafting/top/lamp/base/D = C
 			user.visible_message(SPAN_NOTICE("[user] starts to attach a lamp top to its base."), SPAN_INFO("You start to attach a lamp top to its base."),)
-			if(do_after(user, (15 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				crafting_lamp_top_color = D.variant_id
 				qdel(D)
 				icon_state = "lamp"
@@ -89,7 +89,7 @@
 /obj/item/crafting/frame_elements/table/attackby(obj/item/C, mob/user)
 	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
 		user.visible_message(SPAN_NOTICE("[user] starts to assemble a frame with a screwdriver."), SPAN_INFO("You start to assemble the frame."), SPAN_DANGER("You hear metal gently brushing against other metal."))
-		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			var/obj/structure/crafting/frame/table/R = new(get_turf(usr))
 			R.variant_id = variant_id
 			qdel(src)
@@ -107,7 +107,7 @@
 /obj/item/crafting/frame_elements/drawers/attack_self(mob/user)
 	..()
 	user.visible_message(SPAN_NOTICE("[user] starts to assemble a cabinet frame from its components."), SPAN_INFO("You start to assemble a cabinet frame from its components."), SPAN_DANGER("You hear metal gently brushing against other metal."))
-	if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+	if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 		var/obj/structure/crafting/frame/drawers/R = new(get_turf(usr))
 		R.variant_id = variant_id
 		qdel(src)
@@ -125,7 +125,7 @@
 		var/obj/item/crafting/top/chair/wheels/W = C
 		user.visible_message(SPAN_NOTICE("[user] starts to attach wheels into a chair frame."), SPAN_INFO("You start to attach wheels into a chair frame."), SPAN_DANGER("You hear gentle popping."))
 		while(crafting_chair_wheels < 5)
-			if(do_after(user, (10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				crafting_chair_wheels += 1
 				if(crafting_chair_wheels == 4)
 					user.visible_message(SPAN_NOTICE("[user] finishes attaching wheels to a chair frame and puts the chair down."), SPAN_INFO("You finish attaching wheels to a chair frame and put the chair down."), SPAN_DANGER("You hear a firm tap."))
@@ -148,7 +148,7 @@
 
 	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
 		user.visible_message(SPAN_NOTICE("[user] starts to assemble a frame with a screwdriver."), SPAN_INFO("You start to assemble the frame."), SPAN_DANGER("You hear metal gently brushing against other metal."))
-		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			var/obj/structure/crafting/frame/bed/R = new(get_turf(usr))
 			R.variant_id = variant_id
 			qdel(src)

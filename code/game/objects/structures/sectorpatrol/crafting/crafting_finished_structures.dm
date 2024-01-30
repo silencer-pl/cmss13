@@ -14,7 +14,7 @@
 	if(HAS_TRAIT(C, TRAIT_TOOL_WRENCH))
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] loosens the screws attaching the table top to its frame."), SPAN_INFO("You loosen the screws attaching the table top to its frame."), SPAN_DANGER("You hear metal scratch against metal."))
-			if(do_after(user, (30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				var/obj/structure/crafting/frame/table/frame = new(get_turf(src))
 				frame.icon_state = icon_state
 				frame.variant_id = variant_id
@@ -43,7 +43,7 @@
 	if(HAS_TRAIT(C, TRAIT_TOOL_MULTITOOL))
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] Attaches the multitool to the port on the side of the mattress. The device beeps."), SPAN_INFO("You attach the multitool to the port on the side of the mattress. The device beeps."), SPAN_DANGER("You hear a soft beep."))
-			if(do_after(user, (50 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				var/obj/structure/crafting/frame/bed/frame = new(get_turf(src))
 				frame.icon_state = icon_state
 				frame.variant_id = variant_id
@@ -117,10 +117,7 @@
 			to_chat(user, SPAN_INFO("Turn off the lamp by clicking on it with an empty hand in GRAB mode before removing the bulb."))
 			return
 		to_chat(user, SPAN_NOTICE("You push down on the release button for the bulb..."))
-		if(do_after(user, 10, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			var/obj/item/crafting/top/lamp/bulb/bulb = new(get_turf(src))
-			bulb.crafting_lamp_bulb_color = crafting_lamp_bulb_color
-			user.put_in_active_hand(bulb)
+		if(do_after(user, CRAFTING_DELAY_SHORT, INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 			var/obj/item/crafting/frame/lamp/frame = new(get_turf(src))
 			frame.crafting_lamp_top_color = crafting_lamp_top_color
 			frame.variant_id = variant_id
@@ -129,6 +126,51 @@
 			frame.name = "assembled desk lamp"
 			frame.desc = "A weighed base with a curved top attached to it, both made from light resin that resembles metal. The lightbulb is missing."
 			frame.desc_lore = "While in a lot of NRPS compliant objects, connecting all tops to their frames means that the assembly is complete, the standard does allow extra steps in this final phase. This typically means either cosmetic touches or electric/electronic assemblies. Now that the base and tops are secured, screwing in an appropriate desk lamp light bulb will complete the assembly."
+			var/obj/item/crafting/top/lamp/bulb/bulb = new(get_turf(src))
+			bulb.crafting_lamp_bulb_color = crafting_lamp_bulb_color
+			user.put_in_active_hand(bulb)
 			qdel(src)
 			return
+	return
+
+//Drawers
+
+/obj/structure/closet/modular/drawers
+	name = "drawers"
+	desc = "Two drawers mounted in a frame that can be slid in and out."
+	desc_lore = "Personal storage lockers come in all shapes and sizes, but open drawers such as this one are some of the most common. From clothes to personal effects, the availability and versatility of drawers like these means they are very widely used."
+	icon = 'icons/obj/items/sp_crafting.dmi'
+	icon_state = "drawer"
+	icon_closed = "drawer"
+	icon_opened = "drawer_open"
+	storage_capacity = 15
+	store_mobs = FALSE
+	anchored = 1
+	var/variant_id = "default"
+	var/crafting_drawer_color = "default"
+
+/obj/structure/closet/modular/drawers/attackby(obj/item/C, mob/user)
+	if(src.opened)
+		if(istype(C, /obj/item/grab))
+			if(isxeno(user)) return
+			var/obj/item/grab/G = C
+			if(G.grabbed_thing)
+				src.MouseDrop_T(G.grabbed_thing, user)   //act like they were dragged onto the closet
+			return
+		if(C.flags_item & ITEM_ABSTRACT)
+			return 0
+		user.drop_inv_item_to_loc(C,loc)
+	if(src.opened == 0)
+		if(HAS_TRAIT(C, TRAIT_TOOL_WRENCH))
+			if(user.a_intent == INTENT_GRAB)
+				user.visible_message(SPAN_NOTICE("[user] starts to remove the drawers from the frame."), SPAN_INFO("You start to remove the drawers from the frame."), SPAN_DANGER("You hear loud metal scraping."))
+				if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+					dump_contents()
+					var/obj/item/crafting/top/drawers/top = new(get_turf(src))
+					top.variant_id = crafting_drawer_color
+					var/obj/structure/crafting/frame/drawers/frame = new(get_turf(src))
+					frame.variant_id = variant_id
+					qdel(src)
+					return
+		return
 	return
