@@ -40,20 +40,29 @@
 
 /obj/structure/bed/modular/attackby(obj/item/C, mob/user)
 
+	if(istype(C, /obj/item/grab) && !buckled_mob)
+		var/obj/item/grab/G = C
+		if(ismob(G.grabbed_thing))
+			var/mob/M = G.grabbed_thing
+			var/atom/blocker = LinkBlocked(user, user.loc, loc)
+			if(blocker)
+				to_chat(user, SPAN_WARNING("\The [blocker] is in the way!"))
+			else
+				to_chat(user, SPAN_NOTICE("You place [M] on [src]."))
+				M.forceMove(loc)
+		return TRUE
+
 	if(HAS_TRAIT(C, TRAIT_TOOL_MULTITOOL))
 		if(user.a_intent == INTENT_GRAB)
 			user.visible_message(SPAN_NOTICE("[user] Attaches the multitool to the port on the side of the mattress. The device beeps."), SPAN_INFO("You attach the multitool to the port on the side of the mattress. The device beeps."), SPAN_DANGER("You hear a soft beep."))
 			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				var/obj/structure/crafting/frame/bed/frame = new(get_turf(src))
-				frame.icon_state = icon_state
 				frame.variant_id = variant_id
 				var/obj/item/crafting/top/bed/top = new(get_turf(src))
-				top.icon_state = crafting_bed_bedsheet_id
 				top.variant_id = crafting_bed_bedsheet_id
 				qdel(src)
 				return
-	else
-		. = ..()
+	return
 
 /obj/structure/bed/modular/verb/rotate_pillow()
 	set category = "Object"
@@ -173,4 +182,45 @@
 					qdel(src)
 					return
 		return
+	return
+
+//office chair
+
+/obj/structure/bed/chair/modular/office
+	name = "office chair"
+	desc = "A somewhat comfortable looking seat and backrest attached to a metal frame with four legs. A small wheel is attached to each of the legs."
+	desc_lore = "Chairs on wheels tend to be preferred by spaceship personnel on account of there being a lot of back-and-forth movement even within a single work area. These chairs also handle turbulence better and don’t fall over as much during regular spaceship operation, something that becomes very noticeable for someone that spends weeks on the same station."
+	var/variant_id
+	var/crafting_chair_top_id
+	var/crafting_chair_wheel_id
+	propelled = FALSE
+	can_rotate = TRUE
+
+
+
+/obj/structure/bed/chair/modular/office/attackby(obj/item/C, mob/user)
+
+	if(istype(C, /obj/item/grab) && !buckled_mob)
+		var/obj/item/grab/G = C
+		if(ismob(G.grabbed_thing))
+			var/mob/M = G.grabbed_thing
+			var/atom/blocker = LinkBlocked(user, user.loc, loc)
+			if(blocker)
+				to_chat(user, SPAN_WARNING("\The [blocker] is in the way!"))
+			else
+				to_chat(user, SPAN_NOTICE("You place [M] on [src]."))
+				M.forceMove(loc)
+		return TRUE
+
+	if(HAS_TRAIT(C, TRAIT_TOOL_WRENCH))
+		if(user.a_intent == INTENT_GRAB)
+			user.visible_message(SPAN_NOTICE("[user] starts to loosen the clamp holding the chair seat."), SPAN_INFO("You start to loosen the clamp holding the chair seat."), SPAN_DANGER("You hear metalic scraping."))
+			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				var/obj/item/crafting/top/chair/seat/top = new(get_turf(src))
+				top.variant_id = crafting_chair_top_id
+				var/obj/structure/crafting/frame/chair/frame = new(get_turf(src))
+				frame.variant_id = variant_id
+				frame.crafting_chair_wheel_id = crafting_chair_wheel_id
+				qdel(src)
+				return
 	return
