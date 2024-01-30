@@ -173,6 +173,7 @@
 /obj/item/crafting/top/table/gray
 	name = "gray table top"
 	icon_state = "table_top_gray"
+	variant_id = "gray"
 
 /obj/item/crafting/top/lamp/base
 	name = "black lamp top"

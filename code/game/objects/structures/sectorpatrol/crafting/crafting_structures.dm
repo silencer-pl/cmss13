@@ -35,12 +35,67 @@
 	icon_state = "default"
 	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands."
 	anchored = 0
+	var/crafting_top_ready = FALSE
 
 /obj/structure/crafting/frame/table
 	name = "table frame"
 	desc = "A set of metal rods in two distinct lengths, put together to form a table frame and secured by a set of screws."
 	icon_state = "table_metal_frame"
-	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, table frames need a top, which then should be secured using a wrench. "
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, table frames need a top, which then should be secured using a wrench."
+
+/obj/structure/crafting/frame/table/attack_hand(mob/user)
+	if(crafting_top_ready == TRUE)
+		if(user.a_intent == INTENT_GRAB)
+			user.visible_message(SPAN_NOTICE("[user] lifts a table top of its frame."), SPAN_INFO("You lift a table top of its frame."))
+			if(do_after(user, (10 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				switch(icon_state)
+					if("table_metal_black")
+						var/obj/item/crafting/top/table/tabletop = new(get_turf(user))
+						tabletop.forceMove(user.get_active_hand())
+					if("table_metal_gray")
+						var/obj/item/crafting/top/table/gray/tabletop = new(get_turf(user))
+						tabletop.forceMove(user.get_active_hand())
+				name = "table frame"
+				icon_state = "table_metal_frame"
+				desc = "A set of metal rods in two distinct lengths, put together to form a table frame and secured by a set of screws."
+				anchored = 0
+				return
+	return
+
+
+/obj/structure/crafting/frame/table/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/crafting/top/table/))
+		var/obj/item/crafting/top/table/W = C
+		user.visible_message(SPAN_NOTICE("[user] starts starts to align a table top with a frame."), SPAN_INFO("You start to to align a table top with a frame."))
+		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			switch(W.variant_id)
+				if("default")
+					icon_state = "table_metal_black"
+				if("gray")
+					icon_state = "table_metal_gray"
+			name = "table frame with an aligned top"
+			desc = "A set of metal rods in two distinct lengths, put together to form a table frame and secured by a set of screws. A table top is aligned with the frame."
+			crafting_top_ready = TRUE
+			anchored = 1
+			qdel(W)
+			return
+
+	if(HAS_TRAIT(C, TRAIT_TOOL_WRENCH))
+		if(crafting_top_ready == TRUE)
+			user.visible_message(SPAN_NOTICE("[user] tightens the screws attaching the table top to its frame. ."), SPAN_INFO("You tighten the screws attaching the table top to its frame."), SPAN_DANGER("You hear metal scratch against metal."))
+			if(do_after(user, (30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				switch(icon_state)
+					if("table_metal_black")
+						new /obj/structure/surface/modular/table(src)
+						qdel(src)
+						return
+					if("table_metal_gray")
+						new /obj/structure/surface/modular/table/gray(src)
+						qdel(src)
+						return
+	to_chat(usr, SPAN_NOTICE("You don't seem to be able to use this at the moment. Place a table top before trying to tighten the screws."))
+	return
+
 
 /obj/structure/crafting/frame/bed
 	name = "bed frame"
