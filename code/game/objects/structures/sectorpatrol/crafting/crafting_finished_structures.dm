@@ -48,7 +48,8 @@
 				top.variant_id = crafting_bed_bedsheet_id
 				qdel(src)
 				return
-	..()
+	else
+		. = ..()
 
 /obj/structure/bed/modular/verb/rotate_pillow()
 	set category = "Object"
