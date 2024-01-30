@@ -90,7 +90,7 @@
 	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
 		user.visible_message(SPAN_NOTICE("[user] starts to assemble a frame with a screwdriver."), SPAN_INFO("You start to assemble the frame."), SPAN_DANGER("You hear metal gently brushing against other metal."))
 		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			var/obj/structure/crafting/frame/table/R = new(src, 1, /obj/structure/crafting/frame/table)
+			var/obj/structure/crafting/frame/table/R = new(get_turf(usr))
 			R.variant_id = variant_id
 			qdel(src)
 			return
@@ -108,7 +108,7 @@
 	..()
 	user.visible_message(SPAN_NOTICE("[user] starts to assemble a cabinet frame from its components."), SPAN_INFO("You start to assemble a cabinet frame from its components."), SPAN_DANGER("You hear metal gently brushing against other metal."))
 	if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-		var/obj/structure/crafting/frame/drawers/R = new(src, 1, /obj/structure/crafting/frame/drawers)
+		var/obj/structure/crafting/frame/drawers/R = new(get_turf(usr))
 		R.variant_id = variant_id
 		qdel(src)
 		return
@@ -129,7 +129,7 @@
 				crafting_chair_wheels += 1
 				if(crafting_chair_wheels == 4)
 					user.visible_message(SPAN_NOTICE("[user] finishes attaching wheels to a chair frame and puts the chair down."), SPAN_INFO("You finish attaching wheels to a chair frame and put the chair down."), SPAN_DANGER("You hear a firm tap."))
-					var/obj/structure/crafting/frame/chair/R = new(src, 1, /obj/structure/crafting/frame/chair)
+					var/obj/structure/crafting/frame/chair/R = new(get_turf(usr))
 					R.variant_id = variant_id
 					R.crafting_chair_wheel_id = W.variant_id
 					qdel(src)
@@ -149,7 +149,7 @@
 	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
 		user.visible_message(SPAN_NOTICE("[user] starts to assemble a frame with a screwdriver."), SPAN_INFO("You start to assemble the frame."), SPAN_DANGER("You hear metal gently brushing against other metal."))
 		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			var/obj/structure/crafting/frame/bed/R = new(src, 1, /obj/structure/crafting/frame/bed)
+			var/obj/structure/crafting/frame/bed/R = new(get_turf(usr))
 			R.variant_id = variant_id
 			qdel(src)
 			return

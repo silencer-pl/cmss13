@@ -51,13 +51,14 @@
 				switch(icon_state)
 					if("table_metal_black")
 						var/obj/item/crafting/top/table/tabletop = new(get_turf(user))
-						tabletop.forceMove(user.get_active_hand())
+						user.put_in_active_hand(tabletop)
 					if("table_metal_gray")
 						var/obj/item/crafting/top/table/gray/tabletop = new(get_turf(user))
-						tabletop.forceMove(user.get_active_hand())
+						user.put_in_active_hand(tabletop)
 				name = "table frame"
 				icon_state = "table_metal_frame"
 				desc = "A set of metal rods in two distinct lengths, put together to form a table frame and secured by a set of screws."
+				crafting_top_ready = FALSE
 				anchored = 0
 				return
 	return
@@ -82,18 +83,30 @@
 
 	if(HAS_TRAIT(C, TRAIT_TOOL_WRENCH))
 		if(crafting_top_ready == TRUE)
-			user.visible_message(SPAN_NOTICE("[user] tightens the screws attaching the table top to its frame. ."), SPAN_INFO("You tighten the screws attaching the table top to its frame."), SPAN_DANGER("You hear metal scratch against metal."))
+			user.visible_message(SPAN_NOTICE("[user] tightens the screws attaching the table top to its frame."), SPAN_INFO("You tighten the screws attaching the table top to its frame."), SPAN_DANGER("You hear metal scratch against metal."))
 			if(do_after(user, (30 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
 				switch(icon_state)
 					if("table_metal_black")
-						new /obj/structure/surface/modular/table(src)
+						new /obj/structure/surface/modular/table(get_turf(src))
 						qdel(src)
 						return
 					if("table_metal_gray")
-						new /obj/structure/surface/modular/table/gray(src)
+						new /obj/structure/surface/modular/table/gray(get_turf(src))
 						qdel(src)
 						return
-	to_chat(usr, SPAN_NOTICE("You don't seem to be able to use this at the moment. Place a table top before trying to tighten the screws."))
+
+	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
+		if(crafting_top_ready == TRUE)
+			to_chat(usr, SPAN_NOTICE("Remove the top before disassembling the frame. To remove the top, click the frame with an empty hand in GRAB mode."))
+			return
+		user.visible_message(SPAN_NOTICE("[user] starts to disassemble the frame."), SPAN_INFO("You start to disassemble the frame."))
+		if(do_after(user, (20 * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			var/obj/item/crafting/frame_elements/elements = new(get_turf(usr))
+			elements.variant_id = variant_id
+			qdel(src)
+			return
+
+	to_chat(usr, SPAN_NOTICE("You don't seem to be able to use this at the moment. Place a table top before trying to tighten the screws or use a screwdriver in GRAB mode to disassemble the frame."))
 	return
 
 
