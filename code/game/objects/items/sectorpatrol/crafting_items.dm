@@ -169,7 +169,6 @@
 	name = "black table top"
 	desc = "Made from light weight resins but printed to look and feel like painted wood. Cool to the touch. Comes with a set of slots at one side."
 	icon_state = "table_top_black"
-
 /obj/item/crafting/top/table/gray
 	name = "gray table top"
 	icon_state = "table_top_gray"
