@@ -324,12 +324,10 @@
 				emoteas("glitches and skips again.")
 				A.talkas("Just a matter of time. If not the corporations, then one of the superpowers. If not them, then their armed forces. We are lost in the sea of stars.")
 				A.talkas("Our mission is nothing else than saving humanity. Our mission is-")
-				A.langchat_color = COLOR_WHITE
-				A.name = "A gunshot"
-				A.emoteas("rings out somewhere near where the recording took place. The recording goes silent for over ten seconds.", 120)
+				emoteas("A gunshot rings out somewhere near where the recording took place. The recording goes silent for over ten seconds.", 120)
 				A.langchat_color = "#b3183e"
 				A.name = "Voice of CDR. Cassandra Reed-Wilo"
-				A.talkas("For a prophet, you sure go down fast and easy.")
+				A.talkas("Good shot. Target down and out. Mop the rest up and let's see what we have here.")
 				icon_state = "off"
 				update_icon()
 				emoteas("glitches again. This time the device falls silent and does not reactivate.")
