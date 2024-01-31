@@ -225,3 +225,4 @@
 					terminal_speak("YELLOW passphrase saved.")
 					puzzlebox_phrase_3 = TRUE
 					attack_hand(user)
+
