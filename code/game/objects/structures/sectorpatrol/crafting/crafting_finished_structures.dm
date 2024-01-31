@@ -37,6 +37,7 @@
 	icon_state = "bed"
 	var/crafting_bed_bedsheet_id = "default"
 	var/variant_id = "default"
+	anchored = 1
 
 /obj/structure/bed/modular/attackby(obj/item/C, mob/user)
 

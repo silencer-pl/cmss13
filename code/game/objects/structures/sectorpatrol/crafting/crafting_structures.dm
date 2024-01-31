@@ -41,7 +41,7 @@
 	name = "table frame"
 	desc = "A set of metal rods in two distinct lengths, put together to form a table frame and secured by a set of screws."
 	icon_state = "table_metal_frame"
-	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, table frames need a top, which then should be secured using a wrench."
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, table frames need a top, which then should be secured using a wrench. The table can be disassembled using a screwdriver as well."
 
 /obj/structure/crafting/frame/table/attack_hand(mob/user)
 	if(crafting_top_ready == TRUE)
@@ -99,12 +99,13 @@
 		if(crafting_top_ready == TRUE)
 			to_chat(usr, SPAN_NOTICE("Remove the top before disassembling the frame. To remove the top, click the frame with an empty hand in GRAB mode."))
 			return
-		user.visible_message(SPAN_NOTICE("[user] starts to disassemble the frame."), SPAN_INFO("You start to disassemble the frame."))
-		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
-			var/obj/item/crafting/frame_elements/elements = new(get_turf(usr))
-			elements.variant_id = variant_id
-			qdel(src)
-			return
+		if(user.a_intent == INTENT_GRAB)
+			user.visible_message(SPAN_NOTICE("[user] starts to disassemble the frame."), SPAN_INFO("You start to disassemble the frame."))
+			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				var/obj/item/crafting/frame_elements/table/elements = new(get_turf(usr))
+				elements.variant_id = variant_id
+				qdel(src)
+				return
 
 	to_chat(usr, SPAN_NOTICE("You don't seem to be able to use this at the moment. Place a table top before trying to tighten the screws or use a screwdriver in GRAB mode to disassemble the frame."))
 	return
@@ -114,17 +115,98 @@
 	name = "bed frame"
 	desc = "Four metal bards and supporting rods, put together into a bed frame. Held together by a series of screws."
 	icon_state = "bed_frame"
-	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, bed frames are ready for an expandable mattress and don't require any further tinkering."
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, bed frames are ready for an expandable mattress and don't require any further tinkering. A screwdriver can be used to take the frame apart again."
+
+/obj/structure/crafting/frame/bed/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/crafting/top/bed))
+		var/obj/item/crafting/top/bed/top
+		user.visible_message(SPAN_NOTICE("[user] places a bag in the middle of the frame and pushes a button on the side."), SPAN_INFO("You place a bag in the middle of the frame and push a button on the side."))
+		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			var/obj/structure/bed/modular/bed = new(get_turf(src))
+			bed.crafting_bed_bedsheet_id = top.variant_id
+			bed.variant_id = variant_id
+			qdel(top)
+			qdel(src)
+			return
+
+	if(HAS_TRAIT(C, TRAIT_TOOL_SCREWDRIVER))
+		if(user.a_intent == INTENT_GRAB)
+			user.visible_message(SPAN_NOTICE("[user] starts to disassemble the frame."), SPAN_INFO("You start to disassemble the frame."))
+			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				var/obj/item/crafting/frame_elements/bed/B
+				B.variant_id = variant_id
+				qdel(src)
+				return
+
+	to_chat(SPAN_INFO("You cannot seem to combine these together. Use an inflatable matress to finish assembling the frame, or use a screwdriver in GRAB intent to disassemble the frame into its basic elements."))
+	return
 
 /obj/structure/crafting/frame/drawers
 	name = "cabinet frame"
 	desc = "Several sheets of metal snapped together along the edges using a series of premade hooks and holes."
 	icon_state = "drawer_frame"
-	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, cabinet frames need a set of drawers that clip onto inlaid tracks and don't require any additional tinkering. "
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once assembled, cabinet frames need a set of drawers that clip onto inlaid tracks and don't require any additional tinkering. A crowbar can be used to wedge the elements apart."
+
+/obj/structure/crafting/frame/drawers/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/crafting/top/drawers))
+		var/obj/item/crafting/top/drawers/D
+		user.visible_message(SPAN_NOTICE("[user] slides metal drawers into the cabinet frame."), SPAN_INFO("You slide metal drawers into the cabinet frame."), SPAN_WARNING("You hear metal sliding against metal."))
+		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			var/obj/structure/closet/modular/drawers/O = new(get_turf(src))
+			O.crafting_drawer_color = D.variant_id
+			O.variant_id = variant_id
+			qdel(D)
+			qdel(src)
+			return
+
+	if(HAS_TRAIT(C, TRAIT_TOOL_CROWBAR))
+		if (user.a_intent == INTENT_GRAB)
+			user.visible_message(SPAN_NOTICE("[user] starts to detach elements of a cabinet frame from each other."), SPAN_INFO("You start to detach elements of a cabinet frame from each other."))
+			if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+				var/obj/item/crafting/frame_elements/drawers/frame = new(get_turf(src))
+				frame.variant_id = variant_id
+				qdel(src)
+				return
+
+	to_chat(user, SPAN_INFO("You cannot seem to combine these together. Insert drawers to finish assembling the frame, or use a crowbar in GRAB intent to disassemble the frame into its basic elements."))
+	return
 
 /obj/structure/crafting/frame/chair
 	name = "office chair base with wheels"
 	desc = "An office chair with four 'legs', each one has a colored wheel at its tip."
 	var/crafting_chair_wheel_id = "default"
+	var/crafting_chair_wheels = 4
 	icon_state = "chair_base_wheels"
-	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once the wheels are secured, office chairs need a seat attached and then tightened with a wrench."
+	desc_lore = "Any object produced in adherence to the Northern Republic Production Standard must have a detachable base, called a frame. Frames can come in all shapes and sizes, typically need to be assembled first and as close to where the given object resides as possible. Per the NRPS, each individual piece of a frame must be attachable and detachable by using only a screwdriver, which typically means that any assembly utilizing the NRPS comes with screws that are used to assemble the frame or can be assembled with just one's hands. Once the wheels are secured, office chairs need a seat attached and then tightened with a wrench. The wheels can be removed with just your hands."
+
+/obj/structure/crafting/frame/chair/attack_hand(mob/user)
+	if(user.a_intent == INTENT_GRAB)
+		if(crafting_chair_wheels > 0)
+			user.visible_message(SPAN_NOTICE("[user] starts to twist the wheels out of the chair frame."), SPAN_INFO("You start to twist the wheels out of the chair frame."), SPAN_WARNING("You a series of pops."))
+			while(crafting_chair_wheels > 0)
+				if(do_after(user, (CRAFTING_DELAY_SHORT * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+					crafting_chair_wheels -= 1
+					if(crafting_chair_wheels == 0)
+						var/obj/item/crafting/top/chair/wheels/wheels = new(get_turf(usr))
+						var/obj/item/crafting/frame_elements/chair/frame = new(get_turf(usr))
+						wheels.variant_id = crafting_chair_wheel_id
+						user.put_in_hands(wheels)
+						frame.variant_id = variant_id
+						user.put_in_hands(frame)
+						qdel(src)
+			return
+	return
+
+/obj/structure/crafting/frame/chair/attackby(obj/item/C, mob/user)
+	if(istype(C, /obj/item/crafting/top/table/))
+		var/obj/structure/crafting/frame/chair/W = C
+		user.visible_message(SPAN_NOTICE("[user] pushes a chair seat and backrest onto a chair frame."), SPAN_INFO("You push a chair seat and backrest onto a chair frame."), SPAN_WARNING("You hear a metallic thud."))
+		if(do_after(user, (CRAFTING_DELAY_NORMAL * user.get_skill_duration_multiplier(SKILL_CONSTRUCTION)), INTERRUPT_ALL|BEHAVIOR_IMMOBILE, BUSY_ICON_BUILD))
+			var/obj/structure/bed/chair/modular/office/chair = new(get_turf(usr))
+			chair.variant_id = variant_id
+			chair.crafting_chair_wheel_id = crafting_chair_wheel_id
+			chair.crafting_chair_top_id = W.variant_id
+			qdel(src)
+			qdel(W)
+			return
+	return
