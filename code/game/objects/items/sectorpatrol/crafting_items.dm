@@ -103,9 +103,6 @@
 			if(icon_state == "lamp_base")
 				to_chat(user, SPAN_INFO("There is no top attached to this frame."))
 				return
-	return
-
-
 	to_chat(usr, SPAN_NOTICE("You cannot seem to combine these together. Use a lamp top or light bulb to finish the assembly, or a screwdriver in GRAB mode to remove a top if one is present."))
 	return
 
