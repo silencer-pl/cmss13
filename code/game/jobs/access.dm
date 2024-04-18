@@ -445,6 +445,17 @@
 			return "AI Access"
 		if(ACCESS_ARES_DEBUG)
 			return "AI Debug"
+// Sector Patrol
+		if(ACCESS_SP_ADMIN)
+			return "UACM Master Administrator"
+		if(ACCESS_SP_OVPST_SECURITY)
+			return "Outer Veil PST - Class D - Security - Administrator"
+		if(ACCESS_SP_OVPST_SECURITY_DEFAULT)
+			return "Outer Veil PST - Class D - Basic Certification"
+		if(ACCESS_SP_OVPST_GENERAL)
+			return "Outer Veil PST - Class G - General Access - Administrator"
+		if(ACCESS_SP_OVPST_GENERAL_DEFAULT)
+			return "Outer Veil PST - Class G - General Access - All Registered UACM Personnel"
 
 /proc/get_weyland_access_desc(A)
 	switch(A)

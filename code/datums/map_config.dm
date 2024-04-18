@@ -13,7 +13,7 @@
 	var/voteweight = 1
 
 	// Config actually from the JSON - default values
-	var/map_name = "LV624"
+	var/map_name = "The Outer Veil PST"
 	var/map_path = "map_files/LV624"
 	var/map_file = "LV624.dmm"
 
@@ -378,10 +378,10 @@
 			if(!(g in gamemode_names))
 				log_world("map_config has an invalid gamemode name!")
 				return
-			if(g == "Extended") // always allow extended
+			if(g == "Sector Patrol") // always allow extended
 				continue
 			gamemodes += g
-		gamemodes += "Extended"
+		gamemodes += "Sector Patrol"
 	else if(!isnull(json["gamemodes"]))
 		log_world("map_config gamemodes is not a list!")
 		return

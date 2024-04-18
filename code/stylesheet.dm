@@ -125,8 +125,8 @@ h1.alert, h2.alert {color: #000000;}
 .xenoqueen {color: #730d73; font-style: italic; font-weight: bold; font-size: 3;}
 .newscaster {color: #800000;}
 
-.role_header {color: #db0000 text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 2;}
-.role_body {color: #000099; text-align: center;}
+.role_header {color: #db0000; text-align: center; font-weight: bold; font-size: 2; padding: 0em 1em;}
+.role_body {color: #000099; text-align: justify; padding: 0em 1em;}
 
 .round_header {color: #db0000; text-align: center; font-family: courier; font-weight: bold; font-size: 4;}
 .round_body {color: #001427; text-align: center; font-family: trebuchet-ms; font-weight: bold; font-size: 3;}
@@ -155,5 +155,11 @@ h1.alert, h2.alert {color: #000000;}
 
 .retro_translator {font-weight: bold;}
 .yautja_translator {color: #aa0000; font-weight: bold;}
+
+.chargen_header {color: #9b59b6; font-size: large; font-weight: bold; padding: 1em}
+.chargen_body {color: #cc3399; padding: 1em}
+
+.narrate_head {font-size: 3; text-align: center; color: #ffccff;padding: 0em 1em;}
+.narrate_body {font-size: 2; text-align: justify; color: #ff99ff;padding: 0em 1em;}
 
 </style>"}

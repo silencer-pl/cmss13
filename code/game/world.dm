@@ -90,7 +90,7 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 	// If the server's configured for local testing, get everything set up ASAP.
 	// Shamelessly stolen from the test manager's host_tests() proc
 	if(testing_locally)
-		GLOB.master_mode = "Extended"
+		GLOB.master_mode = "Sector Patrol"
 
 		// Wait for the game ticker to initialize
 		while(!SSticker.initialized)
@@ -272,16 +272,9 @@ GLOBAL_LIST_INIT(reboot_sfx, file2list("config/reboot_sfx.txt"))
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including limited HTML/CSS.
 	var/s = ""
-
-	if(CONFIG_GET(string/servername))
-		s += "<a href=\"[CONFIG_GET(string/forumurl)]\"><b>[CONFIG_GET(string/servername)]</b></a>"
-
-	if(SSmapping?.configs)
-		var/datum/map_config/MG = SSmapping.configs[GROUND_MAP]
-		s += "<br>Map: [MG?.map_name ? "<b>[MG.map_name]</b>" : ""]"
-	if(SSticker?.mode)
-		s += "<br>Mode: <b>[SSticker.mode.name]</b>"
-		s += "<br>Round time: <b>[duration2text()]</b>"
+	s += "<b>Sector Patrol ALPHA - A Role-playing game mode without player antagonists</b><br>"
+	s += "Late joining may be disabled, but you may create your character at any time.<br>"
+	s += "<a href='https://discord.gg/vgr2RWZcXy'>Join the Neroid Sector Discord.</a>"
 
 	world.status = s
 

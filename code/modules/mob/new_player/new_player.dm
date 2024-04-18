@@ -33,38 +33,34 @@
 	if(!client)
 		return
 
-	var/tempnumber = rand(1, 999)
-	var/postfix_text = (client.xeno_postfix) ? ("-"+client.xeno_postfix) : ""
-	var/prefix_text = (client.xeno_prefix) ? client.xeno_prefix : "XX"
-	var/xeno_text = "[prefix_text]-[tempnumber][postfix_text]"
 	var/round_start = !SSticker || !SSticker.mode || SSticker.current_state <= GAME_STATE_PREGAME
+	var/chargen_check = (client.prefs.chargen_done) ? client.prefs.chargen_done : FALSE
 
-	var/output = "<div align='center'>Welcome,"
+	var/output = "<div align='center'>Welcome to Sector Patrol."
+	output +="<br><b>ALPHA</b>"
+	output +="<br><br>Current character:"
 	output +="<br><b>[(client.prefs && client.prefs.real_name) ? client.prefs.real_name : client.key]</b>"
-	output +="<br><b>[xeno_text]</b>"
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=tutorial'>Tutorial</A></p>"
-	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Setup Character</A></p>"
+	// output += "<p><a href='byond://?src=\ref[src];lobby_choice=tutorial'>Tutorial</A></p>"
+	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_preferences'>Character Sheet</A></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];lobby_choice=show_playtimes'>View Playtimes</A></p>"
 
-	if(round_start)
-		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=unready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
-		output += "<b>Be Xenomorph:</b> [(client.prefs && (client.prefs.get_job_priority(JOB_XENOMORPH))) ? "Yes" : "No"]"
-
+	if (chargen_check == FALSE)
+		output += "<a href='byond://?src=\ref[src];lobby_choice=chargen_blurb'><p>Chargen Incomplete</A></p>"
 	else
-		output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
-		output += "<a href='byond://?src=\ref[src];lobby_choice=hiveleaders'>View Hive Leaders</A><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join the USCM!</A></p>"
-		output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_xeno'>Join the Hive!</A></p>"
-		if(SSticker.mode.flags_round_type & MODE_PREDATOR)
-			if(SSticker.mode.check_predator_late_join(src,0)) output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join_pred'>Join the Hunt!</A></p>"
+		if (round_start)
+			output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=\ref[src];lobby_choice=unready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
+
+		else
+			output += "<a href='byond://?src=\ref[src];lobby_choice=manifest'>View the Crew Manifest</A><br><br>"
+			output += "<p><a href='byond://?src=\ref[src];lobby_choice=late_join'>Join ongoing round!</A></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];lobby_choice=observe'>Observe</A></p>"
 
 	output += "</div>"
 	if (refresh)
 		close_browser(src, "playersetup")
-	show_browser(src, output, null, "playersetup", "size=240x[round_start ? 500 : 610];can_close=0;can_minimize=0")
+	show_browser(src, output, null, "playersetup", "size=240x[round_start ? 400 : 510];can_close=0;can_minimize=0")
 	return
 
 /mob/new_player/Topic(href, href_list[])
@@ -86,6 +82,13 @@
 				return
 			client.prefs.ShowChoices(src)
 			return 1
+		if("chargen_blurb")
+			var/chargen_firstcheck = (client.prefs.chargen_firsttime) ? client.prefs.chargen_firsttime : TRUE
+			if(chargen_firstcheck == TRUE)
+				to_chat(src, ("<div class='chargen_header';>Your currently selected character has not completed CharGen, which both introduces you to the setting of Sector Patrol and helps you draw a broad outline of who your character may be.</p><p>CharGen is mandatory for all new characters and/or players. The process may be initiated from your Character Sheet, which will be open for you.</p></div>"))
+			else
+				to_chat(src, ("<div class='chargen_header';>CharGen not complete on current character. Opening preferences.</p></div>"))
+			Topic(src, list("_src_" = "\ref[src]", "lobby_choice" = "show_preferences"))
 
 		if("show_playtimes")
 			if(!SSentity_manager.ready)

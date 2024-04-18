@@ -135,3 +135,8 @@ GLOBAL_VAR(xeno_queue_candidate_count)
 GLOBAL_VAR(obfs_x)
 /// A number between -500 and 500.
 GLOBAL_VAR(obfs_y)
+
+//Sector Patrol
+//For generating hexlike adress groups
+
+GLOBAL_LIST_INIT(hex_string, list("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"))

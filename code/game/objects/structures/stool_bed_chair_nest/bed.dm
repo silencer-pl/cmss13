@@ -20,7 +20,7 @@
 	var/buildstackamount = 1
 	var/foldabletype //To fold into an item (e.g. roller bed item)
 	var/buckling_y = 0 //pixel y shift to give to the buckled mob.
-	var/buckling_x = 0 //pixel x shift to give to the buckled mob.
+	var/buckling_x = 0 //as above, but x
 	var/obj/structure/closet/bodybag/buckled_bodybag
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
@@ -171,9 +171,9 @@
 				return FALSE
 			if(blocker)
 				to_chat(user, SPAN_WARNING("\The [blocker] is in the way!"))
-				return FALSE
-			to_chat(user, SPAN_NOTICE("You place [M] on [src]."))
-			M.forceMove(loc)
+			else
+				to_chat(user, SPAN_NOTICE("You place [M] on [src]."))
+				M.forceMove(loc)
 		return TRUE
 
 	else

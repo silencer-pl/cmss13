@@ -27,6 +27,8 @@
 	. = ..()
 	if (fixture_type == "bulb")
 		icon_state = "bulb-construct-stage1"
+	if (fixture_type == "marker")
+		icon_state = "marker-construct-s1"
 
 /obj/structure/machinery/light_construct/Destroy()
 	newlight = null
@@ -75,6 +77,8 @@
 				src.icon_state = "tube-construct-stage1"
 			if("bulb")
 				src.icon_state = "bulb-construct-stage1"
+			if("marker")
+				src.icon_state = "marker-construct-s1"
 		new /obj/item/stack/cable_coil(get_turf(src.loc), 1, "red")
 		user.visible_message("[user.name] removes the wiring from [src].", \
 			"You remove the wiring from [src].", "You hear a noise.")
@@ -90,6 +94,8 @@
 					src.icon_state = "tube-construct-stage2"
 				if("bulb")
 					src.icon_state = "bulb-construct-stage2"
+				if("marker")
+					src.icon_state = "marker-construct-s2"
 			src.stage = 2
 			user.visible_message("[user.name] adds wires to [src].", \
 				"You add wires to [src].")
@@ -102,6 +108,8 @@
 					src.icon_state = "tube-empty"
 				if("bulb")
 					src.icon_state = "bulb-empty"
+				if("marker")
+					src.icon_state = "marker-empty"
 			src.stage = 3
 			user.visible_message("[user.name] closes [src]'s casing.", \
 				"You close [src]'s casing.", "You hear a noise.")
@@ -113,6 +121,8 @@
 					newlight = new /obj/structure/machinery/light/built(src.loc)
 				if ("bulb")
 					newlight = new /obj/structure/machinery/light/small/built(src.loc)
+				if ("marker")
+					newlight = new /obj/structure/machinery/light/marker/built
 
 			newlight.setDir(dir)
 			src.transfer_fingerprints_to(newlight)
@@ -135,6 +145,10 @@
 	name = "light fixture"
 	icon = 'icons/obj/items/lighting.dmi'
 	var/base_state = "tube" // base description and icon_state
+	var/on = 0 // 1 if on, 0 if off - also names of icon states for both, which is significant
+	var/color_state // For colored bulbs, if present appends this to the icon_state between the base and 0/1
+	var/bulb_color  //Value for set_light call, can be any color macro or a hex value. Null unless carried over from bulbs
+	var/light_id //id string for outside manipulation calls that aren't lightswitches
 	icon_state = "tube1"
 	desc = "A lighting fixture that is fitted with a bright fluorescent light tube. Looking at it for too long makes your eyes go watery."
 	anchored = TRUE
@@ -144,7 +158,6 @@
 	active_power_usage = 20
 	power_channel = POWER_CHANNEL_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	light_system = STATIC_LIGHT
-	var/on = 0 // 1 if on, 0 if off
 	var/on_gs = 0
 	var/brightness = 8 // luminosity when on, also used in power calculation
 	var/status = LIGHT_OK // LIGHT_OK, _EMPTY, _BURNED or _BROKEN
@@ -235,12 +248,10 @@
 	switch(fitting)
 		if("tube")
 			brightness = 8
-			if(prob(2))
-				broken(1)
 		if("bulb")
 			brightness = 4
-			if(prob(5))
-				broken(1)
+		if("marker")
+			brightness = 6
 
 	active_power_usage = (brightness * 10)
 	addtimer(CALLBACK(src, PROC_REF(update), 0), 1)
@@ -282,7 +293,10 @@
 
 	switch(status) // set icon_states
 		if(LIGHT_OK)
-			icon_state = "[base_state][on]"
+			if(!color_state)
+				icon_state = "[base_state][on]"
+			else
+				icon_state = "[base_state][color_state][on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 			on = 0
@@ -314,7 +328,8 @@
 					set_light(0)
 			else
 				update_use_power(USE_POWER_ACTIVE)
-				set_light(brightness)
+				if (!bulb_color) set_light(brightness)
+				else set_light(l_range = brightness, l_color = bulb_color)
 	else
 		update_use_power(USE_POWER_NONE)
 		set_light(0)
@@ -364,6 +379,8 @@
 			src.add_fingerprint(user)
 			var/obj/item/light_bulb/L = W
 			if(istype(L, light_type))
+				if (L.color_state != null) color_state = L.color_state
+				if (L.bulb_color != null) bulb_color = L.bulb_color
 				status = L.status
 				to_chat(user, "You insert the [L.name].")
 				switchcount = L.switchcount
@@ -420,6 +437,9 @@
 				if("bulb")
 					newlight = new /obj/structure/machinery/light_construct/small(src.loc)
 					newlight.icon_state = "bulb-construct-stage2"
+				if("marker")
+					newlight = new /obj/structure/machinery/light_construct/marker(src.loc)
+					newlight.icon_state = "marker-construct-s2"
 			newlight.setDir(dir)
 			newlight.stage = 2
 			transfer_fingerprints_to(newlight)
@@ -523,6 +543,7 @@
 	L.status = status
 	L.rigged = rigged
 	L.brightness = src.brightness
+	L.bulb_color = src.bulb_color
 
 	// light item inherits the switchcount, then zero it
 	L.switchcount = switchcount
@@ -642,6 +663,8 @@
 	w_class = SIZE_SMALL
 	var/status = 0 // LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
+	var/color_state //icon name for markers and other color variatns
+	var/bulb_color  //Value for set_light call, can be any color macro or a hex value
 	var/switchcount = 0 // number of times switched
 	matter = list("metal" = 60)
 	var/rigged = 0 // true if rigged to explode
@@ -700,14 +723,18 @@
 /obj/item/light_bulb/proc/update()
 	switch(status)
 		if(LIGHT_OK)
-			icon_state = base_state
-			desc = "A replacement [name]."
+			if(!color_state)
+				icon_state = "[base_state]"
+			else
+				icon_state = "[base_state][color_state]"
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
-			desc = "A burnt-out [name]."
+			var/newdesc = "[desc]" + " It looks burnt out and likely will not work anymore."
+			desc = newdesc
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-			desc = "A broken [name]."
+			var/newdesc = "[desc]" + "It's been smashed. It won't work anymore and should be thrown away or recycled."
+			desc = newdesc
 
 
 /obj/item/light_bulb/Initialize()

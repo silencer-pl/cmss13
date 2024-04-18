@@ -108,3 +108,8 @@
 
 #define SPAN_STAFF_IC(X) "<span class='staff_ic'>[X]</span>"
 #define SPAN_BIGNOTICE(X) "<span class='bigannounce'>[X]</span>"
+
+// Chargen
+
+#define SPAN_CHARGEN_HEADER(X) "<span class='chargen_header'>[X]</span>"
+#define SPAN_CHARGEN_BODY(X) "<span class='chargen_body'>[X]</span>"
